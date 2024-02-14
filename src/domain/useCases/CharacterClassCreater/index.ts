@@ -1,4 +1,4 @@
-import { CharacterClass } from 'src/domain/entities/CharacterClass'
+import { CharacterClass } from 'domain/entities/CharacterClass'
 
 export interface CharacterClassCreaterParams {
   name: string

@@ -1,9 +1,10 @@
 import { faker } from '@faker-js/faker'
-import { CharacterClassCreater, Params } from '.'
+import { CharacterClassCreater, CharacterClassCreaterParams } from '.'
 
-export const mockCharacterClassCreaterParams = (): Params => ({
-  name: faker.lorem.word(),
-})
+export const mockCharacterClassCreaterParams =
+  (): CharacterClassCreaterParams => ({
+    name: faker.lorem.word(),
+  })
 
 export const mockCharacterClassCreater =
   (): jest.Mocked<CharacterClassCreater> => ({

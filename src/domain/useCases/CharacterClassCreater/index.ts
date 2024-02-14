@@ -1,9 +1,9 @@
 import { CharacterClass } from 'src/domain/entities/CharacterClass'
 
-export interface Params {
+export interface CharacterClassCreaterParams {
   name: string
 }
 
 export interface CharacterClassCreater {
-  create: (params: Params) => Promise<CharacterClass>
+  create: (params: CharacterClassCreaterParams) => Promise<CharacterClass>
 }

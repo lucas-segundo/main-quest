@@ -1,4 +1,3 @@
-import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
 import {
   CharacterClassCreater,
   CharacterClassCreaterParams,
@@ -15,11 +14,13 @@ export class CharacterClassCreaterController implements Controller {
   async handle(
     params: CharacterClassCreaterControllerParams,
   ): Promise<HTTPResponse> {
-    await this.characterClassCreater.create(params.data)
+    const createdCharacterClass = await this.characterClassCreater.create(
+      params.data,
+    )
 
     return {
       statusCode: 201,
-      data: mockCharacterClass(),
+      data: createdCharacterClass,
     }
   }
 }

@@ -5,11 +5,17 @@ import {
 } from '.'
 import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
 
+const makeSUT = () => {
+  const characterClassCreater = mockCharacterClassCreater()
+  const sut = new CharacterClassCreaterController(characterClassCreater)
+
+  return { sut, characterClassCreater }
+}
+
 describe('CharacterClassCreater', () => {
   it('should call creater with right params', async () => {
+    const { sut, characterClassCreater } = makeSUT()
     const characterClassToCreate = mockCharacterClass()
-    const characterClassCreater = mockCharacterClassCreater()
-    const sut = new CharacterClassCreaterController(characterClassCreater)
 
     const params: CharacterClassCreaterControllerParams = {
       data: characterClassToCreate,

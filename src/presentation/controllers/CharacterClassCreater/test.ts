@@ -1,9 +1,11 @@
-import { mockCharacterClassCreater } from 'domain/useCases/CharacterClassCreater/mock'
+import {
+  mockCharacterClassCreater,
+  mockCharacterClassCreaterParams,
+} from 'domain/useCases/CharacterClassCreater/mock'
 import {
   CharacterClassCreaterController,
   CharacterClassCreaterControllerParams,
 } from '.'
-import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
 
 const makeSUT = () => {
   const characterClassCreater = mockCharacterClassCreater()
@@ -15,7 +17,7 @@ const makeSUT = () => {
 describe('CharacterClassCreater', () => {
   it('should call creater with right params', async () => {
     const { sut, characterClassCreater } = makeSUT()
-    const characterClassToCreate = mockCharacterClass()
+    const characterClassToCreate = mockCharacterClassCreaterParams()
 
     const params: CharacterClassCreaterControllerParams = {
       data: characterClassToCreate,

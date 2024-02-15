@@ -1,5 +1,10 @@
 import { faker } from '@faker-js/faker'
-import { Controller, HTTPResponse } from '.'
+import { Controller, HTTPErrorResponse, HTTPResponse } from '.'
+
+export const mockControllerHTTPErrorResponse = (): HTTPErrorResponse => ({
+  errors: [faker.lorem.words(), faker.lorem.words()],
+  statusCode: faker.internet.httpStatusCode(),
+})
 
 export const mockControllerHTTPResponse = (): HTTPResponse => ({
   data: {

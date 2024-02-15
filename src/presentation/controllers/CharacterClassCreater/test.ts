@@ -7,6 +7,11 @@ import {
   CharacterClassCreaterControllerParams,
 } from '.'
 import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
+import { UnexpectedError } from 'domain/errors/UnexpectedError'
+import {
+  HTTPErrorResponse,
+  HTTPResponse,
+} from 'presentation/interfaces/Controller'
 
 const makeSUT = () => {
   const characterClassCreater = mockCharacterClassCreater()
@@ -46,9 +51,25 @@ describe('CharacterClassCreater', () => {
       data: characterClassToCreate,
     }
 
-    const response = await sut.handle(params)
+    const response = (await sut.handle(params)) as HTTPResponse
 
     expect(response.statusCode).toBe(201)
     expect(response.data).toEqual(createdCharacterClass)
+  })
+
+  it('should return 500 if creater throws unexpected error', async () => {
+    const { sut, characterClassCreater } = makeSUT()
+
+    const error = new UnexpectedError()
+    characterClassCreater.create.mockRejectedValue(new UnexpectedError())
+
+    const params: CharacterClassCreaterControllerParams = {
+      data: mockCharacterClassCreaterParams(),
+    }
+
+    const response = (await sut.handle(params)) as HTTPErrorResponse
+
+    expect(response.statusCode).toBe(500)
+    expect(response.errors).toEqual([error.message])
   })
 })

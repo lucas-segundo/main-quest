@@ -21,7 +21,7 @@ export class CharacterClassCreaterController implements Controller {
     let response: HTTPResponse | HTTPErrorResponse
 
     try {
-      response = await this.createCharacterClass(params)
+      response = await this.createCharacterClass(params.data)
     } catch (error) {
       response = this.handleError(error)
     } finally {
@@ -29,12 +29,8 @@ export class CharacterClassCreaterController implements Controller {
     }
   }
 
-  private async createCharacterClass(
-    params: CharacterClassCreaterControllerParams,
-  ) {
-    const createdCharacterClass = await this.characterClassCreater.create(
-      params.data,
-    )
+  private async createCharacterClass(data: CharacterClassCreaterParams) {
+    const createdCharacterClass = await this.characterClassCreater.create(data)
 
     return {
       statusCode: 201,

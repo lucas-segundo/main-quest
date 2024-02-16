@@ -21,15 +21,17 @@ export class CharacterClassCreaterController implements Controller {
     let response: HTTPResponse | HTTPErrorResponse
 
     try {
-      response = await this.createCharacterClass(params.data)
+      response = await this.responseWithCreatedCharacterClass(params.data)
     } catch (error) {
-      response = this.handleError(error)
+      response = this.responseWithHandledError(error)
     } finally {
       return response
     }
   }
 
-  private async createCharacterClass(data: CharacterClassCreaterParams) {
+  private async responseWithCreatedCharacterClass(
+    data: CharacterClassCreaterParams,
+  ) {
     const createdCharacterClass = await this.characterClassCreater.create(data)
 
     return {
@@ -38,7 +40,7 @@ export class CharacterClassCreaterController implements Controller {
     }
   }
 
-  private handleError(error: Error) {
+  private responseWithHandledError(error: Error) {
     return {
       statusCode: 500,
       errors: [error.message],

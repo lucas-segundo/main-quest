@@ -4,6 +4,8 @@ import { CharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreat
 import { faker } from '@faker-js/faker'
 import { CharacterClassCreaterRepoParams } from 'app/interfaces/CharacterClassCreaterRepository'
 import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
+import { mockCharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater/mock'
+import { UnexpectedError } from 'domain/errors/UnexpectedError'
 
 const makeSUT = () => {
   const repository = mockCharacterClassCreaterRepo()
@@ -38,5 +40,13 @@ describe('CharacterClassCreaterImpl', () => {
     const characterClass = await sut.create(params)
 
     expect(characterClass).toEqual(createdCharacterClass)
+  })
+
+  it('should throw unexpected error if something wrong happens', () => {
+    const { sut, repository } = makeSUT()
+    repository.create.mockRejectedValue(new Error('unexpected error'))
+
+    const promise = sut.create(mockCharacterClassCreaterParams())
+    expect(promise).rejects.toThrow(new UnexpectedError())
   })
 })

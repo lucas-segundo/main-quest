@@ -18,9 +18,8 @@ describe('CharacterClassCreaterImpl', () => {
   it('should call repository with right params', () => {
     const { sut, repository } = makeSUT()
 
-    const params: CharacterClassCreaterParams = {
-      name: faker.lorem.word(),
-    }
+    const params: CharacterClassCreaterParams =
+      mockCharacterClassCreaterParams()
     sut.create(params)
 
     const expectedParams: CharacterClassCreaterRepoParams = {

@@ -12,13 +12,13 @@ import {
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
-import { mockDataValidation } from 'presentation/interfaces/DataValidation/mock'
-import { DataValidationResult } from 'presentation/interfaces/DataValidation'
+import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
+import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 
 const makeSUT = () => {
   const characterClassCreater = mockCharacterClassCreater()
-  const dataValidation = mockDataValidation()
+  const dataValidation = mockDataValidator()
   const sut = new CharacterClassCreaterController(
     characterClassCreater,
     dataValidation,
@@ -86,7 +86,7 @@ describe('CharacterClassCreater', () => {
     const { sut, dataValidation } = makeSUT()
 
     const errors = [faker.lorem.words(), faker.lorem.words()]
-    const validationResult: DataValidationResult = {
+    const validationResult: DataValidatorResult = {
       errors,
     }
     dataValidation.validate.mockResolvedValue(validationResult)

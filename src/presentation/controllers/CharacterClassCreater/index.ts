@@ -7,7 +7,7 @@ import {
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
-import { DataValidation } from 'presentation/interfaces/DataValidation'
+import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface CharacterClassCreaterControllerParams {
   data: CharacterClassCreaterParams
@@ -16,7 +16,7 @@ export interface CharacterClassCreaterControllerParams {
 export class CharacterClassCreaterController implements Controller {
   constructor(
     private readonly characterClassCreater: CharacterClassCreater,
-    private readonly dataValidation: DataValidation,
+    private readonly dataValidator: DataValidator,
   ) {}
 
   async handle(
@@ -42,7 +42,7 @@ export class CharacterClassCreaterController implements Controller {
   private async validateDataAndResponseIfHasErrors(
     data: CharacterClassCreaterParams,
   ): Promise<HTTPErrorResponse | undefined> {
-    const { errors } = await this.dataValidation.validate(data)
+    const { errors } = await this.dataValidator.validate(data)
 
     if (errors.length) {
       return {

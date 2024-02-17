@@ -1,4 +1,5 @@
 import { CharacterClassCreaterRepo } from 'app/interfaces/CharacterClassCreaterRepository'
+import { Logger } from 'app/interfaces/Logger'
 import { CharacterClass } from 'domain/entities/CharacterClass'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import {
@@ -7,7 +8,10 @@ import {
 } from 'domain/useCases/CharacterClassCreater'
 
 export class CharacterClassCreaterImpl implements CharacterClassCreater {
-  constructor(private characterClassCreaterRepo: CharacterClassCreaterRepo) {}
+  constructor(
+    private characterClassCreaterRepo: CharacterClassCreaterRepo,
+    private logger: Logger,
+  ) {}
 
   async create(params: CharacterClassCreaterParams): Promise<CharacterClass> {
     try {
@@ -16,7 +20,16 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
 
       return createdCharacterClass
     } catch (error) {
-      throw new UnexpectedError()
+      this.handleError(error)
     }
+  }
+
+  private handleError(error: Error): void {
+    this.logger.log({
+      level: 'error',
+      message: error.message,
+      stack: error.stack,
+    })
+    throw new UnexpectedError()
   }
 }

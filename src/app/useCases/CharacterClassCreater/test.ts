@@ -6,12 +6,15 @@ import { CharacterClassCreaterRepoParams } from 'app/interfaces/CharacterClassCr
 import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
 import { mockCharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
+import { LoggerParams } from 'app/interfaces/Logger'
+import { mockLogger } from 'app/interfaces/Logger/mock'
 
 const makeSUT = () => {
   const repository = mockCharacterClassCreaterRepo()
-  const sut = new CharacterClassCreaterImpl(repository)
+  const logger = mockLogger()
+  const sut = new CharacterClassCreaterImpl(repository, logger)
 
-  return { sut, repository }
+  return { sut, repository, logger }
 }
 
 describe('CharacterClassCreaterImpl', () => {
@@ -47,5 +50,23 @@ describe('CharacterClassCreaterImpl', () => {
 
     const promise = sut.create(mockCharacterClassCreaterParams())
     expect(promise).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('should call logger with right params when error happens', async () => {
+    const { sut, repository, logger } = makeSUT()
+
+    const error = new Error(faker.lorem.sentence())
+    repository.create.mockRejectedValue(error)
+
+    try {
+      await sut.create(mockCharacterClassCreaterParams())
+    } catch (error) {}
+
+    const loggerParams: LoggerParams = {
+      level: 'error',
+      message: error.message,
+      stack: error.stack,
+    }
+    expect(logger.log).toHaveBeenCalledWith(loggerParams)
   })
 })

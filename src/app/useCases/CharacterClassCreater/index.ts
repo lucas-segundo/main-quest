@@ -15,13 +15,19 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
 
   async create(params: CharacterClassCreaterParams): Promise<CharacterClass> {
     try {
-      const createdCharacterClass =
-        await this.characterClassCreaterRepo.create(params)
-
-      return createdCharacterClass
+      return await this.createCharacterClass(params)
     } catch (error) {
       this.handleError(error)
     }
+  }
+
+  private async createCharacterClass(
+    params: CharacterClassCreaterParams,
+  ): Promise<CharacterClass> {
+    const createdCharacterClass =
+      await this.characterClassCreaterRepo.create(params)
+
+    return createdCharacterClass
   }
 
   private handleError(error: Error): void {

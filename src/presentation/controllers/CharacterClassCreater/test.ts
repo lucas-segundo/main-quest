@@ -12,12 +12,21 @@ import {
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
+import { mockDataValidation } from 'presentation/interfaces/DataValidation/mock'
+import { DataValidationResult } from 'presentation/interfaces/DataValidation'
+import { faker } from '@faker-js/faker'
 
 const makeSUT = () => {
   const characterClassCreater = mockCharacterClassCreater()
-  const sut = new CharacterClassCreaterController(characterClassCreater)
+  const dataValidation = mockDataValidation()
+  const sut = new CharacterClassCreaterController(
+    characterClassCreater,
+    dataValidation,
+  )
 
-  return { sut, characterClassCreater }
+  dataValidation.validate.mockResolvedValue({ errors: [] })
+
+  return { sut, characterClassCreater, dataValidation }
 }
 
 describe('CharacterClassCreater', () => {
@@ -71,5 +80,23 @@ describe('CharacterClassCreater', () => {
 
     expect(response.statusCode).toBe(500)
     expect(response.errors).toEqual([error.message])
+  })
+
+  it('should return 400 with validations errors', async () => {
+    const { sut, dataValidation } = makeSUT()
+
+    const errors = [faker.lorem.words(), faker.lorem.words()]
+    const validationResult: DataValidationResult = {
+      errors,
+    }
+    dataValidation.validate.mockResolvedValue(validationResult)
+
+    const params: CharacterClassCreaterControllerParams = {
+      data: mockCharacterClassCreaterParams(),
+    }
+    const response = (await sut.handle(params)) as HTTPErrorResponse
+
+    expect(response.statusCode).toBe(400)
+    expect(response.errors).toEqual(errors)
   })
 })

@@ -7,18 +7,28 @@ import {
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
+import { DataValidation } from 'presentation/interfaces/DataValidation'
 
 export interface CharacterClassCreaterControllerParams {
   data: CharacterClassCreaterParams
 }
 
 export class CharacterClassCreaterController implements Controller {
-  constructor(private readonly characterClassCreater: CharacterClassCreater) {}
+  constructor(
+    private readonly characterClassCreater: CharacterClassCreater,
+    private readonly dataValidation: DataValidation,
+  ) {}
 
   async handle(
     params: CharacterClassCreaterControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
     let response: HTTPResponse | HTTPErrorResponse
+
+    response = await this.validateDataAndResponseIfHasErrors(params.data)
+
+    if (response) {
+      return response
+    }
 
     try {
       response = await this.responseWithCreatedCharacterClass(params.data)
@@ -26,6 +36,19 @@ export class CharacterClassCreaterController implements Controller {
       response = this.responseWithHandledError(error)
     } finally {
       return response
+    }
+  }
+
+  private async validateDataAndResponseIfHasErrors(
+    data: CharacterClassCreaterParams,
+  ): Promise<HTTPErrorResponse | undefined> {
+    const { errors } = await this.dataValidation.validate(data)
+
+    if (errors.length) {
+      return {
+        statusCode: 400,
+        errors,
+      }
     }
   }
 

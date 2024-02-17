@@ -1,6 +1,5 @@
 import { CharacterClassCreaterRepo } from 'app/interfaces/CharacterClassCreaterRepository'
 import { CharacterClass } from 'domain/entities/CharacterClass'
-import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
 import {
   CharacterClassCreater,
   CharacterClassCreaterParams,
@@ -10,8 +9,9 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
   constructor(private characterClassCreaterRepo: CharacterClassCreaterRepo) {}
 
   async create(params: CharacterClassCreaterParams): Promise<CharacterClass> {
-    await this.characterClassCreaterRepo.create(params)
+    const createdCharacterClass =
+      await this.characterClassCreaterRepo.create(params)
 
-    return mockCharacterClass()
+    return createdCharacterClass
   }
 }

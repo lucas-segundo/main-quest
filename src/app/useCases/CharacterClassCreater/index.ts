@@ -24,8 +24,9 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
   private async createCharacterClass(
     params: CharacterClassCreaterParams,
   ): Promise<CharacterClass> {
-    const createdCharacterClass =
-      await this.characterClassCreaterRepo.create(params)
+    const createdCharacterClass = await this.characterClassCreaterRepo.create(
+      params,
+    )
 
     return createdCharacterClass
   }

@@ -41,3 +41,6 @@ pgdata
 
 # ENV
 .env
+
+# pnpm
+.pnpm-store

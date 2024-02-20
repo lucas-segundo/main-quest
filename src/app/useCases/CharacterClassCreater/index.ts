@@ -31,7 +31,7 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
     return createdCharacterClass
   }
 
-  private handleError(error: Error): void {
+  private handleError(error: Error): never {
     this.logger.log({
       level: 'error',
       message: error.message,

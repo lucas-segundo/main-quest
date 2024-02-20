@@ -4,6 +4,7 @@ import {
 } from 'app/interfaces/CharacterClassCreaterRepository'
 import { CharacterClass } from 'domain/entities/CharacterClass'
 import prisma from 'infra/prisma'
+import { adaptPrismaCharacterClass } from 'infra/prisma/adapters/adaptPrismaCharacterClass'
 
 export class PrismaCharacterClassCreaterRepo
   implements CharacterClassCreaterRepo
@@ -11,12 +12,12 @@ export class PrismaCharacterClassCreaterRepo
   async create(
     params: CharacterClassCreaterRepoParams,
   ): Promise<CharacterClass> {
-    await prisma.class.create({
+    const prismaCharacterClass = await prisma.class.create({
       data: {
         name: params.name,
       },
     })
 
-    return {} as CharacterClass
+    return adaptPrismaCharacterClass(prismaCharacterClass)
   }
 }

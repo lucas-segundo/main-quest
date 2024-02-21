@@ -6,12 +6,12 @@ import { CharacterClassCreaterRepoParams } from 'app/interfaces/CharacterClassCr
 import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
 import { mockCharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
-import { LoggerParams } from 'app/interfaces/Logger'
-import { mockLogger } from 'app/interfaces/Logger/mock'
+import { LoggerRepoParams } from 'app/interfaces/LoggerRepository'
+import { mockLoggerRepo } from 'app/interfaces/LoggerRepository/mock'
 
 const makeSUT = () => {
   const repository = mockCharacterClassCreaterRepo()
-  const logger = mockLogger()
+  const logger = mockLoggerRepo()
   const sut = new CharacterClassCreaterImpl(repository, logger)
 
   return { sut, repository, logger }
@@ -62,11 +62,11 @@ describe('CharacterClassCreaterImpl', () => {
       await sut.create(mockCharacterClassCreaterParams())
     } catch (error) {}
 
-    const loggerParams: LoggerParams = {
+    const loggerRepoParams: LoggerRepoParams = {
       level: 'error',
       message: error.message,
       error: error,
     }
-    expect(logger.log).toHaveBeenCalledWith(loggerParams)
+    expect(logger.log).toHaveBeenCalledWith(loggerRepoParams)
   })
 })

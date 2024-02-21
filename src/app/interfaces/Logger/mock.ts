@@ -4,6 +4,7 @@ import { Logger, LoggerParams } from '.'
 export const mockLoggerParams = (): LoggerParams => ({
   level: 'info',
   message: faker.lorem.sentence(),
+  error: new Error(faker.lorem.sentence()),
 })
 
 export const mockLogger = (): jest.Mocked<Logger> => ({

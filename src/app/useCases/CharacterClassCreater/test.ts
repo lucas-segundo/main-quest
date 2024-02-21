@@ -65,7 +65,7 @@ describe('CharacterClassCreaterImpl', () => {
     const loggerParams: LoggerParams = {
       level: 'error',
       message: error.message,
-      stack: error.stack,
+      error: error,
     }
     expect(logger.log).toHaveBeenCalledWith(loggerParams)
   })

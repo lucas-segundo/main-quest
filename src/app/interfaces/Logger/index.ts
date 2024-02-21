@@ -1,7 +1,7 @@
 export interface LoggerParams {
   level: 'info' | 'error' | 'warn'
   message: string
-  stack?: string
+  error?: Error
 }
 
 export interface Logger {

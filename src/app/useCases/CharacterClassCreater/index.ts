@@ -35,7 +35,7 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
     this.logger.log({
       level: 'error',
       message: error.message,
-      stack: error.stack,
+      error: error,
     })
     throw new UnexpectedError()
   }

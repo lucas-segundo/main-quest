@@ -1,5 +1,5 @@
 import { CharacterClassCreaterRepo } from 'app/interfaces/CharacterClassCreaterRepository'
-import { LoggerRepo } from 'app/interfaces/LoggerRepository'
+import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepository'
 import { CharacterClass } from 'domain/entities/CharacterClass'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import {
@@ -10,7 +10,7 @@ import {
 export class CharacterClassCreaterImpl implements CharacterClassCreater {
   constructor(
     private characterClassCreaterRepo: CharacterClassCreaterRepo,
-    private loggerRepo: LoggerRepo,
+    private errorLoggerRepo: ErrorLoggerRepo,
   ) {}
 
   async create(params: CharacterClassCreaterParams): Promise<CharacterClass> {
@@ -32,9 +32,7 @@ export class CharacterClassCreaterImpl implements CharacterClassCreater {
   }
 
   private handleError(error: Error): never {
-    this.loggerRepo.log({
-      level: 'error',
-      message: error.message,
+    this.errorLoggerRepo.log({
       error: error,
     })
     throw new UnexpectedError()

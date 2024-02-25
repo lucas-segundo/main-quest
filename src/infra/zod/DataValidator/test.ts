@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { ZodDataValidator } from '.'
 import { faker } from '@faker-js/faker'
+import { adaptZodError } from '../adapters/adaptZodError'
 
 const makeSUT = () => {
   const schema = z.object({
@@ -35,5 +36,27 @@ describe('ZodDataValidator', () => {
     const result = await sut.validate(data)
 
     expect(result.errors).toEqual([])
+  })
+
+  it('should return errors if validation fails', async () => {
+    const { sut, schema } = makeSUT()
+
+    const data = {
+      name: faker.lorem.word(),
+    }
+    const zodError = z.ZodError.create([
+      {
+        message: 'validation error',
+        path: ['name'],
+        code: 'invalid_type',
+        expected: 'string',
+        received: 'number',
+      },
+    ])
+    schema.parseAsync = jest.fn().mockRejectedValue(zodError)
+    const result = await sut.validate(data)
+
+    const expectedErrors = adaptZodError(zodError)
+    expect(result.errors).toEqual(expectedErrors)
   })
 })

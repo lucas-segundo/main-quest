@@ -1,9 +1,15 @@
-import { Controller, Post } from '@nestjs/common'
+import { Body, Controller, Post } from '@nestjs/common'
+import { CharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater'
+import { CharacterClassCreaterController } from 'presentation/controllers/CharacterClassCreater'
 
 @Controller('classes')
 export class ClassesController {
-  constructor() {}
+  constructor(
+    private readonly characterClassCreaterController: CharacterClassCreaterController,
+  ) {}
 
   @Post()
-  create() {}
+  create(@Body() data: CharacterClassCreaterParams) {
+    return this.characterClassCreaterController.handle({ data })
+  }
 }

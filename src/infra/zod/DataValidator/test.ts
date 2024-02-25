@@ -24,4 +24,16 @@ describe('ZodDataValidator', () => {
 
     expect(parseSpy).toHaveBeenCalledWith(data)
   })
+
+  it('should return empty errors if validation succeeds', async () => {
+    const { sut, schema } = makeSUT()
+
+    const data = {
+      name: faker.person.fullName(),
+    }
+    schema.parseAsync = jest.fn().mockResolvedValue(data)
+    const result = await sut.validate(data)
+
+    expect(result.errors).toEqual([])
+  })
 })

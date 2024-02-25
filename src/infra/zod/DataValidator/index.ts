@@ -17,7 +17,7 @@ export class ZodDataValidator implements DataValidator {
         const errors = adaptZodError(error)
         return { errors }
       } else {
-        return { errors: [error.message] }
+        throw error
       }
     }
   }

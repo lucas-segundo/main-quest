@@ -59,4 +59,16 @@ describe('ZodDataValidator', () => {
     const expectedErrors = adaptZodError(zodError)
     expect(result.errors).toEqual(expectedErrors)
   })
+
+  it('should return throw error if validation throws', async () => {
+    const { sut, schema } = makeSUT()
+
+    const data = {
+      name: faker.lorem.word(),
+    }
+    const error = new Error('validation error')
+    schema.parseAsync = jest.fn().mockRejectedValue(error)
+
+    await expect(sut.validate(data)).rejects.toThrow(error)
+  })
 })

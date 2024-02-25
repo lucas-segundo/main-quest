@@ -31,7 +31,8 @@
     "@vinejs/vine": "^1.7.1",
     "pino-pretty": "^10.3.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",

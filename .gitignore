@@ -43,3 +43,5 @@ pgdata
 
 # pnpm
 .pnpm-store
+
+libTesting.*

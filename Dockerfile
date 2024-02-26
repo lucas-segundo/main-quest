@@ -9,6 +9,7 @@ WORKDIR /app
 
 COPY pnpm-lock.yaml ./
 
+ENV API_BASE_URL http://localhost:3000
 RUN pnpm fetch --prod
 
 COPY . .

@@ -1,9 +1,9 @@
-import { mockCharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater/mock'
+import { mockClassCreaterParams } from 'domain/useCases/ClassCreater/mock'
 import * as request from 'supertest'
 
 describe('POST /classes', () => {
   it('should create a new class and return it', () => {
-    const body = mockCharacterClassCreaterParams()
+    const body = mockClassCreaterParams()
 
     return request(process.env.API_BASE_URL)
       .post('/classes')

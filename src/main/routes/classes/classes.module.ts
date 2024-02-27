@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common'
 import { ClassesController } from './classes.controller'
-import { makeCharacterClassCreaterController } from 'main/factories/characterClassCreaterController'
-import { CharacterClassCreaterController } from 'presentation/controllers/CharacterClassCreater'
+import { makeClassCreaterController } from 'main/factories/classCreaterController'
+import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 
 @Module({
   controllers: [ClassesController],
   providers: [
     {
-      provide: CharacterClassCreaterController,
-      useFactory: () => makeCharacterClassCreaterController(),
+      provide: ClassCreaterController,
+      useFactory: () => makeClassCreaterController(),
     },
   ],
 })

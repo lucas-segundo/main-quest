@@ -1,7 +1,4 @@
-import {
-  CharacterClassCreater,
-  CharacterClassCreaterParams,
-} from 'domain/useCases/CharacterClassCreater'
+import { ClassCreater, ClassCreaterParams } from 'domain/useCases/ClassCreater'
 import {
   Controller,
   HTTPErrorResponse,
@@ -9,18 +6,18 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface CharacterClassCreaterControllerParams {
-  data: CharacterClassCreaterParams
+export interface ClassCreaterControllerParams {
+  data: ClassCreaterParams
 }
 
-export class CharacterClassCreaterController implements Controller {
+export class ClassCreaterController implements Controller {
   constructor(
-    private readonly characterClassCreater: CharacterClassCreater,
+    private readonly classCreater: ClassCreater,
     private readonly dataValidator: DataValidator,
   ) {}
 
   async handle(
-    params: CharacterClassCreaterControllerParams,
+    params: ClassCreaterControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
     const validationResponse = await this.validateDataAndRespondIfHasErrors(
       params.data,
@@ -30,14 +27,14 @@ export class CharacterClassCreaterController implements Controller {
     }
 
     try {
-      return await this.respondWithCreatedCharacterClass(params.data)
+      return await this.respondWithCreatedClass(params.data)
     } catch (error) {
       return this.respondWithHandledError(error)
     }
   }
 
   private async validateDataAndRespondIfHasErrors(
-    data: CharacterClassCreaterParams,
+    data: ClassCreaterParams,
   ): Promise<HTTPErrorResponse | undefined> {
     const { errors } = await this.dataValidator.validate(data)
 
@@ -49,14 +46,12 @@ export class CharacterClassCreaterController implements Controller {
     }
   }
 
-  private async respondWithCreatedCharacterClass(
-    data: CharacterClassCreaterParams,
-  ) {
-    const createdCharacterClass = await this.characterClassCreater.create(data)
+  private async respondWithCreatedClass(data: ClassCreaterParams) {
+    const createdClass = await this.classCreater.create(data)
 
     return {
       statusCode: 201,
-      data: createdCharacterClass,
+      data: createdClass,
     }
   }
 

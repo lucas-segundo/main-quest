@@ -1,6 +1,6 @@
 import { Subclass } from '../Subclass'
 
-export interface CharacterClass {
+export interface Class {
   id: string
   name: string
   subclasses: Subclass[]

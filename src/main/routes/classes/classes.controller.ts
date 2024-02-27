@@ -1,20 +1,17 @@
 import { Body, Controller, Post, Res } from '@nestjs/common'
-import { CharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater'
+import { ClassCreaterParams } from 'domain/useCases/ClassCreater'
 import { Response } from 'express'
-import { CharacterClassCreaterController } from 'presentation/controllers/CharacterClassCreater'
+import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 
 @Controller('classes')
 export class ClassesController {
   constructor(
-    private readonly characterClassCreaterController: CharacterClassCreaterController,
+    private readonly classCreaterController: ClassCreaterController,
   ) {}
 
   @Post()
-  async create(
-    @Body() data: CharacterClassCreaterParams,
-    @Res() res: Response,
-  ) {
-    const response = await this.characterClassCreaterController.handle({ data })
+  async create(@Body() data: ClassCreaterParams, @Res() res: Response) {
+    const response = await this.classCreaterController.handle({ data })
 
     if ('data' in response) {
       const { data, statusCode } = response

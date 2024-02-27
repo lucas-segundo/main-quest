@@ -1,31 +1,30 @@
-import { mockCharacterClassCreaterRepo } from 'app/interfaces/CharacterClassCreaterRepository/mock'
-import { CharacterClassCreaterImpl } from '.'
-import { CharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater'
+import { mockClassCreaterRepo } from 'app/interfaces/ClassCreaterRepository/mock'
+import { ClassCreaterImpl } from '.'
+import { ClassCreaterParams } from 'domain/useCases/ClassCreater'
 import { faker } from '@faker-js/faker'
-import { CharacterClassCreaterRepoParams } from 'app/interfaces/CharacterClassCreaterRepository'
-import { mockCharacterClass } from 'domain/entities/CharacterClass/mock'
-import { mockCharacterClassCreaterParams } from 'domain/useCases/CharacterClassCreater/mock'
+import { ClassCreaterRepoParams } from 'app/interfaces/ClassCreaterRepository'
+import { mockClass } from 'domain/entities/Class/mock'
+import { mockClassCreaterParams } from 'domain/useCases/ClassCreater/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepository'
 import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepository/mock'
 
 const makeSUT = () => {
-  const repository = mockCharacterClassCreaterRepo()
+  const repository = mockClassCreaterRepo()
   const logger = mockErrorLoggerRepo()
-  const sut = new CharacterClassCreaterImpl(repository, logger)
+  const sut = new ClassCreaterImpl(repository, logger)
 
   return { sut, repository, logger }
 }
 
-describe('CharacterClassCreaterImpl', () => {
+describe('ClassCreaterImpl', () => {
   it('should call repository with right params', () => {
     const { sut, repository } = makeSUT()
 
-    const params: CharacterClassCreaterParams =
-      mockCharacterClassCreaterParams()
+    const params: ClassCreaterParams = mockClassCreaterParams()
     sut.create(params)
 
-    const expectedParams: CharacterClassCreaterRepoParams = {
+    const expectedParams: ClassCreaterRepoParams = {
       name: params.name,
     }
     expect(repository.create).toHaveBeenCalledWith(expectedParams)
@@ -34,21 +33,21 @@ describe('CharacterClassCreaterImpl', () => {
   it('should return created character class', async () => {
     const { sut, repository } = makeSUT()
 
-    const params: CharacterClassCreaterParams = {
+    const params: ClassCreaterParams = {
       name: faker.lorem.word(),
     }
-    const createdCharacterClass = { ...mockCharacterClass(), name: params.name }
-    repository.create.mockResolvedValue(createdCharacterClass)
-    const characterClass = await sut.create(params)
+    const expectedClass = { ...mockClass(), name: params.name }
+    repository.create.mockResolvedValue(expectedClass)
+    const createdClass = await sut.create(params)
 
-    expect(characterClass).toEqual(createdCharacterClass)
+    expect(createdClass).toEqual(expectedClass)
   })
 
   it('should throw unexpected error if something wrong happens', () => {
     const { sut, repository } = makeSUT()
     repository.create.mockRejectedValue(new Error('unexpected error'))
 
-    const promise = sut.create(mockCharacterClassCreaterParams())
+    const promise = sut.create(mockClassCreaterParams())
     expect(promise).rejects.toThrow(new UnexpectedError())
   })
 
@@ -59,7 +58,7 @@ describe('CharacterClassCreaterImpl', () => {
     repository.create.mockRejectedValue(error)
 
     try {
-      await sut.create(mockCharacterClassCreaterParams())
+      await sut.create(mockClassCreaterParams())
     } catch (error) {}
 
     const loggerRepoParams: ErrorLoggerRepoParams = {

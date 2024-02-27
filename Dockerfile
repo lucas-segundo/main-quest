@@ -14,6 +14,7 @@ RUN pnpm fetch --prod
 
 COPY . .
 RUN pnpm install
+RUN pnpm prisma:generate
 
 ###################
 # BUILD FOR PRODUCTION

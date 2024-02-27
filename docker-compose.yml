@@ -17,7 +17,7 @@ services:
     command: ${CMD_LINE}
     build:
       context: .
-      target: development
+      target: ${DOCKER_COMPOSE_TARGET}
     ports:
       - '3000:3000'
       - '9229:9229'

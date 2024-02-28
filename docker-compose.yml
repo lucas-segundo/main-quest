@@ -14,7 +14,7 @@ services:
   app:
     env_file:
       - .env
-    command: ${CMD_LINE}
+    command: ${DOCKER_COMPOSE_CMD_LINE}
     build:
       context: .
       target: ${DOCKER_COMPOSE_TARGET}

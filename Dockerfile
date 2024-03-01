@@ -1,45 +1,30 @@
-###################
-# BUILD FOR LOCAL DEVELOPMENT
-###################
-
-FROM node:18 As development
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
-
+FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
 WORKDIR /app
 
-COPY pnpm-lock.yaml ./
+FROM base As dev
 
 ENV API_BASE_URL http://localhost:3000
 RUN pnpm fetch --prod
 
-COPY . .
 RUN pnpm install
 RUN pnpm prisma:generate
 
-###################
-# BUILD FOR PRODUCTION
-###################
-
-FROM node:18 As build
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
-
-WORKDIR /app
-
-COPY --chown=node:node pnpm-lock.yaml ./
-COPY --chown=node:node --from=development /app/node_modules ./node_modules
-COPY --chown=node:node . .
-
-RUN pnpm build
-ENV NODE_ENV production
-RUN pnpm install --prod
+FROM base As build
 
 USER node
 
-###################
-# PRODUCTION
-###################
+ENV NODE_ENV production
 
-FROM node:18-alpine As production
+COPY --chown=node:node --from=dev /app/node_modules ./node_modules
+
+RUN pnpm build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+FROM base As prod
 
 COPY --chown=node:node --from=build /app/node_modules ./node_modules
 COPY --chown=node:node --from=build /app/dist ./dist

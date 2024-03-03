@@ -22,6 +22,7 @@ ENV NODE_ENV production
 
 COPY --chown=node:node --from=dev /app/node_modules ./node_modules
 
+RUN pnpm prisma:migrate:prod
 RUN pnpm build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 

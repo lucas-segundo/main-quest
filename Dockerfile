@@ -3,8 +3,6 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable
-# for prisma
-RUN apt-get update && apt-get install -y openssl 
 
 COPY . /app
 WORKDIR /app
@@ -15,6 +13,9 @@ ENV API_BASE_URL http://localhost:3000
 
 RUN pnpm fetch --prod
 RUN pnpm install
+
+# for prisma
+RUN apt-get update && apt-get install -y openssl 
 RUN pnpm prisma:generate
 
 FROM base As build
@@ -33,4 +34,4 @@ FROM base As prod
 COPY --chown=node:node --from=build /app/node_modules ./node_modules
 COPY --chown=node:node --from=build /app/dist ./dist
 
-CMD pnpm migrate:prod && pnpm start:prod
+CMD pnpm start:prod

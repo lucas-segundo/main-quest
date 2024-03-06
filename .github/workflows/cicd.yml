@@ -6,6 +6,7 @@ on:
 
 jobs:
   ci:
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,6 +23,7 @@ jobs:
 
   cd:
     needs: ci
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub

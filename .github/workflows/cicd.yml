@@ -14,13 +14,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build and run dev Docker image
+      - name: Build dev Docker image
         run: docker build --target dev -t app:cicd .
 
-      - name: Run unit tests in Docker container
+      - name: Run unit tests
         run: docker run app:cicd pnpm test
 
-      - name: Run database migrations in Docker container
+      - name: Run database migrations
         run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} app:cicd pnpm migrate:prod
 
       - name: Trigger deploy hook

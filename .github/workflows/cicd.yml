@@ -1,13 +1,12 @@
-name: Node.js CI
+name: CI/CD
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,5 +20,9 @@ jobs:
       - name: Run database migrations
         run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} app:cicd pnpm migrate:prod
 
+  cd:
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
       - name: Trigger deploy hook
         run: curl -X GET ${{ secrets.DEPLOY_HOOK_URL }}

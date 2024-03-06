@@ -6,14 +6,11 @@ on:
 
 jobs:
   cicd:
+    environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Set production environment if branch is main
-        if: github.ref == 'refs/heads/main'
-        run: echo "ENVIRONMENT=production" >> $GITHUB_ENV
 
       - name: Build dev Docker image
         run: docker build --target dev -t app:cicd .

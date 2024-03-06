@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build dev Docker image
-        run: docker build --target dev -t app:cicd .
+        run: docker build --target dev -t app:${{ github.ref_name }} .
 
       - name: Run unit tests
-        run: docker run app:cicd pnpm test
+        run: docker run app:${{ github.ref_name }} pnpm test
 
       - name: Run database migrations
-        run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} app:cicd pnpm migrate:prod
+        run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} app:${{ github.ref_name }} pnpm migrate:prod
 
   cd:
     needs: ci
@@ -37,7 +37,7 @@ jobs:
         with:
           target: prod
           push: true
-          tags: lucasfernandesapp/dnd:latest
+          tags: lucasfernandesapp/dnd:${{ github.ref_name }}
 
       - name: Trigger deploy hook on Render
         run: curl -X GET ${{ secrets.DEPLOY_HOOK_URL }}

@@ -33,11 +33,17 @@ jobs:
       - name: Run e2e tests
         run: docker compose exec app pnpm test:e2e
 
+      - name: Down Containers
+        run: docker compose down
+
   cd:
     needs: ci
     environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Build Dev Docker Image
         run: docker build --target dev -t ${{ env.DOCKER_IMAGE_NAME }} .
 

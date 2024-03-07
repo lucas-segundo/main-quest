@@ -16,6 +16,7 @@ services:
     build:
       context: .
       target: ${DOCKER_COMPOSE_TARGET}
+    image: ${DOCKER_IMAGE_NAME}
     ports:
       - '3000:3000'
       - '9229:9229'

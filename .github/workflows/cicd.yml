@@ -8,12 +8,46 @@ on:
     branches: [main, staging]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and export
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          tags: ${{ env.DOCKER_IMAGE_NAME }}
+          outputs: type=docker,dest=/tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.DOCKER_IMAGE_NAME }}
+          path: /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+
   ci:
+    needs: build
     environment: ${{ github.ref_name }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Download Docker image
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.DOCKER_IMAGE_NAME }}
+          path: /tmp
+
+      - name: Load Docker image
+        run: |
+          docker load --input /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+          docker image ls -a
 
       - name: Up Containers
         run: docker-compose up -d
@@ -42,8 +76,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build Dev Docker Image
-        run: docker build --target dev -t ${{ env.DOCKER_IMAGE_NAME }} .
+      - name: Download Docker image
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.DOCKER_IMAGE_NAME }}
+          path: /tmp
+
+      - name: Load Docker image
+        run: |
+          docker load --input /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+          docker image ls -a
 
       - name: Run database migrations
         run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} ${{ env.DOCKER_IMAGE_NAME }} pnpm migrate:prod

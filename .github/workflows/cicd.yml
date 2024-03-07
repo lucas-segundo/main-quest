@@ -1,7 +1,6 @@
 name: CI/CD
 
 env:
-  DOCKER_IMAGE_NAME: dnd
   DOCKER_IMAGE_TAG: dnd:${{ github.ref_name }}
 
 on:
@@ -23,13 +22,13 @@ jobs:
         with:
           context: .
           tags: ${{ env.DOCKER_IMAGE_TAG }}
-          outputs: type=docker,dest=/tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+          outputs: type=docker,dest=/tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.DOCKER_IMAGE_NAME }}
-          path: /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+          name: ${{ env.DOCKER_IMAGE_TAG }}
+          path: /tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
 
   ci:
     needs: build
@@ -42,12 +41,12 @@ jobs:
       - name: Download Docker image
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.DOCKER_IMAGE_NAME }}
+          name: ${{ env.DOCKER_IMAGE_TAG }}
           path: /tmp
 
       - name: Load Docker image
         run: |
-          docker load --input /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+          docker load --input /tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
           docker image ls -a
 
       - name: Up Containers
@@ -80,12 +79,12 @@ jobs:
       - name: Download Docker image
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.DOCKER_IMAGE_NAME }}
+          name: ${{ env.DOCKER_IMAGE_TAG }}
           path: /tmp
 
       - name: Load Docker image
         run: |
-          docker load --input /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
+          docker load --input /tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
           docker image ls -a
 
       - name: Run database migrations

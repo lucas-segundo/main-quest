@@ -12,8 +12,6 @@ services:
       - '5432:5432'
 
   app:
-    env_file:
-      - .env
     command: ${DOCKER_COMPOSE_COMMAND}
     build:
       context: .
@@ -26,3 +24,5 @@ services:
     volumes:
       - ./src:/app/src
       - ./test:/app/test
+    environment:
+      - POSTGRES_DATABASE_URL=${POSTGRES_DATABASE_URL}

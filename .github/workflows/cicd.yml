@@ -1,7 +1,7 @@
 name: CI/CD
 
 env:
-  DOCKER_IMAGE_TAG: dnd:${{ github.ref_name }}
+  DOCKER_IMAGE_NAME: dnd:${{ github.ref_name }}
 
 on:
   push:
@@ -21,14 +21,14 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          tags: ${{ env.DOCKER_IMAGE_TAG }}
-          outputs: type=docker,dest=/tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
+          tags: ${{ env.DOCKER_IMAGE_NAME }}
+          outputs: type=docker,dest=/tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.DOCKER_IMAGE_TAG }}
-          path: /tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
+          name: ${{ env.DOCKER_IMAGE_NAME }}
+          path: /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
 
   ci:
     needs: build
@@ -41,12 +41,12 @@ jobs:
       - name: Download Docker image
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.DOCKER_IMAGE_TAG }}
+          name: ${{ env.DOCKER_IMAGE_NAME }}
           path: /tmp
 
       - name: Load Docker image
         run: |
-          docker load --input /tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
+          docker load --input /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
           docker image ls -a
 
       - name: Up Containers
@@ -79,16 +79,16 @@ jobs:
       - name: Download Docker image
         uses: actions/download-artifact@v3
         with:
-          name: ${{ env.DOCKER_IMAGE_TAG }}
+          name: ${{ env.DOCKER_IMAGE_NAME }}
           path: /tmp
 
       - name: Load Docker image
         run: |
-          docker load --input /tmp/${{ env.DOCKER_IMAGE_TAG }}.tar
+          docker load --input /tmp/${{ env.DOCKER_IMAGE_NAME }}.tar
           docker image ls -a
 
       - name: Run database migrations
-        run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} ${{ env.DOCKER_IMAGE_TAG }} pnpm migrate:prod
+        run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} ${{ env.DOCKER_IMAGE_NAME }} pnpm migrate:prod
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -101,7 +101,7 @@ jobs:
         with:
           target: prod
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_TAG }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
 
       - name: Trigger deploy hook on Render
         run: curl -X GET ${{ secrets.DEPLOY_HOOK_URL }}

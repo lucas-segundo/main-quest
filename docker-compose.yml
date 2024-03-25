@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./src:/app/src
-      - ./test:/app/test
+      - .:/app
+      - /app/node_modules/
     environment:
       - POSTGRES_DATABASE_URL=${POSTGRES_DATABASE_URL}

@@ -1,6 +1,6 @@
 ## Description
 
-API for DND
+API for Main Quest
 
 ## Installation
 

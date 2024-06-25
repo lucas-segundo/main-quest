@@ -1,7 +1,7 @@
 name: CI/CD
 
 env:
-  DOCKER_IMAGE_NAME: dnd:${{ github.ref_name }}
+  DOCKER_IMAGE_NAME: main-quest:${{ github.ref_name }}
 
 on:
   push:

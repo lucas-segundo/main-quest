@@ -1,5 +1,5 @@
 import { ClassCreaterRepo } from 'app/interfaces/ClassCreaterRepo'
-import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepository'
+import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import { ClassCreater, ClassCreaterParams } from 'domain/useCases/ClassCreater'

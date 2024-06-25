@@ -6,8 +6,8 @@ import { ClassCreaterRepoParams } from 'app/interfaces/ClassCreaterRepo'
 import { mockClass } from 'domain/entities/Class/mock'
 import { mockClassCreaterParams } from 'domain/useCases/ClassCreater/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
-import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepository'
-import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepository/mock'
+import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
+import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
 
 const makeSUT = () => {
   const repository = mockClassCreaterRepo()

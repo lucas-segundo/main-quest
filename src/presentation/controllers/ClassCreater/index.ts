@@ -1,4 +1,5 @@
 import { ClassCreater, ClassCreaterParams } from 'app/useCases/ClassCreater'
+import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import {
   Controller,
   HTTPErrorResponse,
@@ -29,7 +30,7 @@ export class ClassCreaterController implements Controller {
     try {
       return await this.respondWithCreatedClass(params.data)
     } catch (error) {
-      return this.respondWithHandledError(error)
+      return this.respondWithHandledError()
     }
   }
 
@@ -55,10 +56,10 @@ export class ClassCreaterController implements Controller {
     }
   }
 
-  private respondWithHandledError(error: Error) {
+  private respondWithHandledError() {
     return {
       statusCode: 500,
-      errors: [error.message],
+      errors: [new UnexpectedError().message],
     }
   }
 }

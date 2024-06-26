@@ -59,11 +59,11 @@ describe('ClassCreater', () => {
     expect(response.data).toEqual(createdClass)
   })
 
-  it('should return 500 if creater throws unexpected error', async () => {
+  it('should return 500 if creater throws error', async () => {
     const { sut, createClassSpy } = makeSUT()
 
-    const error = new UnexpectedError()
-    createClassSpy.mockRejectedValue(new UnexpectedError())
+    const error = new Error()
+    createClassSpy.mockRejectedValue(error)
 
     const params: ClassCreaterControllerParams = {
       data: mockClassCreaterParams(),
@@ -72,7 +72,7 @@ describe('ClassCreater', () => {
     const response = (await sut.handle(params)) as HTTPErrorResponse
 
     expect(response.statusCode).toBe(500)
-    expect(response.errors).toEqual([error.message])
+    expect(response.errors).toEqual([new UnexpectedError().message])
   })
 
   it('should return 400 with validations errors', async () => {

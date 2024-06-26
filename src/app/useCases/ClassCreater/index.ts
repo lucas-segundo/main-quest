@@ -1,7 +1,6 @@
 import { ClassCreaterRepo } from 'app/interfaces/ClassCreaterRepo'
 import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
-import { UnexpectedError } from 'domain/errors/UnexpectedError'
 
 export interface ClassCreaterParams {
   name: string
@@ -30,6 +29,6 @@ export class ClassCreater {
     this.errorLoggerRepo.log({
       error: error,
     })
-    throw new UnexpectedError()
+    throw error
   }
 }

@@ -3,7 +3,6 @@ import { ClassCreater, ClassCreaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { ClassCreaterRepoParams } from 'app/interfaces/ClassCreaterRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
 import { mockClassCreaterParams } from './mock'
@@ -44,10 +43,11 @@ describe('ClassCreater', () => {
 
   it('should throw unexpected error if something wrong happens', () => {
     const { sut, repository } = makeSUT()
-    repository.create.mockRejectedValue(new Error('unexpected error'))
+    const error = new Error('unexpected error')
+    repository.create.mockRejectedValue(error)
 
     const promise = sut.create(mockClassCreaterParams())
-    expect(promise).rejects.toThrow(new UnexpectedError())
+    expect(promise).rejects.toThrow(error)
   })
 
   it('should call logger with right params when error happens', async () => {

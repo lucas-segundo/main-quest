@@ -1,8 +1,8 @@
+import { faker } from '@faker-js/faker'
 import { SubclassCreaterRepo, SubclassCreaterRepoParams } from '.'
-import { mockSubclassCreaterParams } from 'domain/useCases/SubclassCreater/mock'
 
 export const mockSubclassCreaterRepoParams = (): SubclassCreaterRepoParams => ({
-  ...mockSubclassCreaterParams(),
+  name: faker.commerce.productName(),
 })
 
 export const mockSubclassCreaterRepo =

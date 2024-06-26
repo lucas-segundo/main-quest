@@ -1,7 +1,3 @@
-import {
-  mockSubclassCreater,
-  mockSubclassCreaterParams,
-} from 'domain/useCases/SubclassCreater/mock'
 import { SubclassCreaterController, SubclassCreaterControllerParams } from '.'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
@@ -12,15 +8,20 @@ import {
 import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
+import {
+  mockSubclassCreater,
+  mockSubclassCreaterParams,
+} from 'app/useCases/SubclassCreater/mock'
 
 const makeSUT = () => {
   const subclassCreater = mockSubclassCreater()
+  const subclassCreateSpy = jest.spyOn(subclassCreater, 'create')
   const dataValidation = mockDataValidator()
   const sut = new SubclassCreaterController(subclassCreater, dataValidation)
 
   dataValidation.validate.mockResolvedValue({ errors: [] })
 
-  return { sut, subclassCreater, dataValidation }
+  return { sut, subclassCreater, dataValidation, subclassCreateSpy }
 }
 
 describe('SubclassCreater', () => {
@@ -38,7 +39,7 @@ describe('SubclassCreater', () => {
   })
 
   it('should return 201 and the created subclass', async () => {
-    const { sut, subclassCreater } = makeSUT()
+    const { sut, subclassCreateSpy } = makeSUT()
 
     const subclassToCreate = mockSubclassCreaterParams()
     const createdSubclass = {
@@ -46,7 +47,7 @@ describe('SubclassCreater', () => {
       ...subclassToCreate,
     }
 
-    subclassCreater.create.mockResolvedValue(createdSubclass)
+    subclassCreateSpy.mockResolvedValue(createdSubclass)
 
     const params: SubclassCreaterControllerParams = {
       data: subclassToCreate,
@@ -59,10 +60,10 @@ describe('SubclassCreater', () => {
   })
 
   it('should return 500 if creater throws unexpected error', async () => {
-    const { sut, subclassCreater } = makeSUT()
+    const { sut, subclassCreateSpy } = makeSUT()
 
     const error = new UnexpectedError()
-    subclassCreater.create.mockRejectedValue(new UnexpectedError())
+    subclassCreateSpy.mockRejectedValue(new UnexpectedError())
 
     const params: SubclassCreaterControllerParams = {
       data: mockSubclassCreaterParams(),

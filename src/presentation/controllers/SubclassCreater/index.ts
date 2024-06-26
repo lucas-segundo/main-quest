@@ -1,7 +1,7 @@
 import {
   SubclassCreater,
   SubclassCreaterParams,
-} from 'domain/useCases/SubclassCreater'
+} from 'app/useCases/SubclassCreater'
 import {
   Controller,
   HTTPErrorResponse,

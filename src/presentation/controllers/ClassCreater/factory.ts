@@ -1,7 +1,7 @@
 import { makeClassCreater } from 'app/useCases/ClassCreater/factory'
-import { ZodDataValidator } from 'infra/zod/DataValidator'
-import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 import { z } from 'zod'
+import { ClassCreaterController } from '.'
+import { ZodDataValidator } from 'infra/zod/DataValidator'
 
 export const makeClassCreaterController = (): ClassCreaterController => {
   const classCreater = makeClassCreater()

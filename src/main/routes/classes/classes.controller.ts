@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Res } from '@nestjs/common'
-import { ClassCreaterParams } from 'domain/useCases/ClassCreater'
+import { ClassCreaterParams } from 'app/useCases/ClassCreater'
 import { Response } from 'express'
 import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 

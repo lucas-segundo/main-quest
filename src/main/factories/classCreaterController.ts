@@ -1,4 +1,4 @@
-import { ClassCreaterImpl } from 'app/useCases/ClassCreater'
+import { ClassCreater } from 'app/useCases/ClassCreater'
 import { pinoLogger } from 'infra/pino'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { PrismaClassCreaterRepo } from 'infra/prisma/repositories/ClassCreaterRepository'
@@ -9,10 +9,7 @@ import { z } from 'zod'
 export const makeClassCreaterController = (): ClassCreaterController => {
   const chracterClassCreaterRepo = new PrismaClassCreaterRepo()
   const errorLoggerRepo = new PinoErrorLoggerRepo(pinoLogger)
-  const useCase = new ClassCreaterImpl(
-    chracterClassCreaterRepo,
-    errorLoggerRepo,
-  )
+  const useCase = new ClassCreater(chracterClassCreaterRepo, errorLoggerRepo)
 
   const zodSchema = z.object({
     name: z.string(),

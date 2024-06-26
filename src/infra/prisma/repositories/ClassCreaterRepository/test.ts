@@ -1,10 +1,10 @@
 import { Prisma } from '@prisma/client'
 import { PrismaClassCreaterRepo } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
-import { mockClassCreaterParams } from 'domain/useCases/ClassCreater/mock'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { mockClassCreaterRepoParams } from 'app/interfaces/ClassCreaterRepo/mock'
 
 const makeSUT = () => {
   mockedPrismaClient.class.create.mockResolvedValue(mockPrismaClass())
@@ -17,7 +17,7 @@ describe('PrismaClassCreaterRepo', () => {
   it('should call prisma client with right params', async () => {
     const { sut } = makeSUT()
 
-    const params = mockClassCreaterParams()
+    const params = mockClassCreaterRepoParams()
     await sut.create(params)
 
     const expectedParams: Prisma.ClassCreateArgs<DefaultArgs> = {
@@ -31,7 +31,7 @@ describe('PrismaClassCreaterRepo', () => {
   it('should return a Class after creation', async () => {
     const { sut } = makeSUT()
 
-    const params = mockClassCreaterParams()
+    const params = mockClassCreaterRepoParams()
     const prismaClass = { ...mockPrismaClass(), ...params }
     mockedPrismaClient.class.create.mockResolvedValue(prismaClass)
 

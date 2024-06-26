@@ -1,4 +1,4 @@
-import { ClassCreater, ClassCreaterParams } from 'domain/useCases/ClassCreater'
+import { ClassCreater, ClassCreaterParams } from 'app/useCases/ClassCreater'
 import {
   Controller,
   HTTPErrorResponse,

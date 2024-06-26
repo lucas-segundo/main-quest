@@ -1,7 +1,3 @@
-import {
-  mockClassCreater,
-  mockClassCreaterParams,
-} from 'domain/useCases/ClassCreater/mock'
 import { ClassCreaterController, ClassCreaterControllerParams } from '.'
 import { mockClass } from 'domain/entities/Class/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
@@ -12,15 +8,20 @@ import {
 import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
+import {
+  mockClassCreater,
+  mockClassCreaterParams,
+} from 'app/useCases/ClassCreater/mock'
 
 const makeSUT = () => {
   const classCreater = mockClassCreater()
+  const createClassSpy = jest.spyOn(classCreater, 'create')
   const dataValidation = mockDataValidator()
   const sut = new ClassCreaterController(classCreater, dataValidation)
 
   dataValidation.validate.mockResolvedValue({ errors: [] })
 
-  return { sut, classCreater, dataValidation }
+  return { sut, classCreater, createClassSpy, dataValidation }
 }
 
 describe('ClassCreater', () => {
@@ -38,7 +39,7 @@ describe('ClassCreater', () => {
   })
 
   it('should return 201 and the created character class', async () => {
-    const { sut, classCreater } = makeSUT()
+    const { sut, createClassSpy } = makeSUT()
 
     const classToCreate = mockClassCreaterParams()
     const createdClass = {
@@ -46,7 +47,7 @@ describe('ClassCreater', () => {
       ...classToCreate,
     }
 
-    classCreater.create.mockResolvedValue(createdClass)
+    createClassSpy.mockResolvedValue(createdClass)
 
     const params: ClassCreaterControllerParams = {
       data: classToCreate,
@@ -59,10 +60,10 @@ describe('ClassCreater', () => {
   })
 
   it('should return 500 if creater throws unexpected error', async () => {
-    const { sut, classCreater } = makeSUT()
+    const { sut, createClassSpy } = makeSUT()
 
     const error = new UnexpectedError()
-    classCreater.create.mockRejectedValue(new UnexpectedError())
+    createClassSpy.mockRejectedValue(new UnexpectedError())
 
     const params: ClassCreaterControllerParams = {
       data: mockClassCreaterParams(),

@@ -1,23 +1,22 @@
 import { mockClassCreaterRepo } from 'app/interfaces/ClassCreaterRepo/mock'
-import { ClassCreaterImpl } from '.'
-import { ClassCreaterParams } from 'domain/useCases/ClassCreater'
+import { ClassCreater, ClassCreaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { ClassCreaterRepoParams } from 'app/interfaces/ClassCreaterRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { mockClassCreaterParams } from 'domain/useCases/ClassCreater/mock'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
+import { mockClassCreaterParams } from './mock'
 
 const makeSUT = () => {
   const repository = mockClassCreaterRepo()
   const logger = mockErrorLoggerRepo()
-  const sut = new ClassCreaterImpl(repository, logger)
+  const sut = new ClassCreater(repository, logger)
 
   return { sut, repository, logger }
 }
 
-describe('ClassCreaterImpl', () => {
+describe('ClassCreater', () => {
   it('should call repository with right params', () => {
     const { sut, repository } = makeSUT()
 

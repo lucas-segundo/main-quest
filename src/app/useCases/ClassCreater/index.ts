@@ -2,9 +2,11 @@ import { ClassCreaterRepo } from 'app/interfaces/ClassCreaterRepo'
 import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
-import { ClassCreater, ClassCreaterParams } from 'domain/useCases/ClassCreater'
 
-export class ClassCreaterImpl implements ClassCreater {
+export interface ClassCreaterParams {
+  name: string
+}
+export class ClassCreater {
   constructor(
     private classCreaterRepo: ClassCreaterRepo,
     private errorLoggerRepo: ErrorLoggerRepo,

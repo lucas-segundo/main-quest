@@ -10,6 +10,16 @@ datasource db {
 model Class {
   id        Int      @id @default(autoincrement())
   name      String
+  subClasses SubClass[]
 
   @@map("classes")
+}
+
+model SubClass {
+  id        Int      @id @default(autoincrement())
+  name      String
+  classId   Int      @map("class_id")
+  class     Class    @relation(fields: [classId], references: [id])
+
+  @@map("sub_classes")
 }

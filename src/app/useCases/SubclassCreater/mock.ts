@@ -5,6 +5,7 @@ import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
 
 export const mockSubclassCreaterParams = (): SubclassCreaterParams => ({
   name: faker.person.firstName(),
+  classID: faker.string.uuid(),
 })
 
 export const mockSubclassCreater = (): SubclassCreater =>

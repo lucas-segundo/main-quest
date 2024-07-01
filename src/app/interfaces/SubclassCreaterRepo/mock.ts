@@ -3,6 +3,7 @@ import { SubclassCreaterRepo, SubclassCreaterRepoParams } from '.'
 
 export const mockSubclassCreaterRepoParams = (): SubclassCreaterRepoParams => ({
   name: faker.commerce.productName(),
+  classID: faker.string.uuid(),
 })
 
 export const mockSubclassCreaterRepo =

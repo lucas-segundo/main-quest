@@ -24,6 +24,7 @@ describe('SubclassCreater', () => {
 
     const expectedParams: SubclassCreaterRepoParams = {
       name: params.name,
+      classID: params.classID,
     }
     expect(repository.create).toHaveBeenCalledWith(expectedParams)
   })
@@ -31,9 +32,7 @@ describe('SubclassCreater', () => {
   it('should return created subclass', async () => {
     const { sut, repository } = makeSUT()
 
-    const params: SubclassCreaterParams = {
-      name: faker.lorem.word(),
-    }
+    const params: SubclassCreaterParams = mockSubclassCreaterParams()
     const expectedSubclass = { ...mockSubclass(), name: params.name }
     repository.create.mockResolvedValue(expectedSubclass)
     const createdSubclass = await sut.create(params)

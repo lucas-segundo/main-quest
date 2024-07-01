@@ -4,6 +4,7 @@ import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassCreaterParams {
   name: string
+  classID: string
 }
 export class SubclassCreater {
   constructor(

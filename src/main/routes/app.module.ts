@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common'
 import { ClassesModule } from './classes/classes.module'
+import { SubclassesModule } from './subclasses/subclasses.module'
 
 @Module({
-  imports: [ClassesModule],
+  imports: [ClassesModule, SubclassesModule],
   controllers: [],
   providers: [],
 })

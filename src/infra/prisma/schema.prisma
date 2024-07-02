@@ -18,8 +18,8 @@ model Class {
 model Subclass {
   id        Int      @id @default(autoincrement())
   name      String
-  classId   Int      @map("class_id")
-  class     Class    @relation(fields: [classId], references: [id])
+  classID   Int      @map("class_id")
+  class     Class    @relation(fields: [classID], references: [id])
 
   @@map("subclasses")
 }

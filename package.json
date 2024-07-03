@@ -22,7 +22,8 @@
     "test:e2e:docker": "docker compose exec app pnpm test:e2e",
     "migrate:dev": "prisma migrate dev",
     "migrate:prod": "prisma migrate deploy",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "db:seed": "prisma db seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -91,6 +92,7 @@
     ]
   },
   "prisma": {
-    "schema": "src/infra/prisma/schema.prisma"
+    "schema": "src/infra/prisma/schema.prisma",
+    "seed": "ts-node src/infra/prisma/seeds/index.ts"
   }
 }

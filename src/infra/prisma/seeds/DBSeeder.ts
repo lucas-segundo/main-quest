@@ -4,10 +4,6 @@ import { PrismaClass } from '../data/Class'
 import { PrismaSubclass } from '../data/Subclass'
 import prisma from '..'
 
-type OptionalProp<T, K extends keyof T> = Omit<T, K> & {
-  [P in K]?: T[P]
-}
-
 export class DBSeeder {
   async seed() {
     const classCreated = await this.seedClass()

@@ -12,6 +12,7 @@ import {
   mockClassCreater,
   mockClassCreaterParams,
 } from 'app/useCases/ClassCreater/mock'
+import { KnownError } from 'domain/errors/KnownError'
 
 const makeSUT = () => {
   const classCreater = mockClassCreater()
@@ -91,5 +92,21 @@ describe('ClassCreater', () => {
 
     expect(response.statusCode).toBe(400)
     expect(response.errors).toEqual(errors)
+  })
+
+  it('should throw known error', async () => {
+    const { sut, createClassSpy } = makeSUT()
+
+    const knownError = new KnownError('Known error')
+    createClassSpy.mockRejectedValue(knownError)
+
+    const params: ClassCreaterControllerParams = {
+      data: mockClassCreaterParams(),
+    }
+
+    const response = (await sut.handle(params)) as HTTPErrorResponse
+
+    expect(response.statusCode).toBe(500)
+    expect(response.errors).toEqual([knownError.message])
   })
 })

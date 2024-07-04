@@ -1,4 +1,5 @@
 import { ClassCreater, ClassCreaterParams } from 'app/useCases/ClassCreater'
+import { KnownError } from 'domain/errors/KnownError'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import {
   Controller,
@@ -30,7 +31,7 @@ export class ClassCreaterController implements Controller {
     try {
       return await this.respondWithCreatedClass(params.data)
     } catch (error) {
-      return this.respondWithHandledError()
+      return this.respondWithHandledError(error)
     }
   }
 
@@ -56,7 +57,14 @@ export class ClassCreaterController implements Controller {
     }
   }
 
-  private respondWithHandledError() {
+  private respondWithHandledError(error: unknown) {
+    if (error instanceof KnownError) {
+      return {
+        statusCode: 500,
+        errors: [error.message],
+      }
+    }
+
     return {
       statusCode: 500,
       errors: [new UnexpectedError().message],

@@ -1,6 +1,5 @@
 import { ClassCreaterController, ClassCreaterControllerParams } from '.'
 import { mockClass } from 'domain/entities/Class/mock'
-import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -12,7 +11,6 @@ import {
   mockClassCreater,
   mockClassCreaterParams,
 } from 'app/useCases/ClassCreater/mock'
-import { KnownError } from 'domain/errors/KnownError'
 
 const makeSUT = () => {
   const classCreater = mockClassCreater()
@@ -60,22 +58,6 @@ describe('ClassCreater', () => {
     expect(response.data).toEqual(createdClass)
   })
 
-  it('should return 500 if creater throws error', async () => {
-    const { sut, createClassSpy } = makeSUT()
-
-    const error = new Error()
-    createClassSpy.mockRejectedValue(error)
-
-    const params: ClassCreaterControllerParams = {
-      data: mockClassCreaterParams(),
-    }
-
-    const response = (await sut.handle(params)) as HTTPErrorResponse
-
-    expect(response.statusCode).toBe(500)
-    expect(response.errors).toEqual([new UnexpectedError().message])
-  })
-
   it('should return 400 with validations errors', async () => {
     const { sut, dataValidation } = makeSUT()
 
@@ -92,21 +74,5 @@ describe('ClassCreater', () => {
 
     expect(response.statusCode).toBe(400)
     expect(response.errors).toEqual(errors)
-  })
-
-  it('should throw known error', async () => {
-    const { sut, createClassSpy } = makeSUT()
-
-    const knownError = new KnownError('Known error')
-    createClassSpy.mockRejectedValue(knownError)
-
-    const params: ClassCreaterControllerParams = {
-      data: mockClassCreaterParams(),
-    }
-
-    const response = (await sut.handle(params)) as HTTPErrorResponse
-
-    expect(response.statusCode).toBe(500)
-    expect(response.errors).toEqual([knownError.message])
   })
 })

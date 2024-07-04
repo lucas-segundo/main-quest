@@ -2,6 +2,7 @@ import {
   SubclassCreater,
   SubclassCreaterParams,
 } from 'app/useCases/SubclassCreater'
+import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,
   HTTPErrorResponse,
@@ -32,7 +33,7 @@ export class SubclassCreaterController implements Controller {
     try {
       return await this.respondWithCreatedSubclass(params.data)
     } catch (error) {
-      return this.respondWithHandledError(error)
+      return handleErrorToResponse(error)
     }
   }
 
@@ -55,13 +56,6 @@ export class SubclassCreaterController implements Controller {
     return {
       statusCode: 201,
       data: createdSubclass,
-    }
-  }
-
-  private respondWithHandledError(error: Error) {
-    return {
-      statusCode: 500,
-      errors: [error.message],
     }
   }
 }

@@ -1,6 +1,5 @@
 import { SubclassCreaterController, SubclassCreaterControllerParams } from '.'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
-import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -57,22 +56,6 @@ describe('SubclassCreater', () => {
 
     expect(response.statusCode).toBe(201)
     expect(response.data).toEqual(createdSubclass)
-  })
-
-  it('should return 500 if creater throws unexpected error', async () => {
-    const { sut, subclassCreateSpy } = makeSUT()
-
-    const error = new UnexpectedError()
-    subclassCreateSpy.mockRejectedValue(new UnexpectedError())
-
-    const params: SubclassCreaterControllerParams = {
-      data: mockSubclassCreaterParams(),
-    }
-
-    const response = (await sut.handle(params)) as HTTPErrorResponse
-
-    expect(response.statusCode).toBe(500)
-    expect(response.errors).toEqual([error.message])
   })
 
   it('should return 400 with validations errors', async () => {

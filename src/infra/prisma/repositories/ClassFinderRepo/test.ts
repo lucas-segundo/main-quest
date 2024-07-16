@@ -5,6 +5,7 @@ import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 import { mockClassFinderRepoParams } from 'app/interfaces/ClassFinderRepo/mock'
+import { NotFoundError } from 'domain/errors/NotFoundError'
 
 const makeSUT = () => {
   mockedPrismaClient.class.findFirst.mockResolvedValue(mockPrismaClass())
@@ -41,5 +42,14 @@ describe('PrismaClassFinderRepo', () => {
 
     const expectedClass = adaptPrismaClass(prismaClass)
     expect(result).toEqual(expectedClass)
+  })
+
+  it('should throw if class not found', async () => {
+    const { sut } = makeSUT()
+
+    mockedPrismaClient.class.findFirst.mockResolvedValue(null)
+
+    const params = mockClassFinderRepoParams()
+    await expect(sut.find(params)).rejects.toThrow(NotFoundError)
   })
 })

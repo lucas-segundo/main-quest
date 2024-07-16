@@ -3,6 +3,7 @@ import {
   ClassFinderRepoParams,
 } from 'app/interfaces/ClassFinderRepo'
 import { Class } from 'domain/entities/Class'
+import { NotFoundError } from 'domain/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 
@@ -17,7 +18,7 @@ export class PrismaClassFinderRepo implements ClassFinderRepo {
     if (prismaClass) {
       return adaptPrismaClass(prismaClass)
     } else {
-      throw new Error('Class not found')
+      throw new NotFoundError('Class')
     }
   }
 }

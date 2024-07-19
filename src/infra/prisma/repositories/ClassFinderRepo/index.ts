@@ -9,9 +9,13 @@ import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 
 export class PrismaClassFinderRepo implements ClassFinderRepo {
   async find(params: ClassFinderRepoParams): Promise<Class> {
+    const { filter, include } = params
     const prismaClass = await prisma.class.findFirst({
       where: {
-        id: Number(params.id.equals),
+        id: Number(filter.id.equals),
+      },
+      include: {
+        subclasses: include?.subclasses,
       },
     })
 

@@ -21,10 +21,12 @@ describe('PrismaClassFinderRepo', () => {
     const params = mockClassFinderRepoParams()
     await sut.find(params)
 
+    const { filter, include } = params
     const expectedParams: Prisma.ClassFindFirstArgs<DefaultArgs> = {
       where: {
-        id: Number(params.id.equals),
+        id: Number(filter.id.equals),
       },
+      include,
     }
     expect(mockedPrismaClient.class.findFirst).toHaveBeenCalledWith(
       expectedParams,

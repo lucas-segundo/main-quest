@@ -1,9 +1,18 @@
 import { Class } from 'domain/entities/Class'
 
-export interface ClassFinderRepoParams {
+interface Filter {
   id: {
     equals: string
   }
+}
+
+interface Include {
+  subclasses?: boolean
+}
+
+export interface ClassFinderRepoParams {
+  filter: Filter
+  include?: Include
 }
 
 export interface ClassFinderRepo {

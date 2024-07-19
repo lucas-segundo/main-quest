@@ -23,7 +23,10 @@ describe('ClassFinder', () => {
     sut.find(params)
 
     const expectedParams: ClassFinderRepoParams = {
-      id: params.id,
+      filter: params,
+      include: {
+        subclasses: true,
+      },
     }
     expect(repository.find).toHaveBeenCalledWith(expectedParams)
   })

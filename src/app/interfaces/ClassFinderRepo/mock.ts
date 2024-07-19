@@ -2,8 +2,13 @@ import { faker } from '@faker-js/faker'
 import { ClassFinderRepo, ClassFinderRepoParams } from '.'
 
 export const mockClassFinderRepoParams = (): ClassFinderRepoParams => ({
-  id: {
-    equals: faker.string.uuid(),
+  filter: {
+    id: {
+      equals: faker.string.uuid(),
+    },
+  },
+  include: {
+    subclasses: true,
   },
 })
 

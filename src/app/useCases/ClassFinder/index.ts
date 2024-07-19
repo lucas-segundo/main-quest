@@ -22,7 +22,12 @@ export class ClassFinder {
   }
 
   private async findClass(params: ClassFinderParams): Promise<Class> {
-    const foundClass = await this.classFinderRepo.find(params)
+    const foundClass = await this.classFinderRepo.find({
+      filter: params,
+      include: {
+        subclasses: true,
+      },
+    })
 
     return foundClass
   }

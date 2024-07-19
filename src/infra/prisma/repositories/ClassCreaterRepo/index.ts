@@ -12,6 +12,9 @@ export class PrismaClassCreaterRepo implements ClassCreaterRepo {
       data: {
         name: params.name,
       },
+      include: {
+        subclasses: true,
+      },
     })
 
     return adaptPrismaClass(prismaClass)

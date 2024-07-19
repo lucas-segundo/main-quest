@@ -24,6 +24,9 @@ describe('PrismaClassCreaterRepo', () => {
       data: {
         name: params.name,
       },
+      include: {
+        subclasses: true,
+      },
     }
     expect(mockedPrismaClient.class.create).toHaveBeenCalledWith(expectedParams)
   })

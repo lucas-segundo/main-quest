@@ -1,14 +1,17 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common'
 import { ClassCreaterParams } from 'app/useCases/ClassCreater'
 import { Response } from 'express'
 import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 import { ClassFinderController } from 'presentation/controllers/ClassFinder'
+import { ClassesFindManyDTO } from './classes.dto'
+import { ClassesFinderController } from 'presentation/controllers/ClassesFinder'
 
 @Controller('classes')
 export class ClassesController {
   constructor(
     private readonly classCreaterController: ClassCreaterController,
     private readonly classFinderController: ClassFinderController,
+    private readonly classesFinderController: ClassesFinderController,
   ) {}
 
   @Post()
@@ -31,6 +34,24 @@ export class ClassesController {
         id: {
           equals: id,
         },
+      },
+    })
+
+    if ('data' in response) {
+      const { data, statusCode } = response
+      return res.status(statusCode).json({ data })
+    } else {
+      const { errors, statusCode } = response
+      return res.status(statusCode).json({ errors })
+    }
+  }
+
+  @Get()
+  async findMany(@Query() query: ClassesFindManyDTO, @Res() res: Response) {
+    const { name } = query.filter.class
+    const response = await this.classesFinderController.handle({
+      query: {
+        name,
       },
     })
 

@@ -3,10 +3,10 @@ import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerReposito
 import { pinoLogger } from 'infra/pino'
 import { PrismaClassesFinderRepo } from 'infra/prisma/repositories/ClassesFinderRepo'
 
-export const makeClassesCreater = (): ClassesFinder => {
-  const classesCreaterRepo = new PrismaClassesFinderRepo()
+export const makeClassesFinder = (): ClassesFinder => {
+  const classesFinderRepo = new PrismaClassesFinderRepo()
   const errorLoggerRepo = new PinoErrorLoggerRepo(pinoLogger)
-  const useCase = new ClassesFinder(classesCreaterRepo, errorLoggerRepo)
+  const useCase = new ClassesFinder(classesFinderRepo, errorLoggerRepo)
 
   return useCase
 }

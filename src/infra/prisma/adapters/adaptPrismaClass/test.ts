@@ -9,7 +9,10 @@ describe('adaptPrismaClass', () => {
     const expectedClass: Class = {
       id: prismaClass.id.toString(),
       name: prismaClass.name,
-      subclasses: [],
+      subclasses: prismaClass.subclasses.map((subclass) => ({
+        id: subclass.id.toString(),
+        name: subclass.name,
+      })),
     }
 
     const result = adaptPrismaClass(prismaClass)

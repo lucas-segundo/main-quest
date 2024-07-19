@@ -17,9 +17,10 @@ export class DBSeeder {
 
   private async seedClass() {
     const classToCreate = mockPrismaClass() as OptionalProp<PrismaClass, 'id'>
-    delete classToCreate.id
     const classCreated = await prisma.class.create({
-      data: classToCreate,
+      data: {
+        name: classToCreate.name,
+      },
     })
 
     return classCreated

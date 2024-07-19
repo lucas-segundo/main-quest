@@ -4,9 +4,9 @@ import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerReposito
 import { pinoLogger } from 'infra/pino'
 
 export const makeClassCreater = (): ClassCreater => {
-  const chracterClassCreaterRepo = new PrismaClassCreaterRepo()
+  const classCreaterRepo = new PrismaClassCreaterRepo()
   const errorLoggerRepo = new PinoErrorLoggerRepo(pinoLogger)
-  const useCase = new ClassCreater(chracterClassCreaterRepo, errorLoggerRepo)
+  const useCase = new ClassCreater(classCreaterRepo, errorLoggerRepo)
 
   return useCase
 }

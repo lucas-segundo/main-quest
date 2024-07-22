@@ -5,5 +5,5 @@ export interface ClassUpdaterRepoParams {
 }
 
 export interface ClassUpdaterRepo {
-  update(params: ClassUpdaterRepoParams): Promise<Class>
+  update(id: string, params: ClassUpdaterRepoParams): Promise<Class>
 }

@@ -11,53 +11,54 @@ const makeSUT = () => {
   const repository = mockClassUpdaterRepo()
   const logger = mockErrorLoggerRepo()
   const sut = new ClassUpdater(repository, logger)
+  const id = faker.string.uuid()
 
-  return { sut, repository, logger }
+  return { sut, repository, logger, id }
 }
 
 describe('ClassUpdater', () => {
   it('should call repository with right params', () => {
-    const { sut, repository } = makeSUT()
+    const { sut, repository, id } = makeSUT()
 
     const params: ClassUpdaterParams = mockClassUpdaterParams()
-    sut.update(params)
+    sut.update(id, params)
 
     const expectedParams: ClassUpdaterRepoParams = {
       name: params.name,
     }
-    expect(repository.update).toHaveBeenCalledWith(expectedParams)
+    expect(repository.update).toHaveBeenCalledWith(id, expectedParams)
   })
 
   it('should return updated character class', async () => {
-    const { sut, repository } = makeSUT()
+    const { sut, repository, id } = makeSUT()
 
     const params: ClassUpdaterParams = {
       name: faker.lorem.word(),
     }
     const expectedClass = { ...mockClass(), name: params.name }
     repository.update.mockResolvedValue(expectedClass)
-    const updatedClass = await sut.update(params)
+    const updatedClass = await sut.update(id, params)
 
     expect(updatedClass).toEqual(expectedClass)
   })
 
   it('should throw unexpected error if something wrong happens', () => {
-    const { sut, repository } = makeSUT()
+    const { sut, repository, id } = makeSUT()
     const error = new Error('unexpected error')
     repository.update.mockRejectedValue(error)
 
-    const promise = sut.update(mockClassUpdaterParams())
+    const promise = sut.update(id, mockClassUpdaterParams())
     expect(promise).rejects.toThrow(error)
   })
 
   it('should call logger with right params when error happens', async () => {
-    const { sut, repository, logger } = makeSUT()
+    const { sut, repository, logger, id } = makeSUT()
 
     const error = new Error(faker.lorem.sentence())
     repository.update.mockRejectedValue(error)
 
     try {
-      await sut.update(mockClassUpdaterParams())
+      await sut.update(id, mockClassUpdaterParams())
     } catch (error) {}
 
     const loggerRepoParams: ErrorLoggerRepoParams = {

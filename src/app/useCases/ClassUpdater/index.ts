@@ -11,18 +11,12 @@ export class ClassUpdater {
     private errorLoggerRepo: ErrorLoggerRepo,
   ) {}
 
-  async update(params: ClassUpdaterParams): Promise<Class> {
+  async update(id: string, params: ClassUpdaterParams): Promise<Class> {
     try {
-      return await this.updateClass(params)
+      return await this.classUpdaterRepo.update(id, params)
     } catch (error) {
       this.handleError(error)
     }
-  }
-
-  private async updateClass(params: ClassUpdaterParams): Promise<Class> {
-    const updatedClass = await this.classUpdaterRepo.update(params)
-
-    return updatedClass
   }
 
   private handleError(error: Error): never {

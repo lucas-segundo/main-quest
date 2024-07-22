@@ -14,16 +14,10 @@ export class SubclassCreater {
 
   async create(params: SubclassCreaterParams): Promise<Subclass> {
     try {
-      return await this.createClass(params)
+      return await this.subclassCreaterRepo.create(params)
     } catch (error) {
       this.handleError(error)
     }
-  }
-
-  private async createClass(params: SubclassCreaterParams): Promise<Subclass> {
-    const createdClass = await this.subclassCreaterRepo.create(params)
-
-    return createdClass
   }
 
   private handleError(error: Error): never {

@@ -15,21 +15,15 @@ export class ClassesFinder {
 
   async find(params: ClassesFinderParams): Promise<Class[]> {
     try {
-      return await this.findClasses(params)
+      return await this.classesFinderRepo.find({
+        filter: params,
+        include: {
+          subclasses: true,
+        },
+      })
     } catch (error) {
       this.handleError(error)
     }
-  }
-
-  private async findClasses(params: ClassesFinderParams): Promise<Class[]> {
-    const classes = await this.classesFinderRepo.find({
-      filter: params,
-      include: {
-        subclasses: true,
-      },
-    })
-
-    return classes
   }
 
   private handleError(error: Error): never {

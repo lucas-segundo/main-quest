@@ -13,16 +13,10 @@ export class ClassCreater {
 
   async create(params: ClassCreaterParams): Promise<Class> {
     try {
-      return await this.createClass(params)
+      return await this.classCreaterRepo.create(params)
     } catch (error) {
       this.handleError(error)
     }
-  }
-
-  private async createClass(params: ClassCreaterParams): Promise<Class> {
-    const createdClass = await this.classCreaterRepo.create(params)
-
-    return createdClass
   }
 
   private handleError(error: Error): never {

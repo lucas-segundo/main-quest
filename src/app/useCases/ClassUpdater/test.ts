@@ -24,7 +24,12 @@ describe('ClassUpdater', () => {
     sut.update(id, params)
 
     const expectedParams: ClassUpdaterRepoParams = {
-      name: params.name,
+      data: {
+        name: params.name,
+      },
+      include: {
+        subclasses: true,
+      },
     }
     expect(repository.update).toHaveBeenCalledWith(id, expectedParams)
   })

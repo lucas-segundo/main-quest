@@ -13,7 +13,14 @@ export class ClassUpdater {
 
   async update(id: string, params: ClassUpdaterParams): Promise<Class> {
     try {
-      return await this.classUpdaterRepo.update(id, params)
+      return await this.classUpdaterRepo.update(id, {
+        data: {
+          name: params.name,
+        },
+        include: {
+          subclasses: true,
+        },
+      })
     } catch (error) {
       this.handleError(error)
     }

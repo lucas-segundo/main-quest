@@ -2,7 +2,12 @@ import { faker } from '@faker-js/faker'
 import { ClassUpdaterRepo, ClassUpdaterRepoParams } from '.'
 
 export const mockClassUpdaterRepoParams = (): ClassUpdaterRepoParams => ({
-  name: faker.lorem.word(),
+  data: {
+    name: faker.person.jobTitle(),
+  },
+  include: {
+    subclasses: faker.datatype.boolean(),
+  },
 })
 
 export const mockClassUpdaterRepo = (): jest.Mocked<ClassUpdaterRepo> => ({

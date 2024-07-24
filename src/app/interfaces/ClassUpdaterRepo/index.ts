@@ -1,7 +1,16 @@
 import { Class } from 'domain/entities/Class'
 
+interface Data {
+  name?: string
+}
+
+interface Include {
+  subclasses?: boolean
+}
+
 export interface ClassUpdaterRepoParams {
-  name: string
+  data: Data
+  include?: Include
 }
 
 export interface ClassUpdaterRepo {

@@ -35,7 +35,7 @@ describe('PrismaClassUpdaterRepo', () => {
     expect(mockedPrismaClient.class.update).toHaveBeenCalledWith(expectedParams)
   })
 
-  it('should return a Class after creation', async () => {
+  it('should return a Class after update', async () => {
     const { sut, id } = makeSUT()
 
     const prismaClass = mockPrismaClass()

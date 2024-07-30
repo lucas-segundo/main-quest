@@ -7,17 +7,27 @@ import {
 } from 'presentation/interfaces/Controller'
 
 export interface ClassesFinderControllerParams {
-  query: ClassesFinderParams
+  filter?: {
+    class?: ClassesFinderParams
+  }
 }
 
 export class ClassesFinderController implements Controller {
   constructor(private readonly classesFinder: ClassesFinder) {}
 
   async handle(
-    params: ClassesFinderControllerParams,
+    params?: ClassesFinderControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
+    const classFilter = params?.filter?.class
+    if (!classFilter) {
+      return {
+        errors: ['Missing class filters from params'],
+        statusCode: 400,
+      }
+    }
+
     try {
-      return await this.respondWithClasses(params.query)
+      return await this.respondWithClasses(classFilter)
     } catch (error) {
       return handleErrorToResponse(error)
     }

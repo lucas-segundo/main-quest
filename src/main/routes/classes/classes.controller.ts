@@ -3,8 +3,10 @@ import { ClassCreaterParams } from 'app/useCases/ClassCreater'
 import { Response } from 'express'
 import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 import { ClassFinderController } from 'presentation/controllers/ClassFinder'
-import { ClassesFindManyDTO } from './classes.dto'
-import { ClassesFinderController } from 'presentation/controllers/ClassesFinder'
+import {
+  ClassesFinderController,
+  ClassesFinderControllerParams,
+} from 'presentation/controllers/ClassesFinder'
 
 @Controller('classes')
 export class ClassesController {
@@ -47,12 +49,12 @@ export class ClassesController {
   }
 
   @Get()
-  async findMany(@Query() query: ClassesFindManyDTO, @Res() res: Response) {
-    const { name } = query.filter.class
+  async findMany(
+    @Query() query: ClassesFinderControllerParams,
+    @Res() res: Response,
+  ) {
     const response = await this.classesFinderController.handle({
-      query: {
-        name,
-      },
+      filter: query.filter,
     })
 
     if ('data' in response) {

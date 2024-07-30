@@ -18,14 +18,16 @@ describe('ClassesFinder', () => {
   it('should call find with right params', async () => {
     const { sut, classFinder } = makeSUT()
 
-    const query = mockClassesFinderParams()
+    const classFilter = mockClassesFinderParams()
     const params: ClassesFinderControllerParams = {
-      query,
+      filter: {
+        class: classFilter,
+      },
     }
 
     await sut.handle(params)
 
-    expect(classFinder.find).toHaveBeenCalledWith(query)
+    expect(classFinder.find).toHaveBeenCalledWith(classFilter)
   })
 
   it('should return 200 and the classes', async () => {
@@ -35,7 +37,9 @@ describe('ClassesFinder', () => {
     findClassSpy.mockResolvedValue([foundClass])
 
     const params: ClassesFinderControllerParams = {
-      query: mockClassesFinderParams(),
+      filter: {
+        class: mockClassesFinderParams(),
+      },
     }
     const response = (await sut.handle(params)) as HTTPResponse
 

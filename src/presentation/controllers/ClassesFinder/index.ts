@@ -21,7 +21,7 @@ export class ClassesFinderController implements Controller {
     const classFilter = params?.filter?.class
     if (!classFilter) {
       return {
-        errors: ['Missing class filters from params'],
+        errors: ['Missing class filters from query params'],
         statusCode: 400,
       }
     }

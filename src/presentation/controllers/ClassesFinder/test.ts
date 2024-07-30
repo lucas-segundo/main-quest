@@ -1,6 +1,9 @@
 import { ClassesFinderController, ClassesFinderControllerParams } from '.'
 import { mockClass } from 'domain/entities/Class/mock'
-import { HTTPResponse } from 'presentation/interfaces/Controller'
+import {
+  HTTPErrorResponse,
+  HTTPResponse,
+} from 'presentation/interfaces/Controller'
 import {
   mockClassesFinder,
   mockClassesFinderParams,
@@ -45,5 +48,14 @@ describe('ClassesFinder', () => {
 
     expect(response.statusCode).toBe(200)
     expect(response.data).toEqual([foundClass])
+  })
+
+  it('should return 400 if no class filter is provided', async () => {
+    const { sut } = makeSUT()
+
+    const response = (await sut.handle({})) as HTTPErrorResponse
+
+    expect(response.statusCode).toBe(400)
+    expect(response.errors).toEqual(['Missing class filters from query params'])
   })
 })

@@ -1,6 +1,9 @@
 export class KnownError extends Error {
-  constructor(message: string) {
+  constructor(
+    readonly code: string,
+    message: string,
+  ) {
     super(message)
-    this.name = 'KnownError'
+    this.code = code
   }
 }

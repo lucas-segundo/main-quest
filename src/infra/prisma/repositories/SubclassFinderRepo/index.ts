@@ -1,7 +1,7 @@
 import {
   SubclassFinderRepo,
   SubclassFinderRepoParams,
-} from 'app/interfaces/SubclassFinderRepo'
+} from 'app/interfaces/subclasses/SubclassFinderRepo'
 import { Subclass } from 'domain/entities/Subclass'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import prisma from 'infra/prisma'

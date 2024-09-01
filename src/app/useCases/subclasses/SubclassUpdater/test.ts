@@ -4,8 +4,8 @@ import { mockSubclass } from 'domain/entities/Subclass/mock'
 import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
 import { mockSubclassUpdaterParams } from './mock'
-import { mockSubclassUpdaterRepo } from 'app/interfaces/SubclassUpdaterRepo/mock'
-import { SubclassUpdaterRepoParams } from 'app/interfaces/SubclassUpdaterRepo'
+import { mockSubclassUpdaterRepo } from 'app/interfaces/subclasses/SubclassUpdaterRepo/mock'
+import { SubclassUpdaterRepoParams } from 'app/interfaces/subclasses/SubclassUpdaterRepo'
 
 const makeSUT = () => {
   const repository = mockSubclassUpdaterRepo()

@@ -1,7 +1,7 @@
 import {
   SubclassUpdaterRepo,
   SubclassUpdaterRepoParams,
-} from 'app/interfaces/SubclassUpdaterRepo'
+} from 'app/interfaces/subclasses/SubclassUpdaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 import prisma from 'infra/prisma'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'

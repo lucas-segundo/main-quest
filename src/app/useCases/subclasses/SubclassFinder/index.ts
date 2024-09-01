@@ -1,5 +1,5 @@
 import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
-import { SubclassFinderRepo } from 'app/interfaces/SubclassFinderRepo'
+import { SubclassFinderRepo } from 'app/interfaces/subclasses/SubclassFinderRepo'
 import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassFinderParams {

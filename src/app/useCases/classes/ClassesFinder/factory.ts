@@ -1,7 +1,7 @@
 import { ClassesFinder } from '.'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'
-import { PrismaClassesFinderRepo } from 'infra/prisma/repositories/ClassesFinderRepo'
+import { PrismaClassesFinderRepo } from 'infra/prisma/repositories/classes/ClassesFinderRepo'
 
 export const makeClassesFinder = (): ClassesFinder => {
   const classesFinderRepo = new PrismaClassesFinderRepo()

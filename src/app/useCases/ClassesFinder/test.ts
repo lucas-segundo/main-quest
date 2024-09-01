@@ -31,7 +31,7 @@ describe('ClassesFinder', () => {
     expect(repository.find).toHaveBeenCalledWith(expectedParams)
   })
 
-  it('should return find character class', async () => {
+  it('should return find classes', async () => {
     const { sut, repository } = makeSUT()
 
     const params = mockClassesFinderParams()

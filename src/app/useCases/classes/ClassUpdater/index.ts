@@ -1,4 +1,4 @@
-import { ClassUpdaterRepo } from 'app/interfaces/ClassUpdaterRepo'
+import { ClassUpdaterRepo } from 'app/interfaces/classes/ClassUpdaterRepo'
 import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 

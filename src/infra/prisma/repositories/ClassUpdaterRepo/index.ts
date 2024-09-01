@@ -1,7 +1,7 @@
 import {
   ClassUpdaterRepo,
   ClassUpdaterRepoParams,
-} from 'app/interfaces/ClassUpdaterRepo'
+} from 'app/interfaces/classes/ClassUpdaterRepo'
 import { Class } from 'domain/entities/Class'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'

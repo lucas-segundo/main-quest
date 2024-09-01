@@ -1,4 +1,4 @@
-import { ClassFinderRepo } from 'app/interfaces/ClassFinderRepo'
+import { ClassFinderRepo } from 'app/interfaces/classes/ClassFinderRepo'
 import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 

@@ -1,7 +1,7 @@
 import {
   ClassesFinderRepo,
   ClassesFinderRepoParams,
-} from 'app/interfaces/ClassesFinderRepo'
+} from 'app/interfaces/classes/ClassesFinderRepo'
 import { Class } from 'domain/entities/Class'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'

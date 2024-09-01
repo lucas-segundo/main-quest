@@ -1,7 +1,7 @@
 import {
   ClassFinderRepo,
   ClassFinderRepoParams,
-} from 'app/interfaces/ClassFinderRepo'
+} from 'app/interfaces/classes/ClassFinderRepo'
 import { Class } from 'domain/entities/Class'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import prisma from 'infra/prisma'

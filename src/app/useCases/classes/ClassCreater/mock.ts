@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { ClassCreater, ClassCreaterParams } from '.'
-import { mockClassCreaterRepo } from 'app/interfaces/ClassCreaterRepo/mock'
+import { mockClassCreaterRepo } from 'app/interfaces/classes/ClassCreaterRepo/mock'
 import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
 
 export const mockClassCreaterParams = (): ClassCreaterParams => ({

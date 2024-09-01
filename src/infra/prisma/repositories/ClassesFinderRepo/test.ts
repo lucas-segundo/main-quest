@@ -4,7 +4,7 @@ import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
-import { mockClassesFinderRepoParams } from 'app/interfaces/ClassesFinderRepo/mock'
+import { mockClassesFinderRepoParams } from 'app/interfaces/classes/ClassesFinderRepo/mock'
 
 const makeSUT = () => {
   mockedPrismaClient.class.findMany.mockResolvedValue([mockPrismaClass()])
@@ -44,6 +44,6 @@ describe('PrismaClassesFinderRepo', () => {
     const result = await sut.find(params)
 
     const expectedClass = adaptPrismaClass(prismaClass)
-    expect(result).toEqual(expectedClass)
+    expect(result).toEqual([expectedClass])
   })
 })

@@ -8,7 +8,7 @@ import {
   Query,
   Res,
 } from '@nestjs/common'
-import { ClassCreaterParams } from 'app/useCases/ClassCreater'
+import { ClassCreaterParams } from 'app/useCases/classes/ClassCreater'
 import { Response } from 'express'
 import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 import { ClassFinderController } from 'presentation/controllers/ClassFinder'

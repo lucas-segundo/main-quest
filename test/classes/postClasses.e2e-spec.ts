@@ -1,4 +1,4 @@
-import { mockClassCreaterParams } from 'app/useCases/ClassCreater/mock'
+import { mockClassCreaterParams } from 'app/useCases/classes/ClassCreater/mock'
 import * as request from 'supertest'
 
 describe('POST /classes', () => {

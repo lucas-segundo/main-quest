@@ -1,4 +1,7 @@
-import { ClassesFinder, ClassesFinderParams } from 'app/useCases/ClassesFinder'
+import {
+  ClassesFinder,
+  ClassesFinderParams,
+} from 'app/useCases/classes/ClassesFinder'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'

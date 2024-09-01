@@ -1,4 +1,4 @@
-import { makeClassUpdater } from 'app/useCases/ClassUpdater/factory'
+import { makeClassUpdater } from 'app/useCases/classes/ClassUpdater/factory'
 import { z } from 'zod'
 import { ClassUpdaterController } from '.'
 import { ZodDataValidator } from 'infra/zod/DataValidator'

@@ -1,4 +1,4 @@
-import { makeClassFinder } from 'app/useCases/ClassFinder/factory'
+import { makeClassFinder } from 'app/useCases/classes/ClassFinder/factory'
 import { ClassFinderController } from '.'
 
 export const makeClassFinderController = (): ClassFinderController => {

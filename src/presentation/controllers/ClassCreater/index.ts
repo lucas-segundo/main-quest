@@ -1,4 +1,7 @@
-import { ClassCreater, ClassCreaterParams } from 'app/useCases/ClassCreater'
+import {
+  ClassCreater,
+  ClassCreaterParams,
+} from 'app/useCases/classes/ClassCreater'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'

@@ -7,7 +7,7 @@ import {
 import {
   mockClassesFinder,
   mockClassesFinderParams,
-} from 'app/useCases/ClassesFinder/mock'
+} from 'app/useCases/classes/ClassesFinder/mock'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 
 const makeSUT = () => {

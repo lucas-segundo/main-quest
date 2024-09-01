@@ -1,4 +1,7 @@
-import { ClassUpdater, ClassUpdaterParams } from 'app/useCases/ClassUpdater'
+import {
+  ClassUpdater,
+  ClassUpdaterParams,
+} from 'app/useCases/classes/ClassUpdater'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'

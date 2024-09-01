@@ -1,5 +1,5 @@
 import { ClassesFinderController } from '.'
-import { makeClassesFinder } from 'app/useCases/ClassesFinder/factory'
+import { makeClassesFinder } from 'app/useCases/classes/ClassesFinder/factory'
 
 export const makeClassesFinderController = (): ClassesFinderController => {
   const classFinder = makeClassesFinder()

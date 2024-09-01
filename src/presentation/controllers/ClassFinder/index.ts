@@ -1,4 +1,7 @@
-import { ClassFinder, ClassFinderParams } from 'app/useCases/ClassFinder'
+import {
+  ClassFinder,
+  ClassFinderParams,
+} from 'app/useCases/classes/ClassFinder'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,

@@ -4,7 +4,7 @@ import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
   mockClassFinder,
   mockClassFinderParams,
-} from 'app/useCases/ClassFinder/mock'
+} from 'app/useCases/classes/ClassFinder/mock'
 
 const makeSUT = () => {
   const classFinder = mockClassFinder()

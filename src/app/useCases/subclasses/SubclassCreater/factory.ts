@@ -1,4 +1,4 @@
-import { PrismaSubclassCreaterRepo } from 'infra/prisma/repositories/SubclassCreaterRepo'
+import { PrismaSubclassCreaterRepo } from 'infra/prisma/repositories/subclasses/SubclassCreaterRepo'
 import { SubclassCreater } from '.'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'

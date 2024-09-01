@@ -1,7 +1,7 @@
 import { SubclassFinder } from '.'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'
-import { PrismaSubclassFinderRepo } from 'infra/prisma/repositories/SubclassFinderRepo'
+import { PrismaSubclassFinderRepo } from 'infra/prisma/repositories/subclasses/SubclassFinderRepo'
 
 export const makeSubclassFinder = (): SubclassFinder => {
   const characterSubclassFinderRepo = new PrismaSubclassFinderRepo()

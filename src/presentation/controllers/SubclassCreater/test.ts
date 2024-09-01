@@ -11,6 +11,7 @@ import {
   mockSubclassCreater,
   mockSubclassCreaterParams,
 } from 'app/useCases/SubclassCreater/mock'
+import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 
 const makeSUT = () => {
   const subclassCreater = mockSubclassCreater()
@@ -73,6 +74,6 @@ describe('SubclassCreater', () => {
     const response = (await sut.handle(params)) as HTTPErrorResponse
 
     expect(response.statusCode).toBe(400)
-    expect(response.errors).toEqual(errors)
+    expect(response.errors).toEqual(adaptValidationErrors(errors))
   })
 })

@@ -5,13 +5,18 @@ import { UnexpectedError } from 'domain/errors/UnexpectedError'
 describe('handleErrorToResponse', () => {
   it('should return a response with statusCode 500 and the error message for KnownError instances', () => {
     const knownErrorMessage = 'This is a known error'
-    const knownError = new KnownError(knownErrorMessage)
+    const knownError = new KnownError('CODE', knownErrorMessage)
 
     const response = handleErrorToResponse(knownError)
 
     expect(response).toEqual({
       statusCode: 500,
-      errors: [knownErrorMessage],
+      errors: [
+        {
+          code: knownError.code,
+          message: knownError.message,
+        },
+      ],
     })
   })
 
@@ -20,9 +25,15 @@ describe('handleErrorToResponse', () => {
 
     const response = handleErrorToResponse(genericError)
 
+    const unexpectedError = new UnexpectedError()
     expect(response).toEqual({
       statusCode: 500,
-      errors: [new UnexpectedError().message],
+      errors: [
+        {
+          code: unexpectedError.code,
+          message: unexpectedError.message,
+        },
+      ],
     })
   })
 })

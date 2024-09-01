@@ -8,6 +8,7 @@ import {
   mockClassesFinder,
   mockClassesFinderParams,
 } from 'app/useCases/ClassesFinder/mock'
+import { RequiredParamError } from 'domain/errors/RequiredParamError'
 
 const makeSUT = () => {
   const classFinder = mockClassesFinder()
@@ -23,9 +24,7 @@ describe('ClassesFinder', () => {
 
     const classFilter = mockClassesFinderParams()
     const params: ClassesFinderControllerParams = {
-      filter: {
-        class: classFilter,
-      },
+      filter: classFilter,
     }
 
     await sut.handle(params)
@@ -40,9 +39,7 @@ describe('ClassesFinder', () => {
     findClassSpy.mockResolvedValue([foundClass])
 
     const params: ClassesFinderControllerParams = {
-      filter: {
-        class: mockClassesFinderParams(),
-      },
+      filter: mockClassesFinderParams(),
     }
     const response = (await sut.handle(params)) as HTTPResponse
 
@@ -55,7 +52,13 @@ describe('ClassesFinder', () => {
 
     const response = (await sut.handle({})) as HTTPErrorResponse
 
+    const error = new RequiredParamError('filter')
     expect(response.statusCode).toBe(400)
-    expect(response.errors).toEqual(['Missing class filters from query params'])
+    expect(response.errors).toEqual([
+      {
+        code: error.code,
+        message: error.message,
+      },
+    ])
   })
 })

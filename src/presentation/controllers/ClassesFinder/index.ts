@@ -1,15 +1,16 @@
 import { ClassesFinder, ClassesFinderParams } from 'app/useCases/ClassesFinder'
+import { RequiredParamError } from 'domain/errors/RequiredParamError'
+import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,
+  HTTPError,
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
 export interface ClassesFinderControllerParams {
-  filter?: {
-    class?: ClassesFinderParams
-  }
+  filter?: ClassesFinderParams
 }
 
 export class ClassesFinderController implements Controller {
@@ -18,27 +19,42 @@ export class ClassesFinderController implements Controller {
   async handle(
     params?: ClassesFinderControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
-    const classFilter = params?.filter?.class
-    if (!classFilter) {
+    const validationErrors = this.validate(params)
+    if (validationErrors.length) {
       return {
-        errors: ['Missing class filters from query params'],
-        statusCode: 400,
+        errors: validationErrors,
+        statusCode: HTTPStatusCode.BAD_REQUEST,
       }
     }
 
+    const validatedParams = params?.filter as ClassesFinderParams
     try {
-      return await this.respondWithClasses(classFilter)
+      return await this.respondWithClasses(validatedParams)
     } catch (error) {
       return handleErrorToResponse(error)
     }
+  }
+
+  private validate(params?: ClassesFinderControllerParams) {
+    const validationErrors: HTTPError[] = []
+
+    if (!params?.filter) {
+      const error = new RequiredParamError('filter')
+      validationErrors.push({
+        code: error.code,
+        message: error.message,
+      })
+    }
+
+    return validationErrors
   }
 
   private async respondWithClasses(params: ClassesFinderParams) {
     const classes = await this.classesFinder.find(params)
 
     return {
-      statusCode: 200,
       data: classes,
+      statusCode: HTTPStatusCode.OK,
     }
   }
 }

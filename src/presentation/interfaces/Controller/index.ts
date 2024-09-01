@@ -1,5 +1,10 @@
+export interface HTTPError {
+  code: string
+  message: string
+}
+
 export interface HTTPErrorResponse {
-  errors: string[]
+  errors: HTTPError[]
   statusCode: number
 }
 

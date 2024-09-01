@@ -11,6 +11,7 @@ import {
   mockClassCreater,
   mockClassCreaterParams,
 } from 'app/useCases/ClassCreater/mock'
+import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 
 const makeSUT = () => {
   const classCreater = mockClassCreater()
@@ -73,6 +74,6 @@ describe('ClassCreater', () => {
     const response = (await sut.handle(params)) as HTTPErrorResponse
 
     expect(response.statusCode).toBe(400)
-    expect(response.errors).toEqual(errors)
+    expect(response.errors).toEqual(adaptValidationErrors(errors))
   })
 })

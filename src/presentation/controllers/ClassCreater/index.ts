@@ -1,4 +1,6 @@
 import { ClassCreater, ClassCreaterParams } from 'app/useCases/ClassCreater'
+import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
+import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,
@@ -20,11 +22,12 @@ export class ClassCreaterController implements Controller {
   async handle(
     params: ClassCreaterControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
-    const validationResponse = await this.validateDataAndRespondIfHasErrors(
-      params.data,
-    )
-    if (validationResponse) {
-      return validationResponse
+    const { errors } = await this.dataValidator.validate(params.data)
+    if (errors.length) {
+      return {
+        errors: adaptValidationErrors(errors),
+        statusCode: HTTPStatusCode.BAD_REQUEST,
+      }
     }
 
     try {
@@ -34,25 +37,12 @@ export class ClassCreaterController implements Controller {
     }
   }
 
-  private async validateDataAndRespondIfHasErrors(
-    data: ClassCreaterParams,
-  ): Promise<HTTPErrorResponse | undefined> {
-    const { errors } = await this.dataValidator.validate(data)
-
-    if (errors.length) {
-      return {
-        statusCode: 400,
-        errors,
-      }
-    }
-  }
-
   private async respondWithCreatedClass(data: ClassCreaterParams) {
     const createdClass = await this.classCreater.create(data)
 
     return {
-      statusCode: 201,
       data: createdClass,
+      statusCode: HTTPStatusCode.CREATED,
     }
   }
 }

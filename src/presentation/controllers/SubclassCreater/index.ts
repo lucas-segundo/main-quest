@@ -2,6 +2,7 @@ import {
   SubclassCreater,
   SubclassCreaterParams,
 } from 'app/useCases/SubclassCreater'
+import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,
@@ -45,7 +46,7 @@ export class SubclassCreaterController implements Controller {
     if (errors.length) {
       return {
         statusCode: 400,
-        errors,
+        errors: adaptValidationErrors(errors),
       }
     }
   }

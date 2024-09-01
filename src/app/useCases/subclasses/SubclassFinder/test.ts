@@ -3,8 +3,8 @@ import { SubclassFinder, SubclassFinderParams } from '.'
 import { faker } from '@faker-js/faker'
 import { SubclassFinderRepoParams } from 'app/interfaces/subclasses/SubclassFinderRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
+import { ErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo'
+import { mockErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo/mock'
 import { mockSubclassFinderParams } from './mock'
 
 const makeSUT = () => {

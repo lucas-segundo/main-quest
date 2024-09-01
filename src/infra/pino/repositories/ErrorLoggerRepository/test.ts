@@ -1,8 +1,8 @@
 import { mockPinoLogger } from 'infra/pino/mock'
 import { PinoErrorLoggerRepo } from '.'
 import { Logger } from 'pino'
-import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
-import { mockErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo/mock'
+import { ErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo'
+import { mockErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo/mock'
 
 describe('ErrorLoggerRepository', () => {
   it('should call pino with right params', () => {

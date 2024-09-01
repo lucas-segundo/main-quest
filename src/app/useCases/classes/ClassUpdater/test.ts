@@ -3,8 +3,8 @@ import { ClassUpdater, ClassUpdaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { ClassUpdaterRepoParams } from 'app/interfaces/classes/ClassUpdaterRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/interfaces/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo/mock'
+import { ErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo'
+import { mockErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo/mock'
 import { mockClassUpdaterParams } from './mock'
 
 const makeSUT = () => {

@@ -1,4 +1,4 @@
-import { ErrorLoggerRepo } from 'app/interfaces/ErrorLoggerRepo'
+import { ErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo'
 import { SubclassCreaterRepo } from 'app/interfaces/subclasses/SubclassCreaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 

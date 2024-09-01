@@ -1,7 +1,7 @@
 import {
   SubclassFinder,
   SubclassFinderParams,
-} from 'app/useCases/SubclassFinder'
+} from 'app/useCases/subclasses/SubclassFinder'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,

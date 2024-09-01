@@ -10,7 +10,7 @@ import { faker } from '@faker-js/faker'
 import {
   mockSubclassUpdater,
   mockSubclassUpdaterParams,
-} from 'app/useCases/SubclassUpdater/mock'
+} from 'app/useCases/subclasses/SubclassUpdater/mock'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 
 const makeMockedData = () => {

@@ -10,7 +10,7 @@ import { faker } from '@faker-js/faker'
 import {
   mockSubclassCreater,
   mockSubclassCreaterParams,
-} from 'app/useCases/SubclassCreater/mock'
+} from 'app/useCases/subclasses/SubclassCreater/mock'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 
 const makeSUT = () => {

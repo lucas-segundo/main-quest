@@ -4,7 +4,7 @@ import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
   mockSubclassFinder,
   mockSubclassFinderParams,
-} from 'app/useCases/SubclassFinder/mock'
+} from 'app/useCases/subclasses/SubclassFinder/mock'
 
 const makeSUT = () => {
   const subclassFinder = mockSubclassFinder()

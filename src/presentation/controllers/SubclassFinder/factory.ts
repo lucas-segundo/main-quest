@@ -1,4 +1,4 @@
-import { makeSubclassFinder } from 'app/useCases/SubclassFinder/factory'
+import { makeSubclassFinder } from 'app/useCases/subclasses/SubclassFinder/factory'
 import { SubclassFinderController } from '.'
 
 export const makeSubclassFinderController = (): SubclassFinderController => {

@@ -1,7 +1,7 @@
 import {
   SubclassUpdater,
   SubclassUpdaterParams,
-} from 'app/useCases/SubclassUpdater'
+} from 'app/useCases/subclasses/SubclassUpdater'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'

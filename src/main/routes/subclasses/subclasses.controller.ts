@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common'
-import { SubclassCreaterParams } from 'app/useCases/SubclassCreater'
+import { SubclassCreaterParams } from 'app/useCases/subclasses/SubclassCreater'
 import { Response } from 'express'
 import { SubclassCreaterController } from 'presentation/controllers/SubclassCreater'
 import { SubclassFinderController } from 'presentation/controllers/SubclassFinder'

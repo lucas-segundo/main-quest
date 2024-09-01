@@ -1,7 +1,7 @@
 import {
   SubclassCreater,
   SubclassCreaterParams,
-} from 'app/useCases/SubclassCreater'
+} from 'app/useCases/subclasses/SubclassCreater'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {

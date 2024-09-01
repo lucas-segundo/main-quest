@@ -1,4 +1,4 @@
-import { makeSubclassCreater } from 'app/useCases/SubclassCreater/factory'
+import { makeSubclassCreater } from 'app/useCases/subclasses/SubclassCreater/factory'
 import { z } from 'zod'
 import { SubclassCreaterController } from '.'
 import { ZodDataValidator } from 'infra/zod/DataValidator'

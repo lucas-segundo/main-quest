@@ -1,8 +1,21 @@
-import { Body, Controller, Get, Param, Post, Query, Res } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  Res,
+} from '@nestjs/common'
 import { ClassCreaterParams } from 'app/useCases/ClassCreater'
 import { Response } from 'express'
 import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
 import { ClassFinderController } from 'presentation/controllers/ClassFinder'
+import {
+  ClassUpdaterController,
+  ClassUpdaterControllerParams,
+} from 'presentation/controllers/ClassUpdater'
 import {
   ClassesFinderController,
   ClassesFinderControllerParams,
@@ -14,6 +27,7 @@ export class ClassesController {
     private readonly classCreaterController: ClassCreaterController,
     private readonly classFinderController: ClassFinderController,
     private readonly classesFinderController: ClassesFinderController,
+    private readonly classUpdaterController: ClassUpdaterController,
   ) {}
 
   @Post()
@@ -55,6 +69,26 @@ export class ClassesController {
   ) {
     const response = await this.classesFinderController.handle({
       filter: query.filter,
+    })
+
+    if ('data' in response) {
+      const { data, statusCode } = response
+      return res.status(statusCode).json({ data })
+    } else {
+      const { errors, statusCode } = response
+      return res.status(statusCode).json({ errors })
+    }
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() data: ClassUpdaterControllerParams['data'],
+    @Res() res: Response,
+  ) {
+    const response = await this.classUpdaterController.handle({
+      id,
+      data,
     })
 
     if ('data' in response) {

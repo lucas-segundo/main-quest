@@ -4,10 +4,10 @@ import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
-import { mockClassFinderRepoParams } from 'app/repositories/classes/ClassFinderRepo/mock'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 import { mockSubclassFinderRepoParams } from 'app/repositories/subclasses/SubclassFinderRepo/mock'
+import { mockFindClassRepositoryParams } from 'app/repositories/classes/ClassFinderRepo/mock'
 
 const makeSUT = () => {
   mockedPrismaClient.subclass.findFirst.mockResolvedValue(mockPrismaSubclass())
@@ -37,7 +37,7 @@ describe('PrismaSubclassFinderRepo', () => {
   it('should find a class', async () => {
     const { sut } = makeSUT()
 
-    const params = mockClassFinderRepoParams()
+    const params = mockFindClassRepositoryParams()
     const prismaClass = mockPrismaClass()
     mockedPrismaClient.class.findFirst.mockResolvedValue(prismaClass)
 
@@ -52,7 +52,7 @@ describe('PrismaSubclassFinderRepo', () => {
 
     mockedPrismaClient.class.findFirst.mockResolvedValue(null)
 
-    const params = mockClassFinderRepoParams()
+    const params = mockFindClassRepositoryParams()
     await expect(sut.find(params)).rejects.toThrow(NotFoundError)
   })
 })

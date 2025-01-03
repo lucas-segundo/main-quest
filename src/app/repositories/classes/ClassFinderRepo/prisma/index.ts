@@ -1,14 +1,11 @@
-import {
-  ClassFinderRepo,
-  ClassFinderRepoParams,
-} from 'app/repositories/classes/ClassFinderRepo'
 import { Class } from 'domain/entities/Class'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { FindClassRepository, FindClassRepositoryParams } from '..'
 
-export class PrismaClassFinderRepo implements ClassFinderRepo {
-  async find(params: ClassFinderRepoParams): Promise<Class> {
+export class PrismaFindClassRepository implements FindClassRepository {
+  async find(params: FindClassRepositoryParams): Promise<Class> {
     const { filter, include } = params
     const prismaClass = await prisma.class.findFirst({
       where: {

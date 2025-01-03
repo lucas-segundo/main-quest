@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { ClassFinderRepo, ClassFinderRepoParams } from '.'
+import { FindClassRepository, FindClassRepositoryParams } from '.'
 
-export const mockClassFinderRepoParams = (): ClassFinderRepoParams => ({
+export const mockFindClassRepositoryParams = (): FindClassRepositoryParams => ({
   filter: {
     id: {
       equals: faker.string.uuid(),
@@ -12,6 +12,7 @@ export const mockClassFinderRepoParams = (): ClassFinderRepoParams => ({
   },
 })
 
-export const mockClassFinderRepo = (): jest.Mocked<ClassFinderRepo> => ({
-  find: jest.fn(),
-})
+export const mockFindClassRepository =
+  (): jest.Mocked<FindClassRepository> => ({
+    find: jest.fn(),
+  })

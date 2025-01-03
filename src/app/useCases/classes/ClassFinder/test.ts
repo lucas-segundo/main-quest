@@ -1,14 +1,14 @@
-import { mockClassFinderRepo } from 'app/repositories/classes/ClassFinderRepo/mock'
 import { ClassFinder, ClassFinderParams } from '.'
 import { faker } from '@faker-js/faker'
-import { ClassFinderRepoParams } from 'app/repositories/classes/ClassFinderRepo'
 import { mockClass } from 'domain/entities/Class/mock'
 import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockClassFinderParams } from './mock'
+import { mockFindClassRepository } from 'app/repositories/classes/ClassFinderRepo/mock'
+import { FindClassRepositoryParams } from 'app/repositories/classes/ClassFinderRepo'
 
 const makeSUT = () => {
-  const repository = mockClassFinderRepo()
+  const repository = mockFindClassRepository()
   const logger = mockErrorLoggerRepo()
   const sut = new ClassFinder(repository, logger)
 
@@ -22,7 +22,7 @@ describe('ClassFinder', () => {
     const params: ClassFinderParams = mockClassFinderParams()
     sut.find(params)
 
-    const expectedParams: ClassFinderRepoParams = {
+    const expectedParams: FindClassRepositoryParams = {
       filter: params,
       include: {
         subclasses: true,

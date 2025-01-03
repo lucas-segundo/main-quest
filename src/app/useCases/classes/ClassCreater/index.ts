@@ -1,4 +1,4 @@
-import { ClassCreaterRepo } from 'app/repositories/classes/ClassCreaterRepo'
+import { CreateClassRepository } from 'app/repositories/classes/CreateClass'
 import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 
@@ -7,7 +7,7 @@ export interface ClassCreaterParams {
 }
 export class ClassCreater {
   constructor(
-    private classCreaterRepo: ClassCreaterRepo,
+    private classCreaterRepo: CreateClassRepository,
     private errorLoggerRepo: ErrorLoggerRepo,
   ) {}
 

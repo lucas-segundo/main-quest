@@ -1,25 +1,25 @@
 import { Prisma } from '@prisma/client'
-import { PrismaClassUpdaterRepo } from '.'
+import { PrismaUpdateClassRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
-import { mockClassUpdaterRepoParams } from 'app/repositories/classes/ClassUpdaterRepo/mock'
 import { faker } from '@faker-js/faker'
+import { mockUpdateClassRepositoryParams } from '../mock'
 
 const makeSUT = () => {
   mockedPrismaClient.class.update.mockResolvedValue(mockPrismaClass())
   const id = faker.string.uuid()
 
-  const sut = new PrismaClassUpdaterRepo()
+  const sut = new PrismaUpdateClassRepository()
   return { sut, id }
 }
 
-describe('PrismaClassUpdaterRepo', () => {
+describe('PrismaUpdateClassRepository', () => {
   it('should call prisma client with right params', async () => {
     const { sut, id } = makeSUT()
 
-    const params = mockClassUpdaterRepoParams()
+    const params = mockUpdateClassRepositoryParams()
     await sut.update(id, params)
 
     const { data, include } = params
@@ -41,7 +41,7 @@ describe('PrismaClassUpdaterRepo', () => {
     const prismaClass = mockPrismaClass()
     mockedPrismaClient.class.update.mockResolvedValue(prismaClass)
 
-    const result = await sut.update(id, mockClassUpdaterRepoParams())
+    const result = await sut.update(id, mockUpdateClassRepositoryParams())
 
     const expectedClass = adaptPrismaClass(prismaClass)
     expect(result).toEqual(expectedClass)

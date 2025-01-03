@@ -1,14 +1,14 @@
-import { mockClassUpdaterRepo } from 'app/repositories/classes/ClassUpdaterRepo/mock'
 import { ClassUpdater, ClassUpdaterParams } from '.'
 import { faker } from '@faker-js/faker'
-import { ClassUpdaterRepoParams } from 'app/repositories/classes/ClassUpdaterRepo'
 import { mockClass } from 'domain/entities/Class/mock'
 import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockClassUpdaterParams } from './mock'
+import { mockUpdateClassRepository } from 'app/repositories/classes/UpdateClass/mock'
+import { UpdateClassRepositoryParams } from 'app/repositories/classes/UpdateClass'
 
 const makeSUT = () => {
-  const repository = mockClassUpdaterRepo()
+  const repository = mockUpdateClassRepository()
   const logger = mockErrorLoggerRepo()
   const sut = new ClassUpdater(repository, logger)
   const id = faker.string.uuid()
@@ -23,7 +23,7 @@ describe('ClassUpdater', () => {
     const params: ClassUpdaterParams = mockClassUpdaterParams()
     sut.update(id, params)
 
-    const expectedParams: ClassUpdaterRepoParams = {
+    const expectedParams: UpdateClassRepositoryParams = {
       data: {
         name: params.name,
       },

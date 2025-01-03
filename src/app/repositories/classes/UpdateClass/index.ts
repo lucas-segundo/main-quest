@@ -8,11 +8,11 @@ interface Include {
   subclasses?: boolean
 }
 
-export interface ClassUpdaterRepoParams {
+export interface UpdateClassRepositoryParams {
   data: Data
   include?: Include
 }
 
-export interface ClassUpdaterRepo {
-  update(id: string, params: ClassUpdaterRepoParams): Promise<Class>
+export interface UpdateClassRepository {
+  update(id: string, params: UpdateClassRepositoryParams): Promise<Class>
 }

@@ -1,4 +1,4 @@
-import { ClassUpdaterRepo } from 'app/repositories/classes/ClassUpdaterRepo'
+import { UpdateClassRepository } from 'app/repositories/classes/UpdateClass'
 import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 
@@ -7,7 +7,7 @@ export interface ClassUpdaterParams {
 }
 export class ClassUpdater {
   constructor(
-    private classUpdaterRepo: ClassUpdaterRepo,
+    private classUpdaterRepo: UpdateClassRepository,
     private errorLoggerRepo: ErrorLoggerRepo,
   ) {}
 

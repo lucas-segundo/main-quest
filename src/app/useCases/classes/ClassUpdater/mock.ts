@@ -1,11 +1,11 @@
 import { faker } from '@faker-js/faker'
 import { ClassUpdater, ClassUpdaterParams } from '.'
-import { mockClassUpdaterRepo } from 'app/repositories/classes/ClassUpdaterRepo/mock'
 import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { mockUpdateClassRepository } from 'app/repositories/classes/UpdateClass/mock'
 
 export const mockClassUpdaterParams = (): ClassUpdaterParams => ({
   name: faker.person.firstName(),
 })
 
 export const mockClassUpdater = (): ClassUpdater =>
-  new ClassUpdater(mockClassUpdaterRepo(), mockErrorLoggerRepo())
+  new ClassUpdater(mockUpdateClassRepository(), mockErrorLoggerRepo())

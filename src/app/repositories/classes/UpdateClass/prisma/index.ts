@@ -1,13 +1,13 @@
-import {
-  ClassUpdaterRepo,
-  ClassUpdaterRepoParams,
-} from 'app/repositories/classes/ClassUpdaterRepo'
 import { Class } from 'domain/entities/Class'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { UpdateClassRepository, UpdateClassRepositoryParams } from '..'
 
-export class PrismaClassUpdaterRepo implements ClassUpdaterRepo {
-  async update(id: string, params: ClassUpdaterRepoParams): Promise<Class> {
+export class PrismaUpdateClassRepository implements UpdateClassRepository {
+  async update(
+    id: string,
+    params: UpdateClassRepositoryParams,
+  ): Promise<Class> {
     const { data, include } = params
     const prismaClass = await prisma.class.update({
       data: {

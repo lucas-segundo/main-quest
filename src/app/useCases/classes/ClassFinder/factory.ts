@@ -1,4 +1,4 @@
-import { PrismaFindClassRepository } from 'app/repositories/classes/ClassFinderRepo/prisma'
+import { PrismaFindClassRepository } from 'app/repositories/classes/FindClass/prisma'
 import { ClassFinder } from '.'
 import { makeErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/pino/factory'
 

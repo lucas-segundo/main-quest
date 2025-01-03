@@ -4,8 +4,8 @@ import { mockClass } from 'domain/entities/Class/mock'
 import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockClassFinderParams } from './mock'
-import { mockFindClassRepository } from 'app/repositories/classes/ClassFinderRepo/mock'
-import { FindClassRepositoryParams } from 'app/repositories/classes/ClassFinderRepo'
+import { mockFindClassRepository } from 'app/repositories/classes/FindClass/mock'
+import { FindClassRepositoryParams } from 'app/repositories/classes/FindClass'
 
 const makeSUT = () => {
   const repository = mockFindClassRepository()

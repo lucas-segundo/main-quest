@@ -1,4 +1,4 @@
-import { FindClassesRepository } from 'app/repositories/classes/ClassesFinderRepo'
+import { FindClassesRepository } from 'app/repositories/classes/FindClasses'
 import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 

@@ -1,7 +1,7 @@
 import { SubclassUpdater } from '.'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'
-import { PrismaSubclassUpdaterRepo } from 'infra/prisma/repositories/subclasses/SubclassUpdaterRepo'
+import { PrismaSubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo/prisma'
 
 export const makeSubclassUpdater = (): SubclassUpdater => {
   const classUpdaterRepo = new PrismaSubclassUpdaterRepo()

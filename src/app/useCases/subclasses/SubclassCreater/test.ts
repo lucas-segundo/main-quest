@@ -1,11 +1,11 @@
 import { mockSubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo/mock'
 import { SubclassCreater, SubclassCreaterParams } from '.'
 import { faker } from '@faker-js/faker'
-import { SubclassCreaterRepoParams } from 'app/repositories/subclasses/SubclassCreaterRepo'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
 import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockSubclassCreaterParams } from './mock'
+import { SubclassCreaterRepoParams } from 'app/repositories/subclasses/SubclassCreaterRepo'
 
 const makeSUT = () => {
   const repository = mockSubclassCreaterRepo()

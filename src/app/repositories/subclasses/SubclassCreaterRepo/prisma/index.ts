@@ -1,10 +1,7 @@
-import {
-  SubclassCreaterRepo,
-  SubclassCreaterRepoParams,
-} from 'app/repositories/subclasses/SubclassCreaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 import prisma from 'infra/prisma'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { SubclassCreaterRepo, SubclassCreaterRepoParams } from '..'
 
 export class PrismaSubclassCreaterRepo implements SubclassCreaterRepo {
   async create(params: SubclassCreaterRepoParams): Promise<Subclass> {

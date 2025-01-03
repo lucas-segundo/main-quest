@@ -1,7 +1,7 @@
-import { PrismaClassCreaterRepo } from 'infra/prisma/repositories/classes/ClassCreaterRepo'
 import { ClassCreater } from '.'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'
+import { PrismaClassCreaterRepo } from 'app/repositories/classes/ClassCreaterRepo/prisma'
 
 export const makeClassCreater = (): ClassCreater => {
   const classCreaterRepo = new PrismaClassCreaterRepo()

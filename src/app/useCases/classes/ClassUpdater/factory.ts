@@ -1,7 +1,7 @@
-import { PrismaClassUpdaterRepo } from 'infra/prisma/repositories/classes/ClassUpdaterRepo'
 import { ClassUpdater } from '.'
 import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'
+import { PrismaClassUpdaterRepo } from 'app/repositories/classes/ClassUpdaterRepo/prisma'
 
 export const makeClassUpdater = (): ClassUpdater => {
   const classUpdaterRepo = new PrismaClassUpdaterRepo()

@@ -1,4 +1,4 @@
-import { ClassesFinderRepo } from 'app/repositories/classes/ClassesFinderRepo'
+import { FindClassesRepository } from 'app/repositories/classes/ClassesFinderRepo'
 import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 
@@ -9,7 +9,7 @@ export interface ClassesFinderParams {
 }
 export class ClassesFinder {
   constructor(
-    private classesFinderRepo: ClassesFinderRepo,
+    private classesFinderRepo: FindClassesRepository,
     private errorLoggerRepo: ErrorLoggerRepo,
   ) {}
 

@@ -10,11 +10,11 @@ interface Include {
   subclasses?: boolean
 }
 
-export interface ClassesFinderRepoParams {
+export interface FindClassesRepositoryParams {
   filter: Filter
   include?: Include
 }
 
-export interface ClassesFinderRepo {
-  find(params: ClassesFinderRepoParams): Promise<Class[]>
+export interface FindClassesRepository {
+  find(params: FindClassesRepositoryParams): Promise<Class[]>
 }

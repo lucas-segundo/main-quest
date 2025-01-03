@@ -4,11 +4,11 @@ import { mockClass } from 'domain/entities/Class/mock'
 import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockClassesFinderParams } from './mock'
-import { mockClassesFinderRepo } from 'app/repositories/classes/ClassesFinderRepo/mock'
-import { ClassesFinderRepoParams } from 'app/repositories/classes/ClassesFinderRepo'
+import { mockFindClassesRepository } from 'app/repositories/classes/ClassesFinderRepo/mock'
+import { FindClassesRepositoryParams } from 'app/repositories/classes/ClassesFinderRepo'
 
 const makeSUT = () => {
-  const repository = mockClassesFinderRepo()
+  const repository = mockFindClassesRepository()
   const logger = mockErrorLoggerRepo()
   const sut = new ClassesFinder(repository, logger)
 
@@ -22,7 +22,7 @@ describe('ClassesFinder', () => {
     const params: ClassesFinderParams = mockClassesFinderParams()
     sut.find(params)
 
-    const expectedParams: ClassesFinderRepoParams = {
+    const expectedParams: FindClassesRepositoryParams = {
       filter: params,
       include: {
         subclasses: true,

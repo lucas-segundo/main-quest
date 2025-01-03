@@ -1,13 +1,10 @@
-import {
-  ClassesFinderRepo,
-  ClassesFinderRepoParams,
-} from 'app/repositories/classes/ClassesFinderRepo'
 import { Class } from 'domain/entities/Class'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { FindClassesRepository, FindClassesRepositoryParams } from '..'
 
-export class PrismaClassesFinderRepo implements ClassesFinderRepo {
-  async find(params: ClassesFinderRepoParams): Promise<Class[]> {
+export class PrismaFindClassesRepository implements FindClassesRepository {
+  async find(params: FindClassesRepositoryParams): Promise<Class[]> {
     const { filter, include } = params
     const prismaClasses = await prisma.class.findMany({
       where: {

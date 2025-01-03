@@ -1,9 +1,9 @@
+import { PrismaFindClassesRepository } from 'app/repositories/classes/ClassesFinderRepo/prisma'
 import { ClassesFinder } from '.'
-import { PrismaClassesFinderRepo } from 'app/repositories/classes/ClassesFinderRepo/prisma'
 import { makeErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/pino/factory'
 
 export const makeClassesFinder = (): ClassesFinder => {
-  const classesFinderRepo = new PrismaClassesFinderRepo()
+  const classesFinderRepo = new PrismaFindClassesRepository()
   const useCase = new ClassesFinder(classesFinderRepo, makeErrorLoggerRepo())
 
   return useCase

@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres
-    restart: unless-stopped
     environment:
       - POSTGRES_PASSWORD=postgres
     volumes:
@@ -21,6 +20,5 @@ services:
       - db
     volumes:
       - .:/app
-      - /app/node_modules
     environment:
       - POSTGRES_DATABASE_URL=${POSTGRES_DATABASE_URL}

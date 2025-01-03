@@ -1,7 +1,11 @@
 FROM node:20-alpine AS base
 
-COPY . /app
 WORKDIR /app
+COPY . .
+
+# For Prisma
+RUN apk update
+RUN apk add openssl
 
 FROM base AS dev
 

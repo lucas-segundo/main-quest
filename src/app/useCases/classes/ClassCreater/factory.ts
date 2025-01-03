@@ -1,12 +1,10 @@
 import { ClassCreater } from '.'
-import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
-import { pinoLogger } from 'infra/pino'
 import { PrismaClassCreaterRepo } from 'app/repositories/classes/ClassCreaterRepo/prisma'
+import { makeErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/pino/factory'
 
 export const makeClassCreater = (): ClassCreater => {
   const classCreaterRepo = new PrismaClassCreaterRepo()
-  const errorLoggerRepo = new PinoErrorLoggerRepo(pinoLogger)
-  const useCase = new ClassCreater(classCreaterRepo, errorLoggerRepo)
+  const useCase = new ClassCreater(classCreaterRepo, makeErrorLoggerRepo())
 
   return useCase
 }

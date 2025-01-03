@@ -1,12 +1,13 @@
 import { ClassFinder } from '.'
-import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
-import { pinoLogger } from 'infra/pino'
 import { PrismaClassFinderRepo } from 'app/repositories/classes/ClassFinderRepo/prisma'
+import { makeErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/pino/factory'
 
 export const makeClassFinder = (): ClassFinder => {
   const characterClassFinderRepo = new PrismaClassFinderRepo()
-  const errorLoggerRepo = new PinoErrorLoggerRepo(pinoLogger)
-  const useCase = new ClassFinder(characterClassFinderRepo, errorLoggerRepo)
+  const useCase = new ClassFinder(
+    characterClassFinderRepo,
+    makeErrorLoggerRepo(),
+  )
 
   return useCase
 }

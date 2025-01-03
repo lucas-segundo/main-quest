@@ -1,7 +1,7 @@
 import { SubclassCreater } from '.'
-import { PinoErrorLoggerRepo } from 'infra/pino/repositories/ErrorLoggerRepository'
 import { pinoLogger } from 'infra/pino'
 import { PrismaSubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo/prisma'
+import { PinoErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/pino'
 
 export const makeSubclassCreater = (): SubclassCreater => {
   const subclassCreaterRepo = new PrismaSubclassCreaterRepo()

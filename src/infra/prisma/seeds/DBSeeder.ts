@@ -1,7 +1,5 @@
 import { mockPrismaSubclass } from '../data/Subclass/mock'
 import { mockPrismaClass } from '../data/Class/mock'
-import { PrismaClass } from '../data/Class'
-import { PrismaSubclass } from '../data/Subclass'
 import prisma from '..'
 
 export class DBSeeder {
@@ -16,7 +14,7 @@ export class DBSeeder {
   }
 
   private async seedClass() {
-    const classToCreate = mockPrismaClass() as OptionalProp<PrismaClass, 'id'>
+    const classToCreate = mockPrismaClass()
     const classCreated = await prisma.class.create({
       data: {
         name: classToCreate.name,
@@ -27,11 +25,7 @@ export class DBSeeder {
   }
 
   private async seedSubclass(classID: number) {
-    const subclassToCreate = mockPrismaSubclass() as OptionalProp<
-      PrismaSubclass,
-      'id'
-    >
-    delete subclassToCreate.id
+    const subclassToCreate = mockPrismaSubclass()
     const subclassCreated = await prisma.subclass.create({
       data: { ...subclassToCreate, classID },
     })

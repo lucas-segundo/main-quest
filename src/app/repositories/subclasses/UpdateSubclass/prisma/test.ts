@@ -1,28 +1,28 @@
 import { Prisma } from '@prisma/client'
-import { PrismaSubclassUpdaterRepo } from '.'
+import { PrismaUpdateSubclassRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
-import { mockSubclassUpdaterRepoParams } from 'app/repositories/subclasses/SubclassUpdaterRepo/mock'
 import { faker } from '@faker-js/faker'
+import { mockUpdateSubclassRepositoryParams } from '../mock'
 
 const makeSUT = () => {
   mockedPrismaClient.class.update.mockResolvedValue(mockPrismaSubclass())
   const id = faker.string.uuid()
 
-  const sut = new PrismaSubclassUpdaterRepo()
+  const sut = new PrismaUpdateSubclassRepository()
   return { sut, id }
 }
 
-describe('PrismaSubclassUpdaterRepo', () => {
+describe('PrismaUpdateSubclassRepository', () => {
   it('should call prisma client with right params', async () => {
     const { sut, id } = makeSUT()
 
     const prismaSubclass = mockPrismaSubclass()
     mockedPrismaClient.subclass.update.mockResolvedValue(prismaSubclass)
 
-    const params = mockSubclassUpdaterRepoParams()
+    const params = mockUpdateSubclassRepositoryParams()
     await sut.update(id, params)
 
     const { data } = params
@@ -45,7 +45,7 @@ describe('PrismaSubclassUpdaterRepo', () => {
     const prismaSubclass = mockPrismaSubclass()
     mockedPrismaClient.subclass.update.mockResolvedValue(prismaSubclass)
 
-    const result = await sut.update(id, mockSubclassUpdaterRepoParams())
+    const result = await sut.update(id, mockUpdateSubclassRepositoryParams())
 
     const expectedSubclass = adaptPrismaSubclass(prismaSubclass)
     expect(result).toEqual(expectedSubclass)

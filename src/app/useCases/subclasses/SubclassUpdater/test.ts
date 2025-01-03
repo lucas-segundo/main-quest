@@ -4,11 +4,11 @@ import { mockSubclass } from 'domain/entities/Subclass/mock'
 import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
 import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockSubclassUpdaterParams } from './mock'
-import { mockSubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo/mock'
-import { SubclassUpdaterRepoParams } from 'app/repositories/subclasses/SubclassUpdaterRepo'
+import { mockUpdateSubclassRepository } from 'app/repositories/subclasses/UpdateSubclassRepository/mock'
+import { UpdateSubclassRepositoryParams } from 'app/repositories/subclasses/UpdateSubclassRepository'
 
 const makeSUT = () => {
-  const repository = mockSubclassUpdaterRepo()
+  const repository = mockUpdateSubclassRepository()
   const logger = mockLogErrorRepository()
   const sut = new SubclassUpdater(repository, logger)
   const id = faker.string.uuid()
@@ -23,7 +23,7 @@ describe('SubclassUpdater', () => {
     const params: SubclassUpdaterParams = mockSubclassUpdaterParams()
     sut.update(id, params)
 
-    const expectedParams: SubclassUpdaterRepoParams = {
+    const expectedParams: UpdateSubclassRepositoryParams = {
       data: {
         name: params.name,
       },

@@ -1,5 +1,5 @@
 import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
-import { SubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo'
+import { UpdateSubclassRepository } from 'app/repositories/subclasses/UpdateSubclassRepository'
 import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassUpdaterParams {
@@ -7,7 +7,7 @@ export interface SubclassUpdaterParams {
 }
 export class SubclassUpdater {
   constructor(
-    private classUpdaterRepo: SubclassUpdaterRepo,
+    private classUpdaterRepo: UpdateSubclassRepository,
     private errorLoggerRepo: LogErrorRepository,
   ) {}
 

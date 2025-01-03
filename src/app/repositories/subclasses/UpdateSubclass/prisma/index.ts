@@ -1,15 +1,14 @@
-import {
-  SubclassUpdaterRepo,
-  SubclassUpdaterRepoParams,
-} from 'app/repositories/subclasses/SubclassUpdaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 import prisma from 'infra/prisma'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { UpdateSubclassRepository, UpdateSubclassRepositoryParams } from '..'
 
-export class PrismaSubclassUpdaterRepo implements SubclassUpdaterRepo {
+export class PrismaUpdateSubclassRepository
+  implements UpdateSubclassRepository
+{
   async update(
     id: string,
-    params: SubclassUpdaterRepoParams,
+    params: UpdateSubclassRepositoryParams,
   ): Promise<Subclass> {
     const { data } = params
     const prismaSubclass = await prisma.subclass.update({

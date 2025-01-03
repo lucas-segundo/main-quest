@@ -1,14 +1,11 @@
-import {
-  SubclassFinderRepo,
-  SubclassFinderRepoParams,
-} from 'app/repositories/subclasses/SubclassFinderRepo'
 import { Subclass } from 'domain/entities/Subclass'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { FindSubclasses, FindSubclassesParams } from '..'
 
-export class PrismaSubclassFinderRepo implements SubclassFinderRepo {
-  async find(params: SubclassFinderRepoParams): Promise<Subclass> {
+export class PrismaFindSubclasses implements FindSubclasses {
+  async find(params: FindSubclassesParams): Promise<Subclass> {
     const { filter } = params
     const prismaSubclass = await prisma.subclass.findFirst({
       where: {

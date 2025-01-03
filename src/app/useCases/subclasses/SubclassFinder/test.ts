@@ -1,14 +1,14 @@
-import { mockSubclassFinderRepo } from 'app/repositories/subclasses/SubclassFinderRepo/mock'
+import { mockFindSubclasses } from 'app/repositories/subclasses/FindSubclasses/mock'
 import { SubclassFinder, SubclassFinderParams } from '.'
 import { faker } from '@faker-js/faker'
-import { SubclassFinderRepoParams } from 'app/repositories/subclasses/SubclassFinderRepo'
+import { FindSubclassesParams } from 'app/repositories/subclasses/FindSubclasses'
 import { mockClass } from 'domain/entities/Class/mock'
 import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
 import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockSubclassFinderParams } from './mock'
 
 const makeSUT = () => {
-  const repository = mockSubclassFinderRepo()
+  const repository = mockFindSubclasses()
   const logger = mockLogErrorRepository()
   const sut = new SubclassFinder(repository, logger)
 
@@ -22,7 +22,7 @@ describe('SubclassFinder', () => {
     const params: SubclassFinderParams = mockSubclassFinderParams()
     sut.find(params)
 
-    const expectedParams: SubclassFinderRepoParams = {
+    const expectedParams: FindSubclassesParams = {
       filter: params,
     }
     expect(repository.find).toHaveBeenCalledWith(expectedParams)

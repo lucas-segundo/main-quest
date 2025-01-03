@@ -1,5 +1,5 @@
 import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
-import { SubclassFinderRepo } from 'app/repositories/subclasses/SubclassFinderRepo'
+import { FindSubclasses } from 'app/repositories/subclasses/FindSubclasses'
 import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassFinderParams {
@@ -9,7 +9,7 @@ export interface SubclassFinderParams {
 }
 export class SubclassFinder {
   constructor(
-    private subclassFinderRepo: SubclassFinderRepo,
+    private subclassFinderRepo: FindSubclasses,
     private errorLoggerRepo: LogErrorRepository,
   ) {}
 

@@ -1,14 +1,14 @@
-import { mockSubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo/mock'
+import { mockCreateSubclassRepository } from 'app/repositories/subclasses/CreateSubclass/mock'
 import { SubclassCreater, SubclassCreaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
 import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
 import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockSubclassCreaterParams } from './mock'
-import { SubclassCreaterRepoParams } from 'app/repositories/subclasses/SubclassCreaterRepo'
+import { CreateSubclassRepositoryParams } from 'app/repositories/subclasses/CreateSubclass'
 
 const makeSUT = () => {
-  const repository = mockSubclassCreaterRepo()
+  const repository = mockCreateSubclassRepository()
   const logger = mockLogErrorRepository()
   const sut = new SubclassCreater(repository, logger)
 
@@ -22,7 +22,7 @@ describe('SubclassCreater', () => {
     const params: SubclassCreaterParams = mockSubclassCreaterParams()
     sut.create(params)
 
-    const expectedParams: SubclassCreaterRepoParams = {
+    const expectedParams: CreateSubclassRepositoryParams = {
       name: params.name,
       classID: params.classID,
     }

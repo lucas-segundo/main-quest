@@ -1,24 +1,24 @@
 import { Prisma } from '@prisma/client'
-import { PrismaSubclassCreaterRepo } from '.'
+import { PrismaCreateSubclassRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
-import { mockSubclassCreaterRepoParams } from 'app/repositories/subclasses/SubclassCreaterRepo/mock'
+import { mockCreateSubclassRepositoryParams } from 'app/repositories/subclasses/CreateSubclass/mock'
 
 const makeSUT = () => {
   mockedPrismaClient.class.create.mockResolvedValue(mockPrismaSubclass())
 
-  const sut = new PrismaSubclassCreaterRepo()
+  const sut = new PrismaCreateSubclassRepository()
   return { sut }
 }
 
-describe('PrismaSubclassCreaterRepo', () => {
+describe('PrismaCreateSubclassRepository', () => {
   it('should call prisma client with right params', async () => {
     const { sut } = makeSUT()
 
     mockedPrismaClient.subclass.create.mockResolvedValue(mockPrismaSubclass())
-    const params = mockSubclassCreaterRepoParams()
+    const params = mockCreateSubclassRepositoryParams()
     await sut.create(params)
 
     const expectedParams: Prisma.SubclassCreateArgs<DefaultArgs> = {
@@ -38,7 +38,7 @@ describe('PrismaSubclassCreaterRepo', () => {
     const prismaSubclass = mockPrismaSubclass()
     mockedPrismaClient.subclass.create.mockResolvedValue(prismaSubclass)
 
-    const result = await sut.create(mockSubclassCreaterRepoParams())
+    const result = await sut.create(mockCreateSubclassRepositoryParams())
 
     const expectedSubclass = adaptPrismaSubclass(prismaSubclass)
     expect(result).toEqual(expectedSubclass)

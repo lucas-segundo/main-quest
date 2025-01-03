@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { SubclassCreater, SubclassCreaterParams } from '.'
-import { mockSubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo/mock'
+import { mockCreateSubclassRepository } from 'app/repositories/subclasses/CreateSubclass/mock'
 import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 
 export const mockSubclassCreaterParams = (): SubclassCreaterParams => ({
@@ -9,4 +9,4 @@ export const mockSubclassCreaterParams = (): SubclassCreaterParams => ({
 })
 
 export const mockSubclassCreater = (): SubclassCreater =>
-  new SubclassCreater(mockSubclassCreaterRepo(), mockLogErrorRepository())
+  new SubclassCreater(mockCreateSubclassRepository(), mockLogErrorRepository())

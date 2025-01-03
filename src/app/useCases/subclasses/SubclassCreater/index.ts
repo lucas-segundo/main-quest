@@ -1,5 +1,5 @@
 import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
-import { SubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo'
+import { CreateSubclassRepository } from 'app/repositories/subclasses/CreateSubclass'
 import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassCreaterParams {
@@ -8,7 +8,7 @@ export interface SubclassCreaterParams {
 }
 export class SubclassCreater {
   constructor(
-    private subclassCreaterRepo: SubclassCreaterRepo,
+    private subclassCreaterRepo: CreateSubclassRepository,
     private errorLoggerRepo: LogErrorRepository,
   ) {}
 

@@ -1,5 +1,5 @@
 import { UpdateClassRepository } from 'app/repositories/classes/UpdateClass'
-import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { Class } from 'domain/entities/Class'
 
 export interface ClassUpdaterParams {
@@ -8,7 +8,7 @@ export interface ClassUpdaterParams {
 export class ClassUpdater {
   constructor(
     private classUpdaterRepo: UpdateClassRepository,
-    private errorLoggerRepo: ErrorLoggerRepo,
+    private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async update(id: string, params: ClassUpdaterParams): Promise<Class> {

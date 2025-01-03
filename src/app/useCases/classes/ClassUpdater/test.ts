@@ -1,15 +1,15 @@
 import { ClassUpdater, ClassUpdaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
+import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockClassUpdaterParams } from './mock'
 import { mockUpdateClassRepository } from 'app/repositories/classes/UpdateClass/mock'
 import { UpdateClassRepositoryParams } from 'app/repositories/classes/UpdateClass'
 
 const makeSUT = () => {
   const repository = mockUpdateClassRepository()
-  const logger = mockErrorLoggerRepo()
+  const logger = mockLogErrorRepository()
   const sut = new ClassUpdater(repository, logger)
   const id = faker.string.uuid()
 
@@ -66,7 +66,7 @@ describe('ClassUpdater', () => {
       await sut.update(id, mockClassUpdaterParams())
     } catch (error) {}
 
-    const loggerRepoParams: ErrorLoggerRepoParams = {
+    const loggerRepoParams: LogErrorRepositoryParams = {
       error,
     }
     expect(logger.log).toHaveBeenCalledWith(loggerRepoParams)

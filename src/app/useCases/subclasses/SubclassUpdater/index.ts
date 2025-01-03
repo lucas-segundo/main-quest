@@ -1,4 +1,4 @@
-import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { SubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 
@@ -8,7 +8,7 @@ export interface SubclassUpdaterParams {
 export class SubclassUpdater {
   constructor(
     private classUpdaterRepo: SubclassUpdaterRepo,
-    private errorLoggerRepo: ErrorLoggerRepo,
+    private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async update(id: string, params: SubclassUpdaterParams): Promise<Subclass> {

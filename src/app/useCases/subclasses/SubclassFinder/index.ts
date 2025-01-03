@@ -1,4 +1,4 @@
-import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { SubclassFinderRepo } from 'app/repositories/subclasses/SubclassFinderRepo'
 import { Subclass } from 'domain/entities/Subclass'
 
@@ -10,7 +10,7 @@ export interface SubclassFinderParams {
 export class SubclassFinder {
   constructor(
     private subclassFinderRepo: SubclassFinderRepo,
-    private errorLoggerRepo: ErrorLoggerRepo,
+    private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async find(params: SubclassFinderParams): Promise<Subclass> {

@@ -1,4 +1,4 @@
-import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { SubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 
@@ -9,7 +9,7 @@ export interface SubclassCreaterParams {
 export class SubclassCreater {
   constructor(
     private subclassCreaterRepo: SubclassCreaterRepo,
-    private errorLoggerRepo: ErrorLoggerRepo,
+    private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async create(params: SubclassCreaterParams): Promise<Subclass> {

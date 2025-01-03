@@ -2,14 +2,14 @@ import { mockSubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCre
 import { SubclassCreater, SubclassCreaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
-import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
+import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockSubclassCreaterParams } from './mock'
 import { SubclassCreaterRepoParams } from 'app/repositories/subclasses/SubclassCreaterRepo'
 
 const makeSUT = () => {
   const repository = mockSubclassCreaterRepo()
-  const logger = mockErrorLoggerRepo()
+  const logger = mockLogErrorRepository()
   const sut = new SubclassCreater(repository, logger)
 
   return { sut, repository, logger }
@@ -59,7 +59,7 @@ describe('SubclassCreater', () => {
       await sut.create(mockSubclassCreaterParams())
     } catch (error) {}
 
-    const loggerRepoParams: ErrorLoggerRepoParams = {
+    const loggerRepoParams: LogErrorRepositoryParams = {
       error,
     }
     expect(logger.log).toHaveBeenCalledWith(loggerRepoParams)

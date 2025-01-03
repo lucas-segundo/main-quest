@@ -1,5 +1,5 @@
 import { FindClassesRepository } from 'app/repositories/classes/FindClasses'
-import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { Class } from 'domain/entities/Class'
 
 export interface ClassesFinderParams {
@@ -10,7 +10,7 @@ export interface ClassesFinderParams {
 export class ClassesFinder {
   constructor(
     private classesFinderRepo: FindClassesRepository,
-    private errorLoggerRepo: ErrorLoggerRepo,
+    private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async find(params: ClassesFinderParams): Promise<Class[]> {

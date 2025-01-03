@@ -3,13 +3,13 @@ import { SubclassFinder, SubclassFinderParams } from '.'
 import { faker } from '@faker-js/faker'
 import { SubclassFinderRepoParams } from 'app/repositories/subclasses/SubclassFinderRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
+import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockSubclassFinderParams } from './mock'
 
 const makeSUT = () => {
   const repository = mockSubclassFinderRepo()
-  const logger = mockErrorLoggerRepo()
+  const logger = mockLogErrorRepository()
   const sut = new SubclassFinder(repository, logger)
 
   return { sut, repository, logger }
@@ -58,7 +58,7 @@ describe('SubclassFinder', () => {
       await sut.find(mockSubclassFinderParams())
     } catch (error) {}
 
-    const loggerRepoParams: ErrorLoggerRepoParams = {
+    const loggerRepoParams: LogErrorRepositoryParams = {
       error,
     }
     expect(logger.log).toHaveBeenCalledWith(loggerRepoParams)

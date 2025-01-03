@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { SubclassFinder, SubclassFinderParams } from '.'
 import { mockSubclassFinderRepo } from 'app/repositories/subclasses/SubclassFinderRepo/mock'
-import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 
 export const mockSubclassFinderParams = (): SubclassFinderParams => ({
   id: {
@@ -10,4 +10,4 @@ export const mockSubclassFinderParams = (): SubclassFinderParams => ({
 })
 
 export const mockSubclassFinder = (): SubclassFinder =>
-  new SubclassFinder(mockSubclassFinderRepo(), mockErrorLoggerRepo())
+  new SubclassFinder(mockSubclassFinderRepo(), mockLogErrorRepository())

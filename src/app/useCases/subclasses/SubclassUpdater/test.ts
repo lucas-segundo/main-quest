@@ -1,15 +1,15 @@
 import { SubclassUpdater, SubclassUpdaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
-import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
+import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockSubclassUpdaterParams } from './mock'
 import { mockSubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo/mock'
 import { SubclassUpdaterRepoParams } from 'app/repositories/subclasses/SubclassUpdaterRepo'
 
 const makeSUT = () => {
   const repository = mockSubclassUpdaterRepo()
-  const logger = mockErrorLoggerRepo()
+  const logger = mockLogErrorRepository()
   const sut = new SubclassUpdater(repository, logger)
   const id = faker.string.uuid()
 
@@ -63,7 +63,7 @@ describe('SubclassUpdater', () => {
       await sut.update(id, mockSubclassUpdaterParams())
     } catch (error) {}
 
-    const loggerRepoParams: ErrorLoggerRepoParams = {
+    const loggerRepoParams: LogErrorRepositoryParams = {
       error,
     }
     expect(logger.log).toHaveBeenCalledWith(loggerRepoParams)

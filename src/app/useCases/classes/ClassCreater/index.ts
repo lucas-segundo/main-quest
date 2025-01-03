@@ -1,5 +1,5 @@
 import { CreateClassRepository } from 'app/repositories/classes/CreateClass'
-import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { LogErrorRepository } from 'app/repositories/loggers/LogError'
 import { Class } from 'domain/entities/Class'
 
 export interface ClassCreaterParams {
@@ -8,7 +8,7 @@ export interface ClassCreaterParams {
 export class ClassCreater {
   constructor(
     private classCreaterRepo: CreateClassRepository,
-    private errorLoggerRepo: ErrorLoggerRepo,
+    private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async create(params: ClassCreaterParams): Promise<Class> {

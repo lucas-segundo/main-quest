@@ -1,15 +1,15 @@
 import { ClassFinder, ClassFinderParams } from '.'
 import { faker } from '@faker-js/faker'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
+import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
+import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockClassFinderParams } from './mock'
 import { mockFindClassRepository } from 'app/repositories/classes/FindClass/mock'
 import { FindClassRepositoryParams } from 'app/repositories/classes/FindClass'
 
 const makeSUT = () => {
   const repository = mockFindClassRepository()
-  const logger = mockErrorLoggerRepo()
+  const logger = mockLogErrorRepository()
   const sut = new ClassFinder(repository, logger)
 
   return { sut, repository, logger }
@@ -61,7 +61,7 @@ describe('ClassFinder', () => {
       await sut.find(mockClassFinderParams())
     } catch (error) {}
 
-    const loggerRepoParams: ErrorLoggerRepoParams = {
+    const loggerRepoParams: LogErrorRepositoryParams = {
       error,
     }
     expect(logger.log).toHaveBeenCalledWith(loggerRepoParams)

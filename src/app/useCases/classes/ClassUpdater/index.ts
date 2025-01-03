@@ -1,5 +1,5 @@
-import { ClassUpdaterRepo } from 'app/interfaces/classes/ClassUpdaterRepo'
-import { ErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo'
+import { ClassUpdaterRepo } from 'app/repositories/classes/ClassUpdaterRepo'
+import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 
 export interface ClassUpdaterParams {

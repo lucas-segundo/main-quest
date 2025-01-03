@@ -1,7 +1,7 @@
 import {
   ErrorLoggerRepo,
   ErrorLoggerRepoParams,
-} from 'app/interfaces/loggers/ErrorLoggerRepo'
+} from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Logger } from 'pino'
 
 export class PinoErrorLoggerRepo implements ErrorLoggerRepo {

@@ -1,5 +1,5 @@
-import { ClassFinderRepo } from 'app/interfaces/classes/ClassFinderRepo'
-import { ErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo'
+import { ClassFinderRepo } from 'app/repositories/classes/ClassFinderRepo'
+import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
 import { Class } from 'domain/entities/Class'
 
 export interface ClassFinderParams {

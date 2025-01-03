@@ -1,5 +1,5 @@
-import { ErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo'
-import { SubclassUpdaterRepo } from 'app/interfaces/subclasses/SubclassUpdaterRepo'
+import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { SubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassUpdaterParams {

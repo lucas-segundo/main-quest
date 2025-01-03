@@ -4,7 +4,7 @@ import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
-import { mockClassCreaterRepoParams } from 'app/interfaces/classes/ClassCreaterRepo/mock'
+import { mockClassCreaterRepoParams } from 'app/repositories/classes/ClassCreaterRepo/mock'
 
 const makeSUT = () => {
   mockedPrismaClient.class.create.mockResolvedValue(mockPrismaClass())

@@ -1,7 +1,7 @@
 import {
   ClassCreaterRepo,
   ClassCreaterRepoParams,
-} from 'app/interfaces/classes/ClassCreaterRepo'
+} from 'app/repositories/classes/ClassCreaterRepo'
 import { Class } from 'domain/entities/Class'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'

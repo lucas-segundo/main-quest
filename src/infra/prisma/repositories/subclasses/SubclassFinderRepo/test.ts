@@ -4,10 +4,10 @@ import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
-import { mockClassFinderRepoParams } from 'app/interfaces/classes/ClassFinderRepo/mock'
+import { mockClassFinderRepoParams } from 'app/repositories/classes/ClassFinderRepo/mock'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
-import { mockSubclassFinderRepoParams } from 'app/interfaces/subclasses/SubclassFinderRepo/mock'
+import { mockSubclassFinderRepoParams } from 'app/repositories/subclasses/SubclassFinderRepo/mock'
 
 const makeSUT = () => {
   mockedPrismaClient.subclass.findFirst.mockResolvedValue(mockPrismaSubclass())

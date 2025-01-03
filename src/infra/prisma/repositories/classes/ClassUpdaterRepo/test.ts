@@ -4,7 +4,7 @@ import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
-import { mockClassUpdaterRepoParams } from 'app/interfaces/classes/ClassUpdaterRepo/mock'
+import { mockClassUpdaterRepoParams } from 'app/repositories/classes/ClassUpdaterRepo/mock'
 import { faker } from '@faker-js/faker'
 
 const makeSUT = () => {

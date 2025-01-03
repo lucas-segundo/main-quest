@@ -1,10 +1,10 @@
-import { mockClassCreaterRepo } from 'app/interfaces/classes/ClassCreaterRepo/mock'
+import { mockClassCreaterRepo } from 'app/repositories/classes/ClassCreaterRepo/mock'
 import { ClassCreater, ClassCreaterParams } from '.'
 import { faker } from '@faker-js/faker'
-import { ClassCreaterRepoParams } from 'app/interfaces/classes/ClassCreaterRepo'
+import { ClassCreaterRepoParams } from 'app/repositories/classes/ClassCreaterRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo/mock'
+import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockClassCreaterParams } from './mock'
 
 const makeSUT = () => {

@@ -1,5 +1,5 @@
-import { ErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo'
-import { SubclassCreaterRepo } from 'app/interfaces/subclasses/SubclassCreaterRepo'
+import { ErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { SubclassCreaterRepo } from 'app/repositories/subclasses/SubclassCreaterRepo'
 import { Subclass } from 'domain/entities/Subclass'
 
 export interface SubclassCreaterParams {

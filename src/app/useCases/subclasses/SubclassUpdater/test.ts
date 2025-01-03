@@ -1,11 +1,11 @@
 import { SubclassUpdater, SubclassUpdaterParams } from '.'
 import { faker } from '@faker-js/faker'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
-import { ErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo/mock'
+import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockSubclassUpdaterParams } from './mock'
-import { mockSubclassUpdaterRepo } from 'app/interfaces/subclasses/SubclassUpdaterRepo/mock'
-import { SubclassUpdaterRepoParams } from 'app/interfaces/subclasses/SubclassUpdaterRepo'
+import { mockSubclassUpdaterRepo } from 'app/repositories/subclasses/SubclassUpdaterRepo/mock'
+import { SubclassUpdaterRepoParams } from 'app/repositories/subclasses/SubclassUpdaterRepo'
 
 const makeSUT = () => {
   const repository = mockSubclassUpdaterRepo()

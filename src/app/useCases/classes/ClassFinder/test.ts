@@ -1,10 +1,10 @@
-import { mockClassFinderRepo } from 'app/interfaces/classes/ClassFinderRepo/mock'
+import { mockClassFinderRepo } from 'app/repositories/classes/ClassFinderRepo/mock'
 import { ClassFinder, ClassFinderParams } from '.'
 import { faker } from '@faker-js/faker'
-import { ClassFinderRepoParams } from 'app/interfaces/classes/ClassFinderRepo'
+import { ClassFinderRepoParams } from 'app/repositories/classes/ClassFinderRepo'
 import { mockClass } from 'domain/entities/Class/mock'
-import { ErrorLoggerRepoParams } from 'app/interfaces/loggers/ErrorLoggerRepo'
-import { mockErrorLoggerRepo } from 'app/interfaces/loggers/ErrorLoggerRepo/mock'
+import { ErrorLoggerRepoParams } from 'app/repositories/loggers/ErrorLoggerRepo'
+import { mockErrorLoggerRepo } from 'app/repositories/loggers/ErrorLoggerRepo/mock'
 import { mockClassFinderParams } from './mock'
 
 const makeSUT = () => {

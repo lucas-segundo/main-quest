@@ -1,4 +1,4 @@
-import { ClassCreaterController } from '.'
+import { CreateClassController } from '.'
 import { mockClass } from 'domain/entities/Class/mock'
 import {
   HTTPErrorResponse,
@@ -18,7 +18,7 @@ const makeSUT = () => {
   const createClassSpy = jest.spyOn(classCreater, 'create')
   const dataValidation = mockDataValidator()
 
-  const sut = new ClassCreaterController(classCreater, dataValidation)
+  const sut = new CreateClassController(classCreater, dataValidation)
 
   dataValidation.validate.mockResolvedValue({ errors: [] })
 

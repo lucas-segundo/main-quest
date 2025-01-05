@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common'
 import { ClassCreaterParams } from 'app/useCases/classes/ClassCreater'
 import { Response } from 'express'
-import { ClassCreaterController } from 'presentation/controllers/ClassCreater'
+import { CreateClassController } from 'presentation/controllers/CreateClass'
 import { ClassFinderController } from 'presentation/controllers/ClassFinder'
 import {
   ClassUpdaterController,
@@ -24,7 +24,7 @@ import {
 @Controller('classes')
 export class ClassesController {
   constructor(
-    private readonly classCreaterController: ClassCreaterController,
+    private readonly classCreaterController: CreateClassController,
     private readonly classFinderController: ClassFinderController,
     private readonly classesFinderController: ClassesFinderController,
     private readonly classUpdaterController: ClassUpdaterController,

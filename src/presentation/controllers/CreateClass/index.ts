@@ -12,7 +12,7 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export class ClassCreaterController implements Controller {
+export class CreateClassController implements Controller {
   constructor(
     private readonly createClassRepo: CreateClassRepository,
     private readonly dataValidator: DataValidator,

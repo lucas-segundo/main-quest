@@ -1,46 +1,40 @@
-import { ClassesFinderController, ClassesFinderControllerParams } from '.'
+import { FindClassesController } from '.'
 import { mockClass } from 'domain/entities/Class/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
-import {
-  mockClassesFinder,
-  mockClassesFinderParams,
-} from 'app/useCases/classes/ClassesFinder/mock'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
+import {
+  mockFindClassesRepository,
+  mockFindClassesRepositoryParams,
+} from 'app/repositories/classes/FindClasses/mock'
 
 const makeSUT = () => {
-  const classFinder = mockClassesFinder()
-  const findClassSpy = jest.spyOn(classFinder, 'find')
-  const sut = new ClassesFinderController(classFinder)
+  const findClasses = mockFindClassesRepository()
+  const findClassesSpy = jest.spyOn(findClasses, 'find')
+  const sut = new FindClassesController(findClasses)
 
-  return { sut, classFinder, findClassSpy }
+  return { sut, findClasses, findClassesSpy }
 }
 
 describe('ClassesFinder', () => {
   it('should call find with right params', async () => {
-    const { sut, classFinder } = makeSUT()
+    const { sut, findClasses } = makeSUT()
 
-    const classFilter = mockClassesFinderParams()
-    const params: ClassesFinderControllerParams = {
-      filter: classFilter,
-    }
-
+    const params = mockFindClassesRepositoryParams()
     await sut.handle(params)
 
-    expect(classFinder.find).toHaveBeenCalledWith(classFilter)
+    expect(findClasses.find).toHaveBeenCalledWith(params)
   })
 
   it('should return 200 and the classes', async () => {
-    const { sut, findClassSpy } = makeSUT()
+    const { sut, findClassesSpy } = makeSUT()
 
     const foundClass = mockClass()
-    findClassSpy.mockResolvedValue([foundClass])
+    findClassesSpy.mockResolvedValue([foundClass])
 
-    const params: ClassesFinderControllerParams = {
-      filter: mockClassesFinderParams(),
-    }
+    const params = mockFindClassesRepositoryParams()
     const response = (await sut.handle(params)) as HTTPResponse
 
     expect(response.statusCode).toBe(200)
@@ -49,8 +43,8 @@ describe('ClassesFinder', () => {
 
   it('should return 400 if no class filter is provided', async () => {
     const { sut } = makeSUT()
-
-    const response = (await sut.handle({})) as HTTPErrorResponse
+    const params: any = {}
+    const response = (await sut.handle(params)) as HTTPErrorResponse
 
     const error = new RequiredParamError('filter')
     expect(response.statusCode).toBe(400)

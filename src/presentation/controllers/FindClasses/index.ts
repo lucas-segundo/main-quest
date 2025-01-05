@@ -1,7 +1,7 @@
 import {
-  ClassesFinder,
-  ClassesFinderParams,
-} from 'app/useCases/classes/ClassesFinder'
+  FindClassesRepository,
+  FindClassesRepositoryParams,
+} from 'app/repositories/classes/FindClasses'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
@@ -12,15 +12,14 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface ClassesFinderControllerParams {
-  filter?: ClassesFinderParams
-}
+export interface FindClassesControllerParams
+  extends FindClassesRepositoryParams {}
 
-export class ClassesFinderController implements Controller {
-  constructor(private readonly classesFinder: ClassesFinder) {}
+export class FindClassesController implements Controller {
+  constructor(private readonly findClassesRepo: FindClassesRepository) {}
 
   async handle(
-    params?: ClassesFinderControllerParams,
+    params?: FindClassesControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
     const validationErrors = this.validate(params)
     if (validationErrors.length) {
@@ -30,15 +29,16 @@ export class ClassesFinderController implements Controller {
       }
     }
 
-    const validatedParams = params?.filter as ClassesFinderParams
     try {
-      return await this.respondWithClasses(validatedParams)
+      return await this.respondWithClasses(
+        params as FindClassesRepositoryParams,
+      )
     } catch (error) {
       return handleErrorToResponse(error)
     }
   }
 
-  private validate(params?: ClassesFinderControllerParams) {
+  private validate(params?: FindClassesControllerParams) {
     const validationErrors: HTTPError[] = []
 
     if (!params?.filter) {
@@ -52,8 +52,8 @@ export class ClassesFinderController implements Controller {
     return validationErrors
   }
 
-  private async respondWithClasses(params: ClassesFinderParams) {
-    const classes = await this.classesFinder.find(params)
+  private async respondWithClasses(params: FindClassesControllerParams) {
+    const classes = await this.findClassesRepo.find(params)
 
     return {
       data: classes,

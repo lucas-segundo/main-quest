@@ -1,7 +1,7 @@
 import {
-  ClassCreater,
-  ClassCreaterParams,
-} from 'app/useCases/classes/ClassCreater'
+  CreateClassRepository,
+  CreateClassRepositoryParams,
+} from 'app/repositories/classes/CreateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
@@ -12,20 +12,16 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface ClassCreaterControllerParams {
-  data: ClassCreaterParams
-}
-
 export class ClassCreaterController implements Controller {
   constructor(
-    private readonly classCreater: ClassCreater,
+    private readonly createClassRepo: CreateClassRepository,
     private readonly dataValidator: DataValidator,
   ) {}
 
   async handle(
-    params: ClassCreaterControllerParams,
+    params: CreateClassRepositoryParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
-    const { errors } = await this.dataValidator.validate(params.data)
+    const { errors } = await this.dataValidator.validate(params)
     if (errors.length) {
       return {
         errors: adaptValidationErrors(errors),
@@ -34,14 +30,14 @@ export class ClassCreaterController implements Controller {
     }
 
     try {
-      return await this.respondWithCreatedClass(params.data)
+      return await this.respondWithCreatedClass(params)
     } catch (error) {
       return handleErrorToResponse(error)
     }
   }
 
-  private async respondWithCreatedClass(data: ClassCreaterParams) {
-    const createdClass = await this.classCreater.create(data)
+  private async respondWithCreatedClass(data: CreateClassRepositoryParams) {
+    const createdClass = await this.createClassRepo.create(data)
 
     return {
       data: createdClass,

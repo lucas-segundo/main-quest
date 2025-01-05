@@ -3,8 +3,11 @@ import { ClassesFinder } from '.'
 import { makeLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/pino/factory'
 
 export const makeClassesFinder = (): ClassesFinder => {
-  const classesFinderRepo = new PrismaFindClassesRepository()
-  const useCase = new ClassesFinder(classesFinderRepo, makeLogErrorRepository())
+  const findClassesRepoRepo = new PrismaFindClassesRepository()
+  const useCase = new ClassesFinder(
+    findClassesRepoRepo,
+    makeLogErrorRepository(),
+  )
 
   return useCase
 }

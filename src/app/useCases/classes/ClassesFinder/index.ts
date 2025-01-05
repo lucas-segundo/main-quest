@@ -9,13 +9,13 @@ export interface ClassesFinderParams {
 }
 export class ClassesFinder {
   constructor(
-    private classesFinderRepo: FindClassesRepository,
+    private findClassesRepoRepo: FindClassesRepository,
     private errorLoggerRepo: LogErrorRepository,
   ) {}
 
   async find(params: ClassesFinderParams): Promise<Class[]> {
     try {
-      return await this.classesFinderRepo.find({
+      return await this.findClassesRepoRepo.find({
         filter: params,
         include: {
           subclasses: true,

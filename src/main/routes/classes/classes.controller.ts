@@ -8,31 +8,36 @@ import {
   Query,
   Res,
 } from '@nestjs/common'
-import { ClassCreaterParams } from 'app/useCases/classes/ClassCreater'
 import { Response } from 'express'
-import { CreateClassController } from 'presentation/controllers/CreateClass'
+import {
+  CreateClassController,
+  CreateClassControllerParams,
+} from 'presentation/controllers/CreateClass'
 import { ClassFinderController } from 'presentation/controllers/ClassFinder'
 import {
   ClassUpdaterController,
   ClassUpdaterControllerParams,
 } from 'presentation/controllers/ClassUpdater'
 import {
-  ClassesFinderController,
-  ClassesFinderControllerParams,
-} from 'presentation/controllers/ClassesFinder'
+  FindClassesController,
+  FindClassesControllerParams,
+} from 'presentation/controllers/FindClasses'
 
 @Controller('classes')
 export class ClassesController {
   constructor(
     private readonly classCreaterController: CreateClassController,
     private readonly classFinderController: ClassFinderController,
-    private readonly classesFinderController: ClassesFinderController,
+    private readonly findClassesRepoController: FindClassesController,
     private readonly classUpdaterController: ClassUpdaterController,
   ) {}
 
   @Post()
-  async create(@Body() data: ClassCreaterParams, @Res() res: Response) {
-    const response = await this.classCreaterController.handle({ data })
+  async create(
+    @Body() body: CreateClassControllerParams,
+    @Res() res: Response,
+  ) {
+    const response = await this.classCreaterController.handle(body)
 
     if ('data' in response) {
       const { data, statusCode } = response
@@ -64,10 +69,10 @@ export class ClassesController {
 
   @Get()
   async findMany(
-    @Query() query: ClassesFinderControllerParams,
+    @Query() query: FindClassesControllerParams,
     @Res() res: Response,
   ) {
-    const response = await this.classesFinderController.handle({
+    const response = await this.findClassesRepoController.handle({
       filter: query.filter,
     })
 

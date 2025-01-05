@@ -12,6 +12,9 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
+export interface CreateClassControllerParams
+  extends CreateClassRepositoryParams {}
+
 export class CreateClassController implements Controller {
   constructor(
     private readonly createClassRepo: CreateClassRepository,
@@ -19,7 +22,7 @@ export class CreateClassController implements Controller {
   ) {}
 
   async handle(
-    params: CreateClassRepositoryParams,
+    params: CreateClassControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
     const { errors } = await this.dataValidator.validate(params)
     if (errors.length) {
@@ -36,7 +39,7 @@ export class CreateClassController implements Controller {
     }
   }
 
-  private async respondWithCreatedClass(data: CreateClassRepositoryParams) {
+  private async respondWithCreatedClass(data: CreateClassControllerParams) {
     const createdClass = await this.createClassRepo.create(data)
 
     return {

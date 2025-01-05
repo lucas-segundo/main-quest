@@ -13,7 +13,7 @@ import {
   CreateClassController,
   CreateClassControllerParams,
 } from 'presentation/controllers/CreateClass'
-import { ClassFinderController } from 'presentation/controllers/ClassFinder'
+import { FindClassController } from 'presentation/controllers/FindClass'
 import {
   ClassUpdaterController,
   ClassUpdaterControllerParams,
@@ -27,7 +27,7 @@ import {
 export class ClassesController {
   constructor(
     private readonly classCreaterController: CreateClassController,
-    private readonly classFinderController: ClassFinderController,
+    private readonly classFinderController: FindClassController,
     private readonly findClassesRepoController: FindClassesController,
     private readonly classUpdaterController: ClassUpdaterController,
   ) {}
@@ -51,7 +51,7 @@ export class ClassesController {
   @Get(':id')
   async find(@Param('id') id: string, @Res() res: Response) {
     const response = await this.classFinderController.handle({
-      query: {
+      filter: {
         id: {
           equals: id,
         },

@@ -6,10 +6,10 @@ interface Filter {
   }
 }
 
-export interface FindSubclassParams {
+export interface FindSubclassRepositoryParams {
   filter: Filter
 }
 
-export interface FindSubclass {
-  find(params: FindSubclassParams): Promise<Subclass>
+export interface FindSubclassRepository {
+  find(params: FindSubclassRepositoryParams): Promise<Subclass>
 }

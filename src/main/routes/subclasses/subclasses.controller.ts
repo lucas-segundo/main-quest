@@ -4,7 +4,7 @@ import {
   CreateSubclassController,
   CreateSubclassControllerParams,
 } from 'presentation/controllers/CreateSubclass'
-import { SubclassFinderController } from 'presentation/controllers/SubclassFinder'
+import { FindSubclassController } from 'presentation/controllers/FindSubclass'
 import {
   SubclassUpdaterController,
   SubclassUpdaterControllerParams,
@@ -14,7 +14,7 @@ import {
 export class SubclassesController {
   constructor(
     private readonly subclassCreaterController: CreateSubclassController,
-    private readonly subclassFinderController: SubclassFinderController,
+    private readonly subclassFinderController: FindSubclassController,
     private readonly subclassUpdaterController: SubclassUpdaterController,
   ) {}
 
@@ -37,7 +37,7 @@ export class SubclassesController {
   @Get(':id')
   async find(@Param('id') id: string, @Res() res: Response) {
     const response = await this.subclassFinderController.handle({
-      query: {
+      filter: {
         id: {
           equals: id,
         },

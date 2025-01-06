@@ -4,8 +4,8 @@ import { CreateSubclassController } from 'presentation/controllers/CreateSubclas
 import { makeCreateSubclassController } from 'presentation/controllers/CreateSubclass/factory'
 import { SubclassUpdaterController } from 'presentation/controllers/SubclassUpdater'
 import { makeSubclassUpdaterController } from 'presentation/controllers/SubclassUpdater/factory'
-import { SubclassFinderController } from 'presentation/controllers/SubclassFinder'
-import { makeSubclassFinderController } from 'presentation/controllers/SubclassFinder/factory'
+import { FindSubclassController } from 'presentation/controllers/FindSubclass'
+import { makeFindSubclassController } from 'presentation/controllers/FindSubclass/factory'
 
 @Module({
   controllers: [SubclassesController],
@@ -15,8 +15,8 @@ import { makeSubclassFinderController } from 'presentation/controllers/SubclassF
       useFactory: () => makeCreateSubclassController(),
     },
     {
-      provide: SubclassFinderController,
-      useFactory: () => makeSubclassFinderController(),
+      provide: FindSubclassController,
+      useFactory: () => makeFindSubclassController(),
     },
     {
       provide: SubclassUpdaterController,

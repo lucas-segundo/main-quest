@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common'
-import { SubclassCreaterParams } from 'app/useCases/subclasses/SubclassCreater'
 import { Response } from 'express'
-import { SubclassCreaterController } from 'presentation/controllers/SubclassCreater'
+import {
+  CreateSubclassController,
+  CreateSubclassControllerParams,
+} from 'presentation/controllers/CreateSubclass'
 import { SubclassFinderController } from 'presentation/controllers/SubclassFinder'
 import {
   SubclassUpdaterController,
@@ -11,14 +13,17 @@ import {
 @Controller('subclasses')
 export class SubclassesController {
   constructor(
-    private readonly subclassCreaterController: SubclassCreaterController,
+    private readonly subclassCreaterController: CreateSubclassController,
     private readonly subclassFinderController: SubclassFinderController,
     private readonly subclassUpdaterController: SubclassUpdaterController,
   ) {}
 
   @Post()
-  async create(@Body() data: SubclassCreaterParams, @Res() res: Response) {
-    const response = await this.subclassCreaterController.handle({ data })
+  async create(
+    @Body() body: CreateSubclassControllerParams,
+    @Res() res: Response,
+  ) {
+    const response = await this.subclassCreaterController.handle(body)
 
     if ('data' in response) {
       const { data, statusCode } = response

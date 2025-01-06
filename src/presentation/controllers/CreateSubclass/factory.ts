@@ -1,9 +1,9 @@
 import { makeSubclassCreater } from 'app/useCases/subclasses/SubclassCreater/factory'
 import { z } from 'zod'
-import { SubclassCreaterController } from '.'
 import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { CreateSubclassController } from '.'
 
-export const makeSubclassCreaterController = (): SubclassCreaterController => {
+export const makeCreateSubclassController = (): CreateSubclassController => {
   const subclassCreater = makeSubclassCreater()
   const zodSchema = z.object({
     name: z.string(),
@@ -11,5 +11,5 @@ export const makeSubclassCreaterController = (): SubclassCreaterController => {
   })
   const dataValidator = new ZodDataValidator(zodSchema)
 
-  return new SubclassCreaterController(subclassCreater, dataValidator)
+  return new CreateSubclassController(subclassCreater, dataValidator)
 }

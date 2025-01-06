@@ -1,4 +1,4 @@
-import { SubclassCreaterController, SubclassCreaterControllerParams } from '.'
+import { CreateSubclassController } from '.'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
 import {
   HTTPErrorResponse,
@@ -7,17 +7,17 @@ import {
 import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
-import {
-  mockSubclassCreater,
-  mockSubclassCreaterParams,
-} from 'app/useCases/subclasses/SubclassCreater/mock'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
+import {
+  mockCreateSubclassRepository,
+  mockCreateSubclassRepositoryParams,
+} from 'app/repositories/subclasses/CreateSubclass/mock'
 
 const makeSUT = () => {
-  const subclassCreater = mockSubclassCreater()
+  const subclassCreater = mockCreateSubclassRepository()
   const subclassCreateSpy = jest.spyOn(subclassCreater, 'create')
   const dataValidation = mockDataValidator()
-  const sut = new SubclassCreaterController(subclassCreater, dataValidation)
+  const sut = new CreateSubclassController(subclassCreater, dataValidation)
 
   dataValidation.validate.mockResolvedValue({ errors: [] })
 
@@ -27,33 +27,23 @@ const makeSUT = () => {
 describe('SubclassCreater', () => {
   it('should call creater with right params', async () => {
     const { sut, subclassCreater } = makeSUT()
-    const subclassToCreate = mockSubclassCreaterParams()
+    const subclassToCreate = mockCreateSubclassRepositoryParams()
 
-    const params: SubclassCreaterControllerParams = {
-      data: subclassToCreate,
-    }
-
-    await sut.handle(params)
-
+    await sut.handle(subclassToCreate)
     expect(subclassCreater.create).toHaveBeenCalledWith(subclassToCreate)
   })
 
   it('should return 201 and the created subclass', async () => {
     const { sut, subclassCreateSpy } = makeSUT()
 
-    const subclassToCreate = mockSubclassCreaterParams()
+    const subclassToCreate = mockCreateSubclassRepositoryParams()
     const createdSubclass = {
       ...mockSubclass(),
       ...subclassToCreate,
     }
 
     subclassCreateSpy.mockResolvedValue(createdSubclass)
-
-    const params: SubclassCreaterControllerParams = {
-      data: subclassToCreate,
-    }
-
-    const response = (await sut.handle(params)) as HTTPResponse
+    const response = (await sut.handle(subclassToCreate)) as HTTPResponse
 
     expect(response.statusCode).toBe(201)
     expect(response.data).toEqual(createdSubclass)
@@ -68,9 +58,7 @@ describe('SubclassCreater', () => {
     }
     dataValidation.validate.mockResolvedValue(validationResult)
 
-    const params: SubclassCreaterControllerParams = {
-      data: mockSubclassCreaterParams(),
-    }
+    const params = mockCreateSubclassRepositoryParams()
     const response = (await sut.handle(params)) as HTTPErrorResponse
 
     expect(response.statusCode).toBe(400)

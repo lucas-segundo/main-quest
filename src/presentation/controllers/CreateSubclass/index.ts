@@ -1,7 +1,7 @@
 import {
-  SubclassCreater,
-  SubclassCreaterParams,
-} from 'app/useCases/subclasses/SubclassCreater'
+  CreateSubclassRepository,
+  CreateSubclassRepositoryParams,
+} from 'app/repositories/subclasses/CreateSubclass'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
@@ -11,37 +11,35 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface SubclassCreaterControllerParams {
-  data: SubclassCreaterParams
-}
+export interface CreateSubclassControllerParams
+  extends CreateSubclassRepositoryParams {}
 
-export class SubclassCreaterController implements Controller {
+export class CreateSubclassController implements Controller {
   constructor(
-    private readonly subclassCreater: SubclassCreater,
+    private readonly createSubclassRepo: CreateSubclassRepository,
     private readonly dataValidator: DataValidator,
   ) {}
 
   async handle(
-    params: SubclassCreaterControllerParams,
+    params: CreateSubclassControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
-    const validationResponse = await this.validateDataAndRespondIfHasErrors(
-      params.data,
-    )
+    const validationResponse =
+      await this.validateDataAndRespondIfHasErrors(params)
     if (validationResponse) {
       return validationResponse
     }
 
     try {
-      return await this.respondWithCreatedSubclass(params.data)
+      return await this.respondWithCreatedSubclass(params)
     } catch (error) {
       return handleErrorToResponse(error)
     }
   }
 
   private async validateDataAndRespondIfHasErrors(
-    data: SubclassCreaterParams,
+    params: CreateSubclassControllerParams,
   ): Promise<HTTPErrorResponse | undefined> {
-    const { errors } = await this.dataValidator.validate(data)
+    const { errors } = await this.dataValidator.validate(params)
 
     if (errors.length) {
       return {
@@ -51,8 +49,10 @@ export class SubclassCreaterController implements Controller {
     }
   }
 
-  private async respondWithCreatedSubclass(data: SubclassCreaterParams) {
-    const createdSubclass = await this.subclassCreater.create(data)
+  private async respondWithCreatedSubclass(
+    params: CreateSubclassControllerParams,
+  ) {
+    const createdSubclass = await this.createSubclassRepo.create(params)
 
     return {
       statusCode: 201,

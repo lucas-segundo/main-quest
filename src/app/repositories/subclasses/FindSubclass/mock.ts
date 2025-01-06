@@ -1,14 +1,16 @@
 import { faker } from '@faker-js/faker'
-import { FindSubclass, FindSubclassParams } from '.'
+import { FindSubclassRepository, FindSubclassRepositoryParams } from '.'
 
-export const mockFindSubclassParams = (): FindSubclassParams => ({
-  filter: {
-    id: {
-      equals: faker.string.uuid(),
+export const mockFindSubclassRepositoryParams =
+  (): FindSubclassRepositoryParams => ({
+    filter: {
+      id: {
+        equals: faker.string.uuid(),
+      },
     },
-  },
-})
+  })
 
-export const mockFindSubclass = (): jest.Mocked<FindSubclass> => ({
-  find: jest.fn(),
-})
+export const mockFindSubclassRepository =
+  (): jest.Mocked<FindSubclassRepository> => ({
+    find: jest.fn(),
+  })

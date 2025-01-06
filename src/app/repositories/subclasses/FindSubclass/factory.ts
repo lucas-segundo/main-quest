@@ -1,8 +1,8 @@
 import { makeLogErrorProxyHandler } from 'app/utils/LogErrorProxy/factory'
-import { PrismaFindSubclasses } from './prisma'
+import { PrismaFindSubclass } from './prisma'
 
-export const makeCreateClassRepository = (): PrismaFindSubclasses => {
-  const repository = new PrismaFindSubclasses()
+export const makeCreateClassRepository = (): PrismaFindSubclass => {
+  const repository = new PrismaFindSubclass()
 
-  return new Proxy<PrismaFindSubclasses>(repository, makeLogErrorProxyHandler())
+  return new Proxy<PrismaFindSubclass>(repository, makeLogErrorProxyHandler())
 }

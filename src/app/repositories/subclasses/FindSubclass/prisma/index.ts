@@ -2,10 +2,10 @@ import { Subclass } from 'domain/entities/Subclass'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
-import { FindSubclasses, FindSubclassesParams } from '..'
+import { FindSubclass, FindSubclassParams } from '..'
 
-export class PrismaFindSubclasses implements FindSubclasses {
-  async find(params: FindSubclassesParams): Promise<Subclass> {
+export class PrismaFindSubclass implements FindSubclass {
+  async find(params: FindSubclassParams): Promise<Subclass> {
     const { filter } = params
     const prismaSubclass = await prisma.subclass.findFirst({
       where: {

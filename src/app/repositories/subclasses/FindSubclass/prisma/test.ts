@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
-import { PrismaFindSubclasses } from '.'
+import { PrismaFindSubclass } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
@@ -7,20 +7,20 @@ import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 import { mockFindClassRepositoryParams } from 'app/repositories/classes/FindClass/mock'
-import { mockFindSubclassesParams } from '../mock'
+import { mockFindSubclassParams } from '../mock'
 
 const makeSUT = () => {
   mockedPrismaClient.subclass.findFirst.mockResolvedValue(mockPrismaSubclass())
 
-  const sut = new PrismaFindSubclasses()
+  const sut = new PrismaFindSubclass()
   return { sut }
 }
 
-describe('PrismaFindSubclasses', () => {
+describe('PrismaFindSubclass', () => {
   it('should call prisma client with right params', async () => {
     const { sut } = makeSUT()
 
-    const params = mockFindSubclassesParams()
+    const params = mockFindSubclassParams()
     await sut.find(params)
 
     const { filter } = params

@@ -9,13 +9,12 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockUpdateClassRepository,
-  mockUpdateClassRepositoryParams,
-} from 'domain/entities/Class/repositories/UpdateClass/mock'
-import { mockUpdateSubclassRepository } from 'domain/entities/Subclass/repositories/UpdateSubclass/mock'
+  mockUpdateSubclassRepository,
+  mockUpdateSubclassRepositoryParams,
+} from 'domain/entities/Subclass/repositories/UpdateSubclass/mock'
 
 const makeMockedData = () => {
-  const dataToUpdate = mockUpdateClassRepositoryParams()
+  const dataToUpdate = mockUpdateSubclassRepositoryParams()
 
   const params: SubclassUpdaterControllerParams = {
     id: faker.string.uuid(),

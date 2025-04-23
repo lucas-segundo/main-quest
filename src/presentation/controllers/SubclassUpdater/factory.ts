@@ -1,10 +1,10 @@
-import { makeSubclassUpdater } from 'app/useCases/subclasses/SubclassUpdater/factory'
 import { z } from 'zod'
 import { SubclassUpdaterController } from '.'
 import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { makeUpdateClassRepository } from 'domain/entities/Class/repositories/UpdateClass/factory'
 
 export const makeSubclassUpdaterController = (): SubclassUpdaterController => {
-  const classUpdater = makeSubclassUpdater()
+  const classUpdater = makeUpdateClassRepository()
   const zodSchema = z.object({
     name: z.string(),
   })

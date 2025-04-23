@@ -1,7 +1,7 @@
 import {
-  ClassUpdater,
-  ClassUpdaterParams,
-} from 'app/useCases/classes/ClassUpdater'
+  UpdateClassRepository,
+  UpdateClassRepositoryParams,
+} from 'domain/entities/Class/repositories/UpdateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
@@ -14,12 +14,12 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface ClassUpdaterControllerParams {
   id: string
-  data: ClassUpdaterParams
+  data: UpdateClassRepositoryParams
 }
 
 export class ClassUpdaterController implements Controller {
   constructor(
-    private readonly classUpdater: ClassUpdater,
+    private readonly classUpdater: UpdateClassRepository,
     private readonly dataValidator: DataValidator,
   ) {}
 

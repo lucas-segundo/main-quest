@@ -7,14 +7,15 @@ import {
 import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
-import {
-  mockSubclassUpdater,
-  mockSubclassUpdaterParams,
-} from 'app/useCases/subclasses/SubclassUpdater/mock'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
+import {
+  mockUpdateClassRepository,
+  mockUpdateClassRepositoryParams,
+} from 'domain/entities/Class/repositories/UpdateClass/mock'
+import { mockUpdateSubclassRepository } from 'domain/entities/Subclass/repositories/UpdateSubclass/mock'
 
 const makeMockedData = () => {
-  const dataToUpdate = mockSubclassUpdaterParams()
+  const dataToUpdate = mockUpdateClassRepositoryParams()
 
   const params: SubclassUpdaterControllerParams = {
     id: faker.string.uuid(),
@@ -25,7 +26,7 @@ const makeMockedData = () => {
 }
 
 const makeSUT = () => {
-  const subclassUpdater = mockSubclassUpdater()
+  const subclassUpdater = mockUpdateSubclassRepository()
   const updateSubclassSpy = jest.spyOn(subclassUpdater, 'update')
   const dataValidation = mockDataValidator()
   const sut = new SubclassUpdaterController(subclassUpdater, dataValidation)

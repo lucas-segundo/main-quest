@@ -4,7 +4,7 @@ import { FindSubclassController } from '.'
 import {
   mockFindSubclassRepository,
   mockFindSubclassRepositoryParams,
-} from 'app/repositories/subclasses/FindSubclass/mock'
+} from 'domain/entities/Subclass/repositories/FindSubclass/mock'
 
 const makeSUT = () => {
   const findSubclassRepo = mockFindSubclassRepository()

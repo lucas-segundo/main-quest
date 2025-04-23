@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockCreateSubclassRepository,
   mockCreateSubclassRepositoryParams,
-} from 'app/repositories/subclasses/CreateSubclass/mock'
+} from 'domain/entities/Subclass/repositories/CreateSubclass/mock'
 
 const makeSUT = () => {
   const subclassCreater = mockCreateSubclassRepository()

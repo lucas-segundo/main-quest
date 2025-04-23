@@ -4,7 +4,7 @@ import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
   mockFindClassRepository,
   mockFindClassRepositoryParams,
-} from 'app/repositories/classes/FindClass/mock'
+} from 'domain/entities/Class/repositories/FindClass/mock'
 
 const makeSUT = () => {
   const classFinder = mockFindClassRepository()

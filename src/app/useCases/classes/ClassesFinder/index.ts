@@ -1,4 +1,4 @@
-import { FindClassesRepository } from 'app/repositories/classes/FindClasses'
+import { FindClassesRepository } from 'domain/entities/Class/repositories/FindClasses'
 import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { Class } from 'domain/entities/Class'
 

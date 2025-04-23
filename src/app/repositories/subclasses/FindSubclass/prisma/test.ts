@@ -6,7 +6,7 @@ import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 import { NotFoundError } from 'domain/errors/NotFoundError'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
-import { mockFindClassRepositoryParams } from 'app/repositories/classes/FindClass/mock'
+import { mockFindClassRepositoryParams } from 'domain/entities/Class/repositories/FindClass/mock'
 import { mockFindSubclassParams } from '../mock'
 
 const makeSUT = () => {

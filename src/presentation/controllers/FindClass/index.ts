@@ -1,7 +1,7 @@
 import {
   FindClassRepository,
   FindClassRepositoryParams,
-} from 'app/repositories/classes/FindClass'
+} from 'domain/entities/Class/repositories/FindClass'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {
   Controller,

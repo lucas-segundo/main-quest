@@ -8,7 +8,7 @@ import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import {
   mockFindClassesRepository,
   mockFindClassesRepositoryParams,
-} from 'app/repositories/classes/FindClasses/mock'
+} from 'domain/entities/Class/repositories/FindClasses/mock'
 
 const makeSUT = () => {
   const findClasses = mockFindClassesRepository()

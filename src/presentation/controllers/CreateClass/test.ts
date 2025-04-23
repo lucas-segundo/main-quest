@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockCreateClassRepository,
   mockCreateClassRepositoryParams,
-} from 'app/repositories/classes/CreateClass/mock'
+} from 'domain/entities/Class/repositories/CreateClass/mock'
 
 const makeSUT = () => {
   const classCreater = mockCreateClassRepository()

@@ -1,7 +1,7 @@
 import {
   CreateClassRepository,
   CreateClassRepositoryParams,
-} from 'app/repositories/classes/CreateClass'
+} from 'domain/entities/Class/repositories/CreateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'

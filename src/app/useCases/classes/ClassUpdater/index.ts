@@ -1,4 +1,4 @@
-import { UpdateClassRepository } from 'app/repositories/classes/UpdateClass'
+import { UpdateClassRepository } from 'domain/entities/Class/repositories/UpdateClass'
 import { LogErrorRepository } from 'app/repositories/loggers/LogError/pino/factory'
 import { Class } from 'domain/entities/Class'
 

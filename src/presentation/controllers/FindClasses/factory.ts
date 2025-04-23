@@ -1,4 +1,4 @@
-import { makeFindClassesRepository } from 'app/repositories/classes/FindClasses/factory'
+import { makeFindClassesRepository } from 'domain/entities/Class/repositories/FindClasses/factory'
 import { FindClassesController } from '.'
 
 export const makeFindClassesController = (): FindClassesController => {

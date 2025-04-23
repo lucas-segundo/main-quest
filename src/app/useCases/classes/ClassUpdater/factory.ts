@@ -1,4 +1,4 @@
-import { PrismaUpdateClassRepository } from 'app/repositories/classes/UpdateClass/prisma'
+import { PrismaUpdateClassRepository } from 'domain/entities/Class/repositories/UpdateClass/prisma'
 import { ClassUpdater } from '.'
 import { makeLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/pino/factory'
 

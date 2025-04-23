@@ -1,7 +1,7 @@
 import {
   FindClassesRepository,
   FindClassesRepositoryParams,
-} from 'app/repositories/classes/FindClasses'
+} from 'domain/entities/Class/repositories/FindClasses'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'

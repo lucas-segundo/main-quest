@@ -1,4 +1,4 @@
-import { FindClassRepositoryParams } from 'app/repositories/classes/FindClass'
+import { FindClassRepositoryParams } from 'domain/entities/Class/repositories/FindClass'
 import { FindSubclassRepository } from 'app/repositories/subclasses/FindSubclass'
 import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
 import {

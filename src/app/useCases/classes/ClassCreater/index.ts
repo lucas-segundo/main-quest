@@ -1,4 +1,4 @@
-import { CreateClassRepository } from 'app/repositories/classes/CreateClass'
+import { CreateClassRepository } from 'domain/entities/Class/repositories/CreateClass'
 import { LogErrorRepository } from 'app/repositories/loggers/LogError'
 import { Class } from 'domain/entities/Class'
 

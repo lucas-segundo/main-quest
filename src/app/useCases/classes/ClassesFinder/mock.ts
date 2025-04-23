@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { ClassesFinder, ClassesFinderParams } from '.'
 import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
-import { mockFindClassesRepository } from 'app/repositories/classes/FindClasses/mock'
+import { mockFindClassesRepository } from 'domain/entities/Class/repositories/FindClasses/mock'
 
 export const mockClassesFinderParams = (): ClassesFinderParams => ({
   name: {

@@ -4,8 +4,8 @@ import { mockClass } from 'domain/entities/Class/mock'
 import { LogErrorRepositoryParams } from 'app/repositories/loggers/LogError/pino/factory'
 import { mockLogErrorRepository } from 'app/repositories/loggers/LogErrorRepository/mock'
 import { mockClassUpdaterParams } from './mock'
-import { mockUpdateClassRepository } from 'app/repositories/classes/UpdateClass/mock'
-import { UpdateClassRepositoryParams } from 'app/repositories/classes/UpdateClass'
+import { mockUpdateClassRepository } from 'domain/entities/Class/repositories/UpdateClass/mock'
+import { UpdateClassRepositoryParams } from 'domain/entities/Class/repositories/UpdateClass'
 
 const makeSUT = () => {
   const repository = mockUpdateClassRepository()

@@ -3,7 +3,7 @@ import {
   CreateSubclassRepositoryParams,
 } from 'domain/entities/Subclass/repositories/CreateSubclass'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
-import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
+import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
   HTTPErrorResponse,
@@ -18,6 +18,7 @@ export class CreateSubclassController implements Controller {
   constructor(
     private readonly createSubclassRepo: CreateSubclassRepository,
     private readonly dataValidator: DataValidator,
+    private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 
   async handle(
@@ -32,7 +33,7 @@ export class CreateSubclassController implements Controller {
     try {
       return await this.respondWithCreatedSubclass(params)
     } catch (error) {
-      return handleErrorToResponse(error)
+      return this.httpErrorHandler.handle(error)
     }
   }
 

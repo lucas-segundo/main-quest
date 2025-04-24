@@ -9,13 +9,25 @@ import {
   mockFindClassesRepository,
   mockFindClassesRepositoryParams,
 } from 'domain/entities/Class/repositories/FindClasses/mock'
+import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
+
+const mockData = () => {
+  const params = mockFindClassesRepositoryParams()
+  const foundClass = mockClass()
+
+  return { params, foundClass }
+}
 
 const makeSUT = () => {
   const findClasses = mockFindClassesRepository()
   const findClassesSpy = jest.spyOn(findClasses, 'find')
-  const sut = new FindClassesController(findClasses)
 
-  return { sut, findClasses, findClassesSpy }
+  const httpErrorHandler = mockHTTPErrorHandler()
+  const httpErrorHandlerSpy = jest.spyOn(httpErrorHandler, 'handle')
+
+  const sut = new FindClassesController(findClasses, httpErrorHandler)
+
+  return { sut, findClasses, findClassesSpy, httpErrorHandlerSpy }
 }
 
 describe('ClassesFinder', () => {
@@ -54,5 +66,16 @@ describe('ClassesFinder', () => {
         message: error.message,
       },
     ])
+  })
+
+  it('should call error handler when error happens', async () => {
+    const { sut, findClassesSpy, httpErrorHandlerSpy } = makeSUT()
+    const { params } = mockData()
+
+    const error = new Error('any_error')
+    findClassesSpy.mockRejectedValue(error)
+    await sut.handle(params)
+
+    expect(httpErrorHandlerSpy).toHaveBeenCalledWith(error)
   })
 })

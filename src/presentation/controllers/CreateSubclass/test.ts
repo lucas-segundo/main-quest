@@ -12,16 +12,41 @@ import {
   mockCreateSubclassRepository,
   mockCreateSubclassRepositoryParams,
 } from 'domain/entities/Subclass/repositories/CreateSubclass/mock'
+import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
+
+const mockData = () => {
+  const params = mockCreateSubclassRepositoryParams()
+  const createdSubclass = {
+    ...mockSubclass(),
+    ...params,
+  }
+
+  return { params, createdSubclass }
+}
 
 const makeSUT = () => {
   const subclassCreater = mockCreateSubclassRepository()
   const subclassCreateSpy = jest.spyOn(subclassCreater, 'create')
   const dataValidation = mockDataValidator()
-  const sut = new CreateSubclassController(subclassCreater, dataValidation)
+
+  const httpErrorHandler = mockHTTPErrorHandler()
+  const httpErrorHandlerSpy = jest.spyOn(httpErrorHandler, 'handle')
+
+  const sut = new CreateSubclassController(
+    subclassCreater,
+    dataValidation,
+    httpErrorHandler,
+  )
 
   dataValidation.validate.mockResolvedValue({ errors: [] })
 
-  return { sut, subclassCreater, dataValidation, subclassCreateSpy }
+  return {
+    sut,
+    subclassCreater,
+    dataValidation,
+    subclassCreateSpy,
+    httpErrorHandlerSpy,
+  }
 }
 
 describe('SubclassCreater', () => {
@@ -35,15 +60,10 @@ describe('SubclassCreater', () => {
 
   it('should return 201 and the created subclass', async () => {
     const { sut, subclassCreateSpy } = makeSUT()
-
-    const subclassToCreate = mockCreateSubclassRepositoryParams()
-    const createdSubclass = {
-      ...mockSubclass(),
-      ...subclassToCreate,
-    }
+    const { params, createdSubclass } = mockData()
 
     subclassCreateSpy.mockResolvedValue(createdSubclass)
-    const response = (await sut.handle(subclassToCreate)) as HTTPResponse
+    const response = (await sut.handle(params)) as HTTPResponse
 
     expect(response.statusCode).toBe(201)
     expect(response.data).toEqual(createdSubclass)
@@ -51,6 +71,7 @@ describe('SubclassCreater', () => {
 
   it('should return 400 with validations errors', async () => {
     const { sut, dataValidation } = makeSUT()
+    const { params } = mockData()
 
     const errors = [faker.lorem.words(), faker.lorem.words()]
     const validationResult: DataValidatorResult = {
@@ -58,10 +79,20 @@ describe('SubclassCreater', () => {
     }
     dataValidation.validate.mockResolvedValue(validationResult)
 
-    const params = mockCreateSubclassRepositoryParams()
     const response = (await sut.handle(params)) as HTTPErrorResponse
 
     expect(response.statusCode).toBe(400)
     expect(response.errors).toEqual(adaptValidationErrors(errors))
+  })
+
+  it('should call error handler when error happens', async () => {
+    const { sut, subclassCreateSpy, httpErrorHandlerSpy } = makeSUT()
+    const { params } = mockData()
+
+    const error = new Error('any_error')
+    subclassCreateSpy.mockRejectedValue(error)
+    await sut.handle(params)
+
+    expect(httpErrorHandlerSpy).toHaveBeenCalledWith(error)
   })
 })

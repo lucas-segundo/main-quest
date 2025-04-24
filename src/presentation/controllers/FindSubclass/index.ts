@@ -1,6 +1,6 @@
 import { FindClassRepositoryParams } from 'domain/entities/Class/repositories/FindClass'
 import { FindSubclassRepository } from 'domain/entities/Subclass/repositories/FindSubclass'
-import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
+import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
   HTTPErrorResponse,
@@ -11,7 +11,10 @@ export interface FindSubclassControllerParams
   extends FindClassRepositoryParams {}
 
 export class FindSubclassController implements Controller {
-  constructor(private readonly findSubclassRepo: FindSubclassRepository) {}
+  constructor(
+    private readonly findSubclassRepo: FindSubclassRepository,
+    private readonly httpErrorHandler: HTTPErrorHandler,
+  ) {}
 
   async handle(
     params: FindSubclassControllerParams,
@@ -19,7 +22,7 @@ export class FindSubclassController implements Controller {
     try {
       return await this.respondWithSubclass(params)
     } catch (error) {
-      return handleErrorToResponse(error)
+      return this.httpErrorHandler.handle(error)
     }
   }
 

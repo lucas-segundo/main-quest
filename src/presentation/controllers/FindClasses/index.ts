@@ -4,7 +4,7 @@ import {
 } from 'domain/entities/Class/repositories/FindClasses'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
-import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
+import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
   HTTPError,
@@ -16,7 +16,10 @@ export interface FindClassesControllerParams
   extends FindClassesRepositoryParams {}
 
 export class FindClassesController implements Controller {
-  constructor(private readonly findClassesRepo: FindClassesRepository) {}
+  constructor(
+    private readonly findClassesRepo: FindClassesRepository,
+    private readonly httpErrorHandler: HTTPErrorHandler,
+  ) {}
 
   async handle(
     params?: FindClassesControllerParams,
@@ -34,7 +37,7 @@ export class FindClassesController implements Controller {
         params as FindClassesRepositoryParams,
       )
     } catch (error) {
-      return handleErrorToResponse(error)
+      return this.httpErrorHandler.handle(error)
     }
   }
 

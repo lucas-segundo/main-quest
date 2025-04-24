@@ -2,7 +2,7 @@ import {
   FindClassRepository,
   FindClassRepositoryParams,
 } from 'domain/entities/Class/repositories/FindClass'
-import { handleErrorToResponse } from 'presentation/helpers/handleErrorToResponse'
+import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
   HTTPErrorResponse,
@@ -12,7 +12,10 @@ import {
 export interface FindClassControllerParams extends FindClassRepositoryParams {}
 
 export class FindClassController implements Controller {
-  constructor(private readonly findClassRepo: FindClassRepository) {}
+  constructor(
+    private readonly findClassRepo: FindClassRepository,
+    private readonly httpErrorHandler: HTTPErrorHandler,
+  ) {}
 
   async handle(
     params: FindClassControllerParams,
@@ -20,7 +23,7 @@ export class FindClassController implements Controller {
     try {
       return await this.respondWithClass(params)
     } catch (error) {
-      return handleErrorToResponse(error)
+      return this.httpErrorHandler.handle(error)
     }
   }
 

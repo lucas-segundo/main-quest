@@ -1,4 +1,4 @@
-import { mockLogErrorRepository } from 'app/repositories/loggers/LogError/mock'
+import { mockLogErrorRepository } from 'app/loggers/LogError/mock'
 import { HTTPErrorHandler } from '.'
 import { KnownError } from 'domain/errors/KnownError'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'

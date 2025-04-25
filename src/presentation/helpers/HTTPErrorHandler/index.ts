@@ -1,4 +1,4 @@
-import { LogErrorRepository } from 'app/repositories/loggers/LogError'
+import { LogErrorRepository } from 'app/loggers/LogError'
 import { KnownError } from 'domain/errors/KnownError'
 import { UnexpectedError } from 'domain/errors/UnexpectedError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'

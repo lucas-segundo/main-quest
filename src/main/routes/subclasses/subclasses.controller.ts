@@ -3,7 +3,7 @@ import { Response } from 'express'
 import {
   CreateSubclassController,
   CreateSubclassControllerParams,
-} from 'presentation/controllers/classes/CreateSubclass'
+} from 'presentation/controllers/subclasses/CreateSubclass'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
 import {
   SubclassUpdaterController,

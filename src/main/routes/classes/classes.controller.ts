@@ -17,7 +17,7 @@ import { FindClassController } from 'presentation/controllers/classes/FindClass'
 import {
   ClassUpdaterController,
   ClassUpdaterControllerParams,
-} from 'presentation/controllers/classes/ClassUpdater'
+} from 'presentation/controllers/classes/UpdateClass'
 import {
   FindClassesController,
   FindClassesControllerParams,

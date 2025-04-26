@@ -12,12 +12,12 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface ClassUpdaterControllerParams {
+export interface UpdateClassControllerParams {
   id: string
   data: UpdateClassRepositoryParams
 }
 
-export class ClassUpdaterController implements Controller {
+export class UpdateClassController implements Controller {
   constructor(
     private readonly classUpdater: UpdateClassRepository,
     private readonly dataValidator: DataValidator,
@@ -25,7 +25,7 @@ export class ClassUpdaterController implements Controller {
   ) {}
 
   async handle(
-    params: ClassUpdaterControllerParams,
+    params: UpdateClassControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
     const { errors } = await this.dataValidator.validate(params.data)
     if (errors.length) {
@@ -45,7 +45,7 @@ export class ClassUpdaterController implements Controller {
   private async respondWithUpdatedClass({
     id,
     data,
-  }: ClassUpdaterControllerParams) {
+  }: UpdateClassControllerParams) {
     const createdClass = await this.classUpdater.update(id, data)
 
     return {

@@ -1,4 +1,4 @@
-import { ClassUpdaterController, ClassUpdaterControllerParams } from '.'
+import { UpdateClassController, UpdateClassControllerParams } from '.'
 import { mockClass } from 'domain/entities/Class/mock'
 import {
   HTTPErrorResponse,
@@ -17,7 +17,7 @@ import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock
 const mockData = () => {
   const dataToUpdate = mockUpdateClassRepositoryParams()
 
-  const params: ClassUpdaterControllerParams = {
+  const params: UpdateClassControllerParams = {
     id: faker.string.uuid(),
     data: dataToUpdate,
   }
@@ -33,7 +33,7 @@ const makeSUT = () => {
   const httpErrorHandlerSpy = jest.spyOn(httpErrorHandler, 'handle')
 
   const dataValidation = mockDataValidator()
-  const sut = new ClassUpdaterController(
+  const sut = new UpdateClassController(
     classUpdater,
     dataValidation,
     httpErrorHandler,

@@ -9,7 +9,7 @@ services:
       - ${DOCKER_COMPOSE_DB_PORT:-5432}:5432
 
   app:
-    command: ${DOCKER_COMPOSE_COMMAND}
+    command: ${DOCKER_COMPOSE_COMMAND:- npm run start:dev}
     build:
       target: ${DOCKER_COMPOSE_TARGET:-dev}
     image: ${DOCKER_IMAGE_NAME:-app}

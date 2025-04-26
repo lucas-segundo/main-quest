@@ -11,6 +11,7 @@ model Class {
   id        Int      @id @default(autoincrement())
   name      String
   subclasses Subclass[]
+  classesSkills ClassesSkills[]
 
   @@map("classes")
 }
@@ -20,6 +21,7 @@ model Subclass {
   name      String
   classID   Int      @map("class_id")
   class     Class    @relation(fields: [classID], references: [id])
+  SubclassesSkills SubclassesSkills[]
 
   @@map("subclasses")
 }
@@ -27,6 +29,30 @@ model Subclass {
 model Skill {
   id        Int      @id @default(autoincrement())
   name      String
+  classesSkills ClassesSkills[]
+  SubclassesSkills SubclassesSkills[]
 
   @@map("skills")
+}
+
+model ClassesSkills {
+  id        Int      @id @default(autoincrement())
+  classID   Int      @map("class_id")
+  skillID   Int      @map("skill_id")
+  
+  class     Class    @relation(fields: [classID], references: [id])
+  skill     Skill    @relation(fields: [skillID], references: [id])
+
+  @@map("classes_skills")
+}
+
+model SubclassesSkills {
+  id        Int      @id @default(autoincrement())
+  subclassID Int      @map("subclass_id")
+  skillID   Int      @map("skill_id")
+  
+  subclass  Subclass @relation(fields: [subclassID], references: [id])
+  skill     Skill    @relation(fields: [skillID], references: [id])
+
+  @@map("subclasses_skills")
 }

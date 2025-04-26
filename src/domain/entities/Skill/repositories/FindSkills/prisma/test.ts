@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client'
-import { PrismaFindSkill } from '.'
+import { PrismaFindSkills } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSkill } from 'infra/prisma/data/Skill/mock'
@@ -9,11 +9,11 @@ import { adaptPrismaSkill } from 'infra/prisma/adapters/adaptPrismaSkill'
 const makeSUT = () => {
   mockedPrismaClient.skill.findFirst.mockResolvedValue(mockPrismaSkill())
 
-  const sut = new PrismaFindSkill()
+  const sut = new PrismaFindSkills()
   return { sut }
 }
 
-describe('PrismaFindSkill', () => {
+describe('PrismaFindSkills', () => {
   it('should call prisma client with right params', async () => {
     const { sut } = makeSUT()
     const prismaSkills = [mockPrismaSkill(), mockPrismaSkill()]

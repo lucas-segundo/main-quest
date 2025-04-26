@@ -3,7 +3,7 @@ import prisma from 'infra/prisma'
 import { adaptPrismaSkill } from 'infra/prisma/adapters/adaptPrismaSkill'
 import { FindSkillsRepository, FindSkillsRepositoryParams } from '..'
 
-export class PrismaFindSkill implements FindSkillsRepository {
+export class PrismaFindSkills implements FindSkillsRepository {
   async find(params: FindSkillsRepositoryParams): Promise<Skill[]> {
     const { filter } = params
     const prismaSkills = await prisma.skill.findMany({

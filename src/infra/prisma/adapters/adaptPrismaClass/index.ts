@@ -9,5 +9,10 @@ export const adaptPrismaClass = (prismaClass: PrismaClass): Class => {
     subclasses: prismaClass.subclasses.map((subclass) =>
       adaptPrismaSubclass(subclass),
     ),
+    skills:
+      prismaClass.classesSkills?.map((classSkill) => ({
+        id: classSkill.skill.id.toString(),
+        name: classSkill.skill.name,
+      })) || [],
   }
 }

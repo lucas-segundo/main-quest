@@ -13,6 +13,11 @@ describe('adaptPrismaClass', () => {
         id: subclass.id.toString(),
         name: subclass.name,
       })),
+      skills:
+        prismaClass.classesSkills?.map((classSkill) => ({
+          id: classSkill.skill.id.toString(),
+          name: classSkill.skill.name,
+        })) || [],
     }
 
     const result = adaptPrismaClass(prismaClass)

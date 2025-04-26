@@ -26,7 +26,14 @@ describe('PrismaFindClassRepository', () => {
       where: {
         id: Number(filter.id.equals),
       },
-      include,
+      include: {
+        subclasses: include?.subclasses,
+        classesSkills: {
+          include: {
+            skill: include?.skills,
+          },
+        },
+      },
     }
     expect(mockedPrismaClient.class.findFirst).toHaveBeenCalledWith(
       expectedParams,

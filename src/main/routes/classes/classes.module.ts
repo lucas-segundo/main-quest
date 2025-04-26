@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common'
 import { ClassesController } from './classes.controller'
-import { CreateClassController } from 'presentation/controllers/CreateClass'
-import { makeCreateClassController } from 'presentation/controllers/CreateClass/factory'
-import { FindClassController } from 'presentation/controllers/FindClass'
-import { makeFindClassController } from 'presentation/controllers/FindClass/factory'
-import { FindClassesController } from 'presentation/controllers/FindClasses'
-import { makeFindClassesController } from 'presentation/controllers/FindClasses/factory'
-import { ClassUpdaterController } from 'presentation/controllers/ClassUpdater'
-import { makeClassUpdaterController } from 'presentation/controllers/ClassUpdater/factory'
+import { CreateClassController } from 'presentation/controllers/classes/CreateClass'
+import { makeCreateClassController } from 'presentation/controllers/classes/CreateClass/factory'
+import { FindClassController } from 'presentation/controllers/classes/FindClass'
+import { makeFindClassController } from 'presentation/controllers/classes/FindClass/factory'
+import { FindClassesController } from 'presentation/controllers/classes/FindClasses'
+import { makeFindClassesController } from 'presentation/controllers/classes/FindClasses/factory'
+import { ClassUpdaterController } from 'presentation/controllers/classes/ClassUpdater'
+import { makeClassUpdaterController } from 'presentation/controllers/classes/ClassUpdater/factory'
 
 @Module({
   controllers: [ClassesController],

@@ -12,16 +12,16 @@ import { Response } from 'express'
 import {
   CreateClassController,
   CreateClassControllerParams,
-} from 'presentation/controllers/CreateClass'
-import { FindClassController } from 'presentation/controllers/FindClass'
+} from 'presentation/controllers/classes/CreateClass'
+import { FindClassController } from 'presentation/controllers/classes/FindClass'
 import {
   ClassUpdaterController,
   ClassUpdaterControllerParams,
-} from 'presentation/controllers/ClassUpdater'
+} from 'presentation/controllers/classes/ClassUpdater'
 import {
   FindClassesController,
   FindClassesControllerParams,
-} from 'presentation/controllers/FindClasses'
+} from 'presentation/controllers/classes/FindClasses'
 
 @Controller('classes')
 export class ClassesController {

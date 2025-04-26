@@ -3,12 +3,12 @@ import { Response } from 'express'
 import {
   CreateSubclassController,
   CreateSubclassControllerParams,
-} from 'presentation/controllers/CreateSubclass'
-import { FindSubclassController } from 'presentation/controllers/FindSubclass'
+} from 'presentation/controllers/classes/CreateSubclass'
+import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
 import {
   SubclassUpdaterController,
   SubclassUpdaterControllerParams,
-} from 'presentation/controllers/SubclassUpdater'
+} from 'presentation/controllers/subclasses/SubclassUpdater'
 
 @Controller('subclasses')
 export class SubclassesController {

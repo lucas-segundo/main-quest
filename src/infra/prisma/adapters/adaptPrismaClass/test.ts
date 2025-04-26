@@ -9,10 +9,11 @@ describe('adaptPrismaClass', () => {
     const expectedClass: Class = {
       id: prismaClass.id.toString(),
       name: prismaClass.name,
-      subclasses: prismaClass.subclasses.map((subclass) => ({
-        id: subclass.id.toString(),
-        name: subclass.name,
-      })),
+      subclasses:
+        prismaClass.subclasses?.map((subclass) => ({
+          id: subclass.id.toString(),
+          name: subclass.name,
+        })) || [],
       skills:
         prismaClass.classesSkills?.map((classSkill) => ({
           id: classSkill.skill.id.toString(),

@@ -8,7 +8,7 @@ import { FindSubclassController } from 'presentation/controllers/subclasses/Find
 import {
   SubclassUpdaterController,
   SubclassUpdaterControllerParams,
-} from 'presentation/controllers/subclasses/SubclassUpdater'
+} from 'presentation/controllers/subclasses/UpdateSubclass'
 
 @Controller('subclasses')
 export class SubclassesController {

@@ -1,4 +1,4 @@
-import { SubclassUpdaterController, SubclassUpdaterControllerParams } from '.'
+import { UpdateSubclassController, UpdateSubclassControllerParams } from '.'
 import { mockSubclass } from 'domain/entities/Subclass/mock'
 import {
   HTTPErrorResponse,
@@ -17,7 +17,7 @@ import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock
 const mockData = () => {
   const dataToUpdate = mockUpdateSubclassRepositoryParams()
 
-  const params: SubclassUpdaterControllerParams = {
+  const params: UpdateSubclassControllerParams = {
     id: faker.string.uuid(),
     data: dataToUpdate,
   }
@@ -33,7 +33,7 @@ const makeSUT = () => {
   const httpErrorHandler = mockHTTPErrorHandler()
   const httpErrorHandlerSpy = jest.spyOn(httpErrorHandler, 'handle')
 
-  const sut = new SubclassUpdaterController(
+  const sut = new UpdateSubclassController(
     subclassUpdater,
     dataValidation,
     httpErrorHandler,

@@ -6,7 +6,7 @@ import { FindClassController } from 'presentation/controllers/classes/FindClass'
 import { makeFindClassController } from 'presentation/controllers/classes/FindClass/factory'
 import { FindClassesController } from 'presentation/controllers/classes/FindClasses'
 import { makeFindClassesController } from 'presentation/controllers/classes/FindClasses/factory'
-import { ClassUpdaterController } from 'presentation/controllers/classes/UpdateClass'
+import { UpdateClassController } from 'presentation/controllers/classes/UpdateClass'
 import { makeClassUpdaterController } from 'presentation/controllers/classes/UpdateClass/factory'
 
 @Module({
@@ -25,7 +25,7 @@ import { makeClassUpdaterController } from 'presentation/controllers/classes/Upd
       useFactory: () => makeFindClassesController(),
     },
     {
-      provide: ClassUpdaterController,
+      provide: UpdateClassController,
       useFactory: () => makeClassUpdaterController(),
     },
   ],

@@ -19,7 +19,7 @@ export interface UpdateSubclassControllerParams {
 
 export class UpdateSubclassController implements Controller {
   constructor(
-    private readonly classUpdater: UpdateSubclassRepository,
+    private readonly updateClassRepo: UpdateSubclassRepository,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
@@ -46,7 +46,7 @@ export class UpdateSubclassController implements Controller {
     id,
     data,
   }: UpdateSubclassControllerParams) {
-    const createdSubclass = await this.classUpdater.update(id, data)
+    const createdSubclass = await this.updateClassRepo.update(id, data)
 
     return {
       data: createdSubclass,

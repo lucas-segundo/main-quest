@@ -1,15 +1,15 @@
 import { z } from 'zod'
-import { SubclassUpdaterController } from '.'
+import { UpdateSubclassController } from '.'
 import { ZodDataValidator } from 'infra/zod/DataValidator'
 import { makeUpdateClassRepository } from 'domain/entities/Class/repositories/UpdateClass/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
-export const makeSubclassUpdaterController = (): SubclassUpdaterController => {
+export const makeSubclassUpdaterController = (): UpdateSubclassController => {
   const zodSchema = z.object({
     name: z.string(),
   })
 
-  return new SubclassUpdaterController(
+  return new UpdateSubclassController(
     makeUpdateClassRepository(),
     new ZodDataValidator(zodSchema),
     makeHTTPErrorHandler(),

@@ -15,8 +15,8 @@ import {
 } from 'presentation/controllers/classes/CreateClass'
 import { FindClassController } from 'presentation/controllers/classes/FindClass'
 import {
-  ClassUpdaterController,
-  ClassUpdaterControllerParams,
+  UpdateClassController,
+  UpdateClassControllerParams,
 } from 'presentation/controllers/classes/UpdateClass'
 import {
   FindClassesController,
@@ -29,7 +29,7 @@ export class ClassesController {
     private readonly classCreaterController: CreateClassController,
     private readonly classFinderController: FindClassController,
     private readonly findClassesRepoController: FindClassesController,
-    private readonly classUpdaterController: ClassUpdaterController,
+    private readonly updateClassController: UpdateClassController,
   ) {}
 
   @Post()
@@ -88,10 +88,10 @@ export class ClassesController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() data: ClassUpdaterControllerParams['data'],
+    @Body() data: UpdateClassControllerParams['data'],
     @Res() res: Response,
   ) {
-    const response = await this.classUpdaterController.handle({
+    const response = await this.updateClassController.handle({
       id,
       data,
     })

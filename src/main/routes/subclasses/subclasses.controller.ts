@@ -6,8 +6,8 @@ import {
 } from 'presentation/controllers/subclasses/CreateSubclass'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
 import {
-  SubclassUpdaterController,
-  SubclassUpdaterControllerParams,
+  UpdateSubclassController,
+  UpdateSubclassControllerParams,
 } from 'presentation/controllers/subclasses/UpdateSubclass'
 
 @Controller('subclasses')
@@ -15,7 +15,7 @@ export class SubclassesController {
   constructor(
     private readonly subclassCreaterController: CreateSubclassController,
     private readonly subclassFinderController: FindSubclassController,
-    private readonly subclassUpdaterController: SubclassUpdaterController,
+    private readonly subclassUpdaterController: UpdateSubclassController,
   ) {}
 
   @Post()
@@ -56,7 +56,7 @@ export class SubclassesController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() data: SubclassUpdaterControllerParams['data'],
+    @Body() data: UpdateSubclassControllerParams['data'],
     @Res() res: Response,
   ) {
     const response = await this.subclassUpdaterController.handle({

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { SubclassesController } from './subclasses.controller'
 import { CreateSubclassController } from 'presentation/controllers/subclasses/CreateSubclass'
 import { makeCreateSubclassController } from 'presentation/controllers/subclasses/CreateSubclass/factory'
-import { SubclassUpdaterController } from 'presentation/controllers/subclasses/UpdateSubclass'
+import { UpdateSubclassController } from 'presentation/controllers/subclasses/UpdateSubclass'
 import { makeSubclassUpdaterController } from 'presentation/controllers/subclasses/UpdateSubclass/factory'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
 import { makeFindSubclassController } from 'presentation/controllers/subclasses/FindSubclass/factory'
@@ -19,7 +19,7 @@ import { makeFindSubclassController } from 'presentation/controllers/subclasses/
       useFactory: () => makeFindSubclassController(),
     },
     {
-      provide: SubclassUpdaterController,
+      provide: UpdateSubclassController,
       useFactory: () => makeSubclassUpdaterController(),
     },
   ],

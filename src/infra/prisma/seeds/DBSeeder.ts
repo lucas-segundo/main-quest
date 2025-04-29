@@ -1,15 +1,18 @@
 import { mockPrismaSubclass } from '../data/Subclass/mock'
 import { mockPrismaClass } from '../data/Class/mock'
 import prisma from '..'
+import { mockPrismaSkill } from '../data/Skill/mock'
 
 export class DBSeeder {
   async seed() {
     const classCreated = await this.seedClass()
     const subclassCreated = await this.seedSubclass(classCreated.id)
+    const skillCreated = await this.seedSkill()
 
     return {
       classCreated,
       subclassCreated,
+      skillCreated,
     }
   }
 
@@ -31,5 +34,15 @@ export class DBSeeder {
     })
 
     return subclassCreated
+  }
+
+  private async seedSkill() {
+    const skillToCreate = mockPrismaSkill()
+
+    const skillCreated = await prisma.skill.create({
+      data: skillToCreate,
+    })
+
+    return skillCreated
   }
 }

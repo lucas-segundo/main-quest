@@ -8,13 +8,6 @@ export class PrismaCreateClassRepository implements CreateClassRepository {
     const prismaClass = await prisma.class.create({
       data: {
         name: params.name,
-        classesSkills: {
-          createMany: {
-            data: params.skillIDs.map((skillID) => ({
-              skillID,
-            })),
-          },
-        },
       },
       include: {
         subclasses: true,

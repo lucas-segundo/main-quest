@@ -23,6 +23,13 @@ describe('PrismaCreateClassRepository', () => {
     const expectedParams: Prisma.ClassCreateArgs<DefaultArgs> = {
       data: {
         name: params.name,
+        classesSkills: {
+          createMany: {
+            data: params.skillIDs.map((skillID) => ({
+              skillID,
+            })),
+          },
+        },
       },
       include: {
         subclasses: true,

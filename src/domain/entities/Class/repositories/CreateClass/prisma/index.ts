@@ -10,9 +10,10 @@ export class PrismaCreateClassRepository implements CreateClassRepository {
         name: params.name,
         classesSkills: {
           createMany: {
-            data: params.skillIDs.map((skillID) => ({
-              skillID,
-            })),
+            data:
+              params.skillIDs?.map((skillID) => ({
+                skillID,
+              })) || [],
           },
         },
       },

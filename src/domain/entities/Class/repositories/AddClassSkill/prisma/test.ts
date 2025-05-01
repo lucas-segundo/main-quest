@@ -5,7 +5,6 @@ import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 import { faker } from '@faker-js/faker'
-import { mockAddClassSkillRepositoryParams } from '../mock'
 
 const makeSUT = () => {
   const classID = faker.string.uuid()
@@ -21,10 +20,8 @@ describe('PrismaAddClassSkillRepository', () => {
 
     mockedPrismaClient.class.update.mockResolvedValue(mockPrismaClass())
 
-    const params = mockAddClassSkillRepositoryParams()
-    await sut.add(classID, skillIDs, params)
+    await sut.add(classID, skillIDs)
 
-    const { include } = params
     const expectedParams: Prisma.ClassUpdateArgs<DefaultArgs> = {
       where: { id: Number(classID) },
       data: {
@@ -34,13 +31,6 @@ describe('PrismaAddClassSkillRepository', () => {
               classID: Number(classID),
               skillID: Number(skillID),
             })),
-          },
-        },
-      },
-      include: {
-        classesSkills: {
-          include: {
-            skill: include?.skills,
           },
         },
       },
@@ -54,8 +44,7 @@ describe('PrismaAddClassSkillRepository', () => {
     const prismaClass = mockPrismaClass()
     mockedPrismaClient.class.update.mockResolvedValue(prismaClass)
 
-    const params = mockAddClassSkillRepositoryParams()
-    const result = await sut.add(classID, skillIDs, params)
+    const result = await sut.add(classID, skillIDs)
 
     const expectedClass = adaptPrismaClass(prismaClass)
     expect(result).toEqual(expectedClass)

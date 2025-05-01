@@ -14,5 +14,5 @@ export interface HTTPResponse {
 }
 
 export interface Controller {
-  handle: (params: any) => Promise<HTTPResponse | HTTPErrorResponse>
+  handle: (...params: any) => Promise<HTTPResponse | HTTPErrorResponse>
 }

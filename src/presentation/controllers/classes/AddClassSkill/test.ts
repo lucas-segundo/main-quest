@@ -12,8 +12,8 @@ import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock
 import { mockAddClassSkillRepository } from 'domain/entities/Class/repositories/AddClassSkill/mock'
 
 const mockData = () => {
-  const classID = faker.datatype.uuid()
-  const skillIDs = [faker.datatype.uuid(), faker.datatype.uuid()]
+  const classID = faker.string.uuid()
+  const skillIDs = [faker.string.uuid(), faker.string.uuid()]
 
   return {
     classID,

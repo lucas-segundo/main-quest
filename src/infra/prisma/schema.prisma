@@ -21,7 +21,7 @@ model Subclass {
   name      String
   classID   Int      @map("class_id")
   class     Class    @relation(fields: [classID], references: [id])
-  SubclassesSkills SubclassesSkills[]
+  subclassesSkills SubclassesSkills[]
 
   @@map("subclasses")
 }

@@ -22,6 +22,8 @@ import {
   FindClassesController,
   FindClassesControllerParams,
 } from 'presentation/controllers/classes/FindClasses'
+import { AddClassSkillController } from 'presentation/controllers/classes/AddClassSkill'
+import { RemoveClassSkillController } from 'presentation/controllers/classes/RemoveClassSkill'
 
 @Controller('classes')
 export class ClassesController {
@@ -30,6 +32,8 @@ export class ClassesController {
     private readonly classFinderController: FindClassController,
     private readonly findClassesRepoController: FindClassesController,
     private readonly updateClassController: UpdateClassController,
+    private readonly addClassSkillController: AddClassSkillController,
+    private readonly removeClassSkillController: RemoveClassSkillController,
   ) {}
 
   @Post()
@@ -95,6 +99,46 @@ export class ClassesController {
       id,
       data,
     })
+
+    if ('data' in response) {
+      const { data, statusCode } = response
+      return res.status(statusCode).json({ data })
+    } else {
+      const { errors, statusCode } = response
+      return res.status(statusCode).json({ errors })
+    }
+  }
+
+  @Patch(':id/add-skills')
+  async addSkill(
+    @Param('id') id: string,
+    @Body() body: { skillIDs: string[] },
+    @Res() res: Response,
+  ) {
+    const response = await this.addClassSkillController.handle(
+      id,
+      body.skillIDs,
+    )
+
+    if ('data' in response) {
+      const { data, statusCode } = response
+      return res.status(statusCode).json({ data })
+    } else {
+      const { errors, statusCode } = response
+      return res.status(statusCode).json({ errors })
+    }
+  }
+
+  @Patch(':id/remove-skills')
+  async removeSkill(
+    @Param('id') id: string,
+    @Body() body: { skillIDs: string[] },
+    @Res() res: Response,
+  ) {
+    const response = await this.removeClassSkillController.handle(
+      id,
+      body.skillIDs,
+    )
 
     if ('data' in response) {
       const { data, statusCode } = response

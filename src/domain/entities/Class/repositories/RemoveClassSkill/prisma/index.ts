@@ -19,7 +19,6 @@ export class PrismaRemoveClassSkillRepository
       data: {
         classesSkills: {
           deleteMany: {
-            classID: Number(classID),
             skillID: {
               in: skillIDs.map((skillID) => Number(skillID)),
             },

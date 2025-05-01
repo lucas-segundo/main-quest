@@ -28,7 +28,6 @@ describe('PrismaAddClassSkillRepository', () => {
         classesSkills: {
           createMany: {
             data: skillIDs.map((skillID) => ({
-              classID: Number(classID),
               skillID: Number(skillID),
             })),
           },

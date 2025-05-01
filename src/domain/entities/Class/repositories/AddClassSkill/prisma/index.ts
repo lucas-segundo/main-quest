@@ -11,7 +11,6 @@ export class PrismaAddClassSkillRepository implements AddClassSkillRepository {
         classesSkills: {
           createMany: {
             data: skillIDs.map((skillID) => ({
-              classID: Number(classID),
               skillID: Number(skillID),
             })),
           },

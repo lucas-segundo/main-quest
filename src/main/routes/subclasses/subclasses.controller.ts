@@ -6,6 +6,7 @@ import {
   CreateSubclassControllerParams,
 } from 'presentation/controllers/subclasses/CreateSubclass'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
+import { RemoveSubclassSkillController } from 'presentation/controllers/subclasses/RemoveSubclassSkill'
 import {
   UpdateSubclassController,
   UpdateSubclassControllerParams,
@@ -18,7 +19,7 @@ export class SubclassesController {
     private readonly subclassFinderController: FindSubclassController,
     private readonly subclassUpdaterController: UpdateSubclassController,
     private readonly addSubclassSkillController: AddSubclassSkillController,
-    private readonly removeSubclassSkillController: AddSubclassSkillController,
+    private readonly removeSubclassSkillController: RemoveSubclassSkillController,
   ) {}
 
   @Post()

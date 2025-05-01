@@ -5,7 +5,6 @@ import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
 import { faker } from '@faker-js/faker'
-import { mockRemoveSubclassSkillRepositoryParams } from '../mock'
 
 const makeSUT = () => {
   const classID = faker.string.uuid()
@@ -21,10 +20,8 @@ describe('PrismaRemoveSubclassSkillRepository', () => {
 
     mockedPrismaClient.subclass.update.mockResolvedValue(mockPrismaSubclass())
 
-    const params = mockRemoveSubclassSkillRepositoryParams()
-    await sut.remove(classID, skillIDs, params)
+    await sut.remove(classID, skillIDs)
 
-    const { include } = params
     const expectedParams: Prisma.SubclassUpdateArgs<DefaultArgs> = {
       where: { id: Number(classID) },
       data: {
@@ -39,7 +36,7 @@ describe('PrismaRemoveSubclassSkillRepository', () => {
       include: {
         subclassesSkills: {
           include: {
-            skill: include?.skills,
+            skill: true,
           },
         },
       },
@@ -55,8 +52,7 @@ describe('PrismaRemoveSubclassSkillRepository', () => {
     const prismaSubclass = mockPrismaSubclass()
     mockedPrismaClient.subclass.update.mockResolvedValue(prismaSubclass)
 
-    const params = mockRemoveSubclassSkillRepositoryParams()
-    const result = await sut.remove(classID, skillIDs, params)
+    const result = await sut.remove(classID, skillIDs)
 
     const expectedSubclass = adaptPrismaSubclass(prismaSubclass)
     expect(result).toEqual(expectedSubclass)

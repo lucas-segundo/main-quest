@@ -7,16 +7,16 @@ export class PrismaAddSubclassSkillRepository
   implements AddSubclassSkillRepository
 {
   async add(subclassID: string, skillIDs: string[]): Promise<Subclass> {
-    const updatedSubclass = await prisma.subclass.update({
-      where: { id: Number(subclassID) },
-      data: {
-        subclassesSkills: {
-          createMany: {
-            data: skillIDs.map((skillID) => ({
-              skillID: Number(skillID),
-            })),
-          },
-        },
+    await prisma.subclassesSkills.createMany({
+      data: skillIDs.map((skillID) => ({
+        subclassID: Number(subclassID),
+        skillID: Number(skillID),
+      })),
+    })
+
+    const updatedSubclass = await prisma.subclass.findFirstOrThrow({
+      where: {
+        id: Number(subclassID),
       },
       include: {
         subclassesSkills: {

@@ -1,5 +1,5 @@
-import { Subclass } from '../..'
+import { Subclass } from '../../../Subclass'
 
 export interface RemoveSubclassSkillRepository {
-  remove(classID: string, skillIDs: string[]): Promise<Subclass>
+  remove(subclassID: string, skillIDs: string[]): Promise<Subclass>
 }

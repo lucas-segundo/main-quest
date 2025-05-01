@@ -7,16 +7,17 @@ export class PrismaRemoveSubclassSkillRepository
   implements RemoveSubclassSkillRepository
 {
   async remove(subclassID: string, skillIDs: string[]): Promise<Subclass> {
-    const updatedSubclass = await prisma.subclass.update({
-      where: { id: Number(subclassID) },
-      data: {
-        subclassesSkills: {
-          deleteMany: {
-            skillID: {
-              in: skillIDs.map((skillID) => Number(skillID)),
-            },
-          },
+    await prisma.subclassesSkills.deleteMany({
+      where: {
+        subclassID: Number(subclassID),
+        skillID: {
+          in: skillIDs.map((skillID) => Number(skillID)),
         },
+      },
+    })
+    const updatedSubclass = await prisma.subclass.findFirstOrThrow({
+      where: {
+        id: Number(subclassID),
       },
       include: {
         subclassesSkills: {

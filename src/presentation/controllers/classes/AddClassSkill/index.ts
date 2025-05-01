@@ -36,7 +36,7 @@ export class AddClassSkillController implements Controller {
 
       return {
         data: classWithSkill,
-        statusCode: HTTPStatusCode.CREATED,
+        statusCode: HTTPStatusCode.OK,
       }
     } catch (error) {
       return this.httpErrorHandler.handle(error)

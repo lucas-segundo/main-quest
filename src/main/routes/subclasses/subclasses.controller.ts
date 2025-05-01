@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common'
 import { Response } from 'express'
+import { AddSubclassSkillController } from 'presentation/controllers/subclasses/AddSubclassSkill'
 import {
   CreateSubclassController,
   CreateSubclassControllerParams,
@@ -16,6 +17,8 @@ export class SubclassesController {
     private readonly subclassCreaterController: CreateSubclassController,
     private readonly subclassFinderController: FindSubclassController,
     private readonly subclassUpdaterController: UpdateSubclassController,
+    private readonly addSubclassSkillController: AddSubclassSkillController,
+    private readonly removeSubclassSkillController: AddSubclassSkillController,
   ) {}
 
   @Post()
@@ -63,6 +66,46 @@ export class SubclassesController {
       id,
       data,
     })
+
+    if ('data' in response) {
+      const { data, statusCode } = response
+      return res.status(statusCode).json({ data })
+    } else {
+      const { errors, statusCode } = response
+      return res.status(statusCode).json({ errors })
+    }
+  }
+
+  @Patch(':id/add-skills')
+  async addSkill(
+    @Param('id') id: string,
+    @Body() body: { skillIDs: string[] },
+    @Res() res: Response,
+  ) {
+    const response = await this.addSubclassSkillController.handle(
+      id,
+      body.skillIDs,
+    )
+
+    if ('data' in response) {
+      const { data, statusCode } = response
+      return res.status(statusCode).json({ data })
+    } else {
+      const { errors, statusCode } = response
+      return res.status(statusCode).json({ errors })
+    }
+  }
+
+  @Patch(':id/remove-skills')
+  async removeSkill(
+    @Param('id') id: string,
+    @Body() body: { skillIDs: string[] },
+    @Res() res: Response,
+  ) {
+    const response = await this.removeSubclassSkillController.handle(
+      id,
+      body.skillIDs,
+    )
 
     if ('data' in response) {
       const { data, statusCode } = response

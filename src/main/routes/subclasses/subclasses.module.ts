@@ -6,6 +6,10 @@ import { UpdateSubclassController } from 'presentation/controllers/subclasses/Up
 import { makeSubclassUpdaterController } from 'presentation/controllers/subclasses/UpdateSubclass/factory'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
 import { makeFindSubclassController } from 'presentation/controllers/subclasses/FindSubclass/factory'
+import { AddSubclassSkillController } from 'presentation/controllers/subclasses/AddSubclassSkill'
+import { makeAddSubclassSkillController } from 'presentation/controllers/subclasses/AddSubclassSkill/factory'
+import { RemoveSubclassSkillController } from 'presentation/controllers/subclasses/RemoveSubclassSkill'
+import { makeRemoveSubclassSkillController } from 'presentation/controllers/subclasses/RemoveSubclassSkill/factory'
 
 @Module({
   controllers: [SubclassesController],
@@ -21,6 +25,14 @@ import { makeFindSubclassController } from 'presentation/controllers/subclasses/
     {
       provide: UpdateSubclassController,
       useFactory: () => makeSubclassUpdaterController(),
+    },
+    {
+      provide: AddSubclassSkillController,
+      useFactory: () => makeAddSubclassSkillController(),
+    },
+    {
+      provide: RemoveSubclassSkillController,
+      useFactory: () => makeRemoveSubclassSkillController(),
     },
   ],
 })

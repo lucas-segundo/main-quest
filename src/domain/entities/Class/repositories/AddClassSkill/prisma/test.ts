@@ -34,6 +34,13 @@ describe('PrismaAddClassSkillRepository', () => {
           },
         },
       },
+      include: {
+        classesSkills: {
+          include: {
+            skill: true,
+          },
+        },
+      },
     }
     expect(mockedPrismaClient.class.update).toHaveBeenCalledWith(expectedParams)
   })

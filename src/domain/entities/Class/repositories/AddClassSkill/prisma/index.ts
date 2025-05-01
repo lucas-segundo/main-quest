@@ -17,6 +17,13 @@ export class PrismaAddClassSkillRepository implements AddClassSkillRepository {
           },
         },
       },
+      include: {
+        classesSkills: {
+          include: {
+            skill: true,
+          },
+        },
+      },
     })
 
     return adaptPrismaClass(updatedClass)

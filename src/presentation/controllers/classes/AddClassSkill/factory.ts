@@ -4,7 +4,7 @@ import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/fact
 import { AddClassSkillController } from '.'
 import { makeAddClassSkillRepository } from 'domain/entities/Class/repositories/AddClassSkill/factory'
 
-export const makeClassUpdaterController = (): AddClassSkillController => {
+export const makeAddClassSkillController = (): AddClassSkillController => {
   const zodSchema = z.object({
     classID: z.string(),
     skillIDs: z.array(z.string()),

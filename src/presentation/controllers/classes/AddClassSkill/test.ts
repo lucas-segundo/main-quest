@@ -46,8 +46,8 @@ const makeSUT = () => {
   }
 }
 
-describe('ClassUpdater', () => {
-  it('should call updater with right params', async () => {
+describe('AddClassSkill', () => {
+  it('should call repo with right params', async () => {
     const { sut, addClassSkillRepo } = makeSUT()
     const { classID, skillIDs } = mockData()
 
@@ -56,7 +56,7 @@ describe('ClassUpdater', () => {
     expect(addClassSkillRepo.add).toHaveBeenCalledWith(classID, skillIDs)
   })
 
-  it('should return 201 and the updated character class', async () => {
+  it('should return 200 and the entity', async () => {
     const { sut, addClassSkillSpy } = makeSUT()
     const { classID, skillIDs } = mockData()
 
@@ -65,7 +65,7 @@ describe('ClassUpdater', () => {
 
     const response = (await sut.handle(classID, skillIDs)) as HTTPResponse
 
-    expect(response.statusCode).toBe(201)
+    expect(response.statusCode).toBe(200)
     expect(response.data).toEqual(classWithSkill)
   })
 

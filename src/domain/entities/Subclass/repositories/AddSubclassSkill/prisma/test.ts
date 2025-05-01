@@ -7,23 +7,23 @@ import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
 import { faker } from '@faker-js/faker'
 
 const makeSUT = () => {
-  const classID = faker.string.uuid()
+  const subclassID = faker.string.uuid()
   const skillIDs = [faker.string.uuid(), faker.string.uuid()]
 
   const sut = new PrismaAddSubclassSkillRepository()
-  return { sut, classID, skillIDs }
+  return { sut, subclassID, skillIDs }
 }
 
 describe('PrismaAddSubclassSkillRepository', () => {
   it('should call prisma client with right params', async () => {
-    const { sut, classID, skillIDs } = makeSUT()
+    const { sut, subclassID, skillIDs } = makeSUT()
 
     mockedPrismaClient.subclass.update.mockResolvedValue(mockPrismaSubclass())
 
-    await sut.add(classID, skillIDs)
+    await sut.add(subclassID, skillIDs)
 
     const expectedParams: Prisma.SubclassUpdateArgs<DefaultArgs> = {
-      where: { id: Number(classID) },
+      where: { id: Number(subclassID) },
       data: {
         subclassesSkills: {
           createMany: {
@@ -47,12 +47,12 @@ describe('PrismaAddSubclassSkillRepository', () => {
   })
 
   it('should return a Subclass after update', async () => {
-    const { sut, classID, skillIDs } = makeSUT()
+    const { sut, subclassID, skillIDs } = makeSUT()
 
     const prismaSubclass = mockPrismaSubclass()
     mockedPrismaClient.subclass.update.mockResolvedValue(prismaSubclass)
 
-    const result = await sut.add(classID, skillIDs)
+    const result = await sut.add(subclassID, skillIDs)
 
     const expectedSubclass = adaptPrismaSubclass(prismaSubclass)
     expect(result).toEqual(expectedSubclass)

@@ -6,9 +6,9 @@ import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
 export class PrismaAddSubclassSkillRepository
   implements AddSubclassSkillRepository
 {
-  async add(classID: string, skillIDs: string[]): Promise<Subclass> {
+  async add(subclassID: string, skillIDs: string[]): Promise<Subclass> {
     const updatedSubclass = await prisma.subclass.update({
-      where: { id: Number(classID) },
+      where: { id: Number(subclassID) },
       data: {
         subclassesSkills: {
           createMany: {

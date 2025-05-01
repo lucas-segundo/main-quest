@@ -1,5 +1,5 @@
 import { Subclass } from '../..'
 
 export interface AddSubclassSkillRepository {
-  add(classID: string, skillIDs: string[]): Promise<Subclass>
+  add(subclassID: string, skillIDs: string[]): Promise<Subclass>
 }

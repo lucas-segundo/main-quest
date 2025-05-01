@@ -6,9 +6,9 @@ import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
 export class PrismaRemoveSubclassSkillRepository
   implements RemoveSubclassSkillRepository
 {
-  async remove(classID: string, skillIDs: string[]): Promise<Subclass> {
+  async remove(subclassID: string, skillIDs: string[]): Promise<Subclass> {
     const updatedSubclass = await prisma.subclass.update({
-      where: { id: Number(classID) },
+      where: { id: Number(subclassID) },
       data: {
         subclassesSkills: {
           deleteMany: {

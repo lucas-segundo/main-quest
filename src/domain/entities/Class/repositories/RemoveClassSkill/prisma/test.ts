@@ -1,11 +1,8 @@
-import { Prisma } from '@prisma/client'
 import { PrismaRemoveClassSkillRepository } from '.'
-import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 import { faker } from '@faker-js/faker'
-import { mockRemoveClassSkillRepositoryParams } from '../mock'
 
 const makeSUT = () => {
   const classID = faker.string.uuid()
@@ -19,42 +16,39 @@ describe('PrismaRemoveClassSkillRepository', () => {
   it('should call prisma client with right params', async () => {
     const { sut, classID, skillIDs } = makeSUT()
 
-    mockedPrismaClient.class.update.mockResolvedValue(mockPrismaClass())
+    const prismaClass = mockPrismaClass()
+    mockedPrismaClient.class.findFirstOrThrow.mockResolvedValueOnce(prismaClass)
+    await sut.remove(classID, skillIDs)
 
-    const params = mockRemoveClassSkillRepositoryParams()
-    await sut.remove(classID, skillIDs, params)
-
-    const { include } = params
-    const expectedParams: Prisma.ClassUpdateArgs<DefaultArgs> = {
-      where: { id: Number(classID) },
-      data: {
-        classesSkills: {
-          deleteMany: {
-            skillID: {
-              in: skillIDs.map((skillID) => Number(skillID)),
-            },
-          },
+    expect(mockedPrismaClient.classesSkills.deleteMany).toHaveBeenCalledWith({
+      where: {
+        classID: Number(classID),
+        skillID: {
+          in: skillIDs.map((skillID) => Number(skillID)),
         },
+      },
+    })
+    expect(mockedPrismaClient.class.findFirstOrThrow).toHaveBeenCalledWith({
+      where: {
+        id: Number(classID),
       },
       include: {
         classesSkills: {
           include: {
-            skill: include?.skills,
+            skill: true,
           },
         },
       },
-    }
-    expect(mockedPrismaClient.class.update).toHaveBeenCalledWith(expectedParams)
+    })
   })
 
   it('should return a Class after update', async () => {
     const { sut, classID, skillIDs } = makeSUT()
 
     const prismaClass = mockPrismaClass()
-    mockedPrismaClient.class.update.mockResolvedValue(prismaClass)
+    mockedPrismaClient.class.findFirstOrThrow.mockResolvedValueOnce(prismaClass)
 
-    const params = mockRemoveClassSkillRepositoryParams()
-    const result = await sut.remove(classID, skillIDs, params)
+    const result = await sut.remove(classID, skillIDs)
 
     const expectedClass = adaptPrismaClass(prismaClass)
     expect(result).toEqual(expectedClass)

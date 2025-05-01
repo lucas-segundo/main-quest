@@ -1,6 +1,4 @@
-import { Prisma } from '@prisma/client'
 import { PrismaAddClassSkillRepository } from '.'
-import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
@@ -18,20 +16,20 @@ describe('PrismaAddClassSkillRepository', () => {
   it('should call prisma client with right params', async () => {
     const { sut, classID, skillIDs } = makeSUT()
 
-    mockedPrismaClient.class.update.mockResolvedValue(mockPrismaClass())
+    const prismaClass = mockPrismaClass()
+    mockedPrismaClient.class.findFirstOrThrow.mockResolvedValueOnce(prismaClass)
 
     await sut.add(classID, skillIDs)
 
-    const expectedParams: Prisma.ClassUpdateArgs<DefaultArgs> = {
-      where: { id: Number(classID) },
-      data: {
-        classesSkills: {
-          createMany: {
-            data: skillIDs.map((skillID) => ({
-              skillID: Number(skillID),
-            })),
-          },
-        },
+    expect(mockedPrismaClient.classesSkills.createMany).toHaveBeenCalledWith({
+      data: skillIDs.map((skillID) => ({
+        classID: Number(classID),
+        skillID: Number(skillID),
+      })),
+    })
+    expect(mockedPrismaClient.class.findFirstOrThrow).toHaveBeenCalledWith({
+      where: {
+        id: Number(classID),
       },
       include: {
         classesSkills: {
@@ -40,15 +38,14 @@ describe('PrismaAddClassSkillRepository', () => {
           },
         },
       },
-    }
-    expect(mockedPrismaClient.class.update).toHaveBeenCalledWith(expectedParams)
+    })
   })
 
   it('should return a Class after update', async () => {
     const { sut, classID, skillIDs } = makeSUT()
 
     const prismaClass = mockPrismaClass()
-    mockedPrismaClient.class.update.mockResolvedValue(prismaClass)
+    mockedPrismaClient.class.findFirstOrThrow.mockResolvedValueOnce(prismaClass)
 
     const result = await sut.add(classID, skillIDs)
 

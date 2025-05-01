@@ -1,11 +1,4 @@
-import { RemoveClassSkillRepository, RemoveClassSkillRepositoryParams } from '.'
-
-export const mockRemoveClassSkillRepositoryParams =
-  (): RemoveClassSkillRepositoryParams => ({
-    include: {
-      skills: true,
-    },
-  })
+import { RemoveClassSkillRepository } from '.'
 
 export const mockRemoveClassSkillRepository =
   (): jest.Mocked<RemoveClassSkillRepository> => ({

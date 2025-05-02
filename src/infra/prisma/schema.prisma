@@ -12,6 +12,7 @@ model Class {
   name      String
   subclasses Subclass[]
   classesSkills ClassesSkills[]
+  characters Character[]
 
   @@map("classes")
 }
@@ -55,4 +56,14 @@ model SubclassesSkills {
   skill     Skill    @relation(fields: [skillID], references: [id])
 
   @@map("subclasses_skills")
+}
+
+model Character {
+  id        Int      @id @default(autoincrement())
+  name      String
+  classID   Int      @map("class_id")
+
+  class     Class    @relation(fields: [classID], references: [id])
+
+  @@map("characters")
 }

@@ -62,6 +62,7 @@ model Character {
   id        Int      @id @default(autoincrement())
   name      String
   classID   Int      @map("class_id")
+  level     Int
 
   class     Class    @relation(fields: [classID], references: [id])
 

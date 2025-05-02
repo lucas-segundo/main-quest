@@ -3,9 +3,9 @@ name: CI/CD
 env:
   DOCKER_IMAGE_NAME: main-quest:${{ github.ref_name }}
 
-on:
-  push:
-    branches: [main, staging]
+# on:
+#   push:
+#     branches: [main, staging]
 
 jobs:
   ci:

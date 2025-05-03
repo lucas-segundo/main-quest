@@ -1,7 +1,7 @@
 import {
   FindClassRepository,
   FindClassRepositoryParams,
-} from 'domain/entities/Class/repositories/FindClass'
+} from 'entities/Class/repositories/FindClass'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,

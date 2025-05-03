@@ -1,7 +1,7 @@
 import {
   CreateCharacterRepository,
   CreateCharacterRepositoryParams,
-} from 'domain/entities/Character/repositories/CreateCharacter'
+} from 'entities/Character/repositories/CreateCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

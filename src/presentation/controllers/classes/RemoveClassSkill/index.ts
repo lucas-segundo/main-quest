@@ -1,4 +1,4 @@
-import { RemoveClassSkillRepository } from 'domain/entities/Class/repositories/RemoveClassSkill'
+import { RemoveClassSkillRepository } from 'entities/Class/repositories/RemoveClassSkill'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

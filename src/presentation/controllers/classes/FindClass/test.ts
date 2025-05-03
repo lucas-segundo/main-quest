@@ -1,10 +1,10 @@
 import { FindClassController } from '.'
-import { mockClass } from 'domain/entities/Class/mock'
+import { mockClass } from 'entities/Class/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
   mockFindClassRepository,
   mockFindClassRepositoryParams,
-} from 'domain/entities/Class/repositories/FindClass/mock'
+} from 'entities/Class/repositories/FindClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

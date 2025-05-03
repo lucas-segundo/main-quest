@@ -1,5 +1,5 @@
 import { FindSkillsController } from '.'
-import { mockSkill } from 'domain/entities/Skill/mock'
+import { mockSkill } from 'entities/Skill/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -8,7 +8,7 @@ import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import {
   mockFindSkillsRepository,
   mockFindSkillsRepositoryParams,
-} from 'domain/entities/Skill/repositories/FindSkills/mock'
+} from 'entities/Skill/repositories/FindSkills/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

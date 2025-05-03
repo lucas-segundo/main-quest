@@ -1,4 +1,4 @@
-import { Character } from 'domain/entities/Character'
+import { Character } from 'entities/Character'
 import { PrismaCharacter } from 'infra/prisma/data/Character'
 
 export const adaptPrismaCharacter = (

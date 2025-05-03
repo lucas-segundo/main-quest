@@ -1,4 +1,4 @@
-import { Subclass } from 'domain/entities/Subclass'
+import { Subclass } from 'entities/Subclass'
 import { adaptPrismaSubclass } from './index'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 

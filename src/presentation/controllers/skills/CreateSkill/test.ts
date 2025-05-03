@@ -1,5 +1,5 @@
 import { CreateSkillController } from '.'
-import { mockSkill } from 'domain/entities/Skill/mock'
+import { mockSkill } from 'entities/Skill/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockCreateSkillRepository,
   mockCreateSkillRepositoryParams,
-} from 'domain/entities/Skill/repositories/CreateSkill/mock'
+} from 'entities/Skill/repositories/CreateSkill/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

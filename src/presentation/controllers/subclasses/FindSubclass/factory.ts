@@ -1,4 +1,4 @@
-import { makeFindSubclassRepository } from 'domain/entities/Subclass/repositories/FindSubclass/factory'
+import { makeFindSubclassRepository } from 'entities/Subclass/repositories/FindSubclass/factory'
 import { FindSubclassController } from '.'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { ZodDataValidator } from 'infra/zod/DataValidator'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { RemoveSubclassSkillController } from '.'
-import { makeRemoveSubclassSkillRepository } from 'domain/entities/Subclass/repositories/RemoveSubclassSkill/factory'
+import { makeRemoveSubclassSkillRepository } from 'entities/Subclass/repositories/RemoveSubclassSkill/factory'
 
 export const makeRemoveSubclassSkillController =
   (): RemoveSubclassSkillController => {

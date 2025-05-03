@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { UpdateSkillController } from '.'
 import { ZodDataValidator } from 'infra/zod/DataValidator'
-import { makeUpdateSkillRepository } from 'domain/entities/Skill/repositories/UpdateSkill/factory'
+import { makeUpdateSkillRepository } from 'entities/Skill/repositories/UpdateSkill/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeUpdateSkillController = (): UpdateSkillController => {

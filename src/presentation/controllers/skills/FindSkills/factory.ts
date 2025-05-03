@@ -1,4 +1,4 @@
-import { makeFindSkillsRepository } from 'domain/entities/Skill/repositories/FindSkills/factory'
+import { makeFindSkillsRepository } from 'entities/Skill/repositories/FindSkills/factory'
 import { FindSkillsController } from '.'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

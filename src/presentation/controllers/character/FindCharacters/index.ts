@@ -1,7 +1,7 @@
 import {
   FindCharactersRepository,
   FindCharactersRepositoryParams,
-} from 'domain/entities/Character/repositories/FindCharacters'
+} from 'entities/Character/repositories/FindCharacters'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

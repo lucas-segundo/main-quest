@@ -1,7 +1,7 @@
 import {
   FindSkillsRepository,
   FindSkillsRepositoryParams,
-} from 'domain/entities/Skill/repositories/FindSkills'
+} from 'entities/Skill/repositories/FindSkills'
 import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

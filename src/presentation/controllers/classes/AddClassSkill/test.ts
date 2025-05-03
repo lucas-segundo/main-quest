@@ -1,5 +1,5 @@
 import { AddClassSkillController } from '.'
-import { mockClass } from 'domain/entities/Class/mock'
+import { mockClass } from 'entities/Class/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -9,7 +9,7 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
-import { mockAddClassSkillRepository } from 'domain/entities/Class/repositories/AddClassSkill/mock'
+import { mockAddClassSkillRepository } from 'entities/Class/repositories/AddClassSkill/mock'
 
 const mockData = () => {
   const classID = faker.string.uuid()

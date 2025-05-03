@@ -1,4 +1,4 @@
-import { Class } from 'domain/entities/Class'
+import { Class } from 'entities/Class'
 import { PrismaClass } from 'infra/prisma/data/Class'
 import { adaptPrismaSubclass } from '../adaptPrismaSubclass'
 

@@ -1,5 +1,5 @@
 import { UpdateSkillController, UpdateSkillControllerParams } from '.'
-import { mockSkill } from 'domain/entities/Skill/mock'
+import { mockSkill } from 'entities/Skill/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockUpdateSkillRepository,
   mockUpdateSkillRepositoryParams,
-} from 'domain/entities/Skill/repositories/UpdateSkill/mock'
+} from 'entities/Skill/repositories/UpdateSkill/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

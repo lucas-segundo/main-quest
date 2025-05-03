@@ -1,7 +1,7 @@
 import {
   CreateSkillRepository,
   CreateSkillRepositoryParams,
-} from 'domain/entities/Skill/repositories/CreateSkill'
+} from 'entities/Skill/repositories/CreateSkill'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

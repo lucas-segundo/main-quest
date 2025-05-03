@@ -1,4 +1,4 @@
-import { Skill } from 'domain/entities/Skill'
+import { Skill } from 'entities/Skill'
 import { adaptPrismaSkill } from './index'
 import { mockPrismaSkill } from 'infra/prisma/data/Skill/mock'
 

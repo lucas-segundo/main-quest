@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { ZodDataValidator } from 'infra/zod/DataValidator'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { AddClassSkillController } from '.'
-import { makeAddClassSkillRepository } from 'domain/entities/Class/repositories/AddClassSkill/factory'
+import { makeAddClassSkillRepository } from 'entities/Class/repositories/AddClassSkill/factory'
 
 export const makeAddClassSkillController = (): AddClassSkillController => {
   const zodSchema = z.object({

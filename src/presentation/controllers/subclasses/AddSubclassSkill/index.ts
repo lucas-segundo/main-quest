@@ -1,4 +1,4 @@
-import { AddSubclassSkillRepository } from 'domain/entities/Subclass/repositories/AddSubclassSkill'
+import { AddSubclassSkillRepository } from 'entities/Subclass/repositories/AddSubclassSkill'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

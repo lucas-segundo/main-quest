@@ -1,7 +1,7 @@
 import {
   FindSkillRepository,
   FindSkillRepositoryParams,
-} from 'domain/entities/Skill/repositories/FindSkill'
+} from 'entities/Skill/repositories/FindSkill'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,

@@ -1,4 +1,4 @@
-import { Character } from 'domain/entities/Character'
+import { Character } from 'entities/Character'
 import { adaptPrismaCharacter } from './index'
 import { mockPrismaCharacter } from 'infra/prisma/data/Character/mock'
 

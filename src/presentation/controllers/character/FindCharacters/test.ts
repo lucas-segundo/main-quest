@@ -1,5 +1,5 @@
 import { FindCharactersController } from '.'
-import { mockCharacter } from 'domain/entities/Character/mock'
+import { mockCharacter } from 'entities/Character/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -8,7 +8,7 @@ import { RequiredParamError } from 'domain/errors/RequiredParamError'
 import {
   mockFindCharactersRepository,
   mockFindCharactersRepositoryParams,
-} from 'domain/entities/Character/repositories/FindCharacters/mock'
+} from 'entities/Character/repositories/FindCharacters/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 

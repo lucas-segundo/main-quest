@@ -1,10 +1,10 @@
-import { mockSubclass } from 'domain/entities/Subclass/mock'
+import { mockSubclass } from 'entities/Subclass/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import { FindSubclassController } from '.'
 import {
   mockFindSubclassRepository,
   mockFindSubclassRepositoryParams,
-} from 'domain/entities/Subclass/repositories/FindSubclass/mock'
+} from 'entities/Subclass/repositories/FindSubclass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

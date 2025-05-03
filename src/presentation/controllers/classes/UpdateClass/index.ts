@@ -1,7 +1,7 @@
 import {
   UpdateClassRepository,
   UpdateClassRepositoryParams,
-} from 'domain/entities/Class/repositories/UpdateClass'
+} from 'entities/Class/repositories/UpdateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

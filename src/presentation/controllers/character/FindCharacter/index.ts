@@ -1,7 +1,7 @@
 import {
   FindCharacterRepository,
   FindCharacterRepositoryParams,
-} from 'domain/entities/Character/repositories/FindCharacter'
+} from 'entities/Character/repositories/FindCharacter'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,

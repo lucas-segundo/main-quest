@@ -1,5 +1,5 @@
 import { UpdateClassController, UpdateClassControllerParams } from '.'
-import { mockClass } from 'domain/entities/Class/mock'
+import { mockClass } from 'entities/Class/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockUpdateClassRepository,
   mockUpdateClassRepositoryParams,
-} from 'domain/entities/Class/repositories/UpdateClass/mock'
+} from 'entities/Class/repositories/UpdateClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

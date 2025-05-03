@@ -1,5 +1,5 @@
 import { RemoveClassSkillController } from '.'
-import { mockClass } from 'domain/entities/Class/mock'
+import { mockClass } from 'entities/Class/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -9,7 +9,7 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
-import { mockRemoveClassSkillRepository } from 'domain/entities/Class/repositories/RemoveClassSkill/mock'
+import { mockRemoveClassSkillRepository } from 'entities/Class/repositories/RemoveClassSkill/mock'
 
 const mockData = () => {
   const classID = faker.string.uuid()

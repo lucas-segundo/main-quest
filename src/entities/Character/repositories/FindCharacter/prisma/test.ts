@@ -2,7 +2,6 @@ import { Prisma } from '@prisma/client'
 import { PrismaFindCharacter } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
-import { NotFoundError } from 'app/errors/NotFoundError'
 import { mockPrismaCharacter } from 'infra/prisma/data/Character/mock'
 import { mockFindClassRepositoryParams } from 'entities/Class/repositories/FindClass/mock'
 import { mockFindCharacterRepositoryParams } from '../mock'
@@ -51,12 +50,13 @@ describe('PrismaFindCharacter', () => {
     expect(result).toEqual(expectedClass)
   })
 
-  it('should throw if character not found', async () => {
+  it('should return null if character doesnt exist', async () => {
     const { sut } = makeSUT()
 
     mockedPrismaClient.character.findFirst.mockResolvedValue(null)
 
     const params = mockFindClassRepositoryParams()
-    await expect(sut.find(params)).rejects.toThrow(NotFoundError)
+    const result = await sut.find(params)
+    expect(result).toBeNull()
   })
 })

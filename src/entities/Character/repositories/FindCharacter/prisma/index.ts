@@ -1,11 +1,10 @@
 import { Character } from 'entities/Character'
-import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaCharacter } from 'infra/prisma/adapters/adaptPrismaCharacter'
 import { FindCharacterRepository, FindCharacterRepositoryParams } from '..'
 
 export class PrismaFindCharacter implements FindCharacterRepository {
-  async find(params: FindCharacterRepositoryParams): Promise<Character> {
+  async find(params: FindCharacterRepositoryParams): Promise<Character | null> {
     const { filter } = params
     const prismaCharacter = await prisma.character.findFirst({
       where: {
@@ -18,8 +17,8 @@ export class PrismaFindCharacter implements FindCharacterRepository {
 
     if (prismaCharacter) {
       return adaptPrismaCharacter(prismaCharacter)
-    } else {
-      throw new NotFoundError('Character')
     }
+
+    return null
   }
 }

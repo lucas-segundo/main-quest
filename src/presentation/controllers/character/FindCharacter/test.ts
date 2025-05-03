@@ -58,4 +58,15 @@ describe('CharacterFinder', () => {
 
     expect(httpErrorHandlerSpy).toHaveBeenCalledWith(error)
   })
+
+  it('should return 404 if character is not found', async () => {
+    const { sut, findCharacterSpy } = makeSUT()
+    const { params } = mockData()
+
+    findCharacterSpy.mockResolvedValue(null)
+    const response = (await sut.handle(params)) as HTTPResponse
+
+    expect(response.statusCode).toBe(HTTPStatusCode.NOT_FOUND)
+    expect(response.data).toBeNull()
+  })
 })

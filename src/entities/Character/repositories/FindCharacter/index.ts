@@ -14,5 +14,5 @@ export interface FindCharacterRepositoryParams {
 }
 
 export interface FindCharacterRepository {
-  find(params: FindCharacterRepositoryParams): Promise<Character>
+  find(params: FindCharacterRepositoryParams): Promise<Character | null>
 }

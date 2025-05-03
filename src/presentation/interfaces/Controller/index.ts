@@ -9,7 +9,7 @@ export interface HTTPErrorResponse {
 }
 
 export interface HTTPResponse {
-  data: Record<string, any>
+  data: any
   statusCode: number
 }
 

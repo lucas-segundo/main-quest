@@ -1,8 +1,11 @@
 import { Character } from 'entities/Character'
 
 interface Filter {
-  id: {
-    equals: string
+  id?: {
+    equals?: string
+  }
+  name?: {
+    like?: string
   }
 }
 

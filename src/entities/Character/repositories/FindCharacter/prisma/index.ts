@@ -9,7 +9,10 @@ export class PrismaFindCharacter implements FindCharacterRepository {
     const { filter } = params
     const prismaCharacter = await prisma.character.findFirst({
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id?.equals),
+        name: {
+          contains: filter.name?.like,
+        },
       },
     })
 

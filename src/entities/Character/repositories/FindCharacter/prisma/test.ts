@@ -27,7 +27,10 @@ describe('PrismaFindCharacter', () => {
     const { filter } = params
     const expectedParams: Prisma.ClassFindFirstArgs<DefaultArgs> = {
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id?.equals),
+        name: {
+          contains: filter.name?.like,
+        },
       },
     }
     expect(mockedPrismaClient.character.findFirst).toHaveBeenCalledWith(

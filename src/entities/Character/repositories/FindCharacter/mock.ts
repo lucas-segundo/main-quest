@@ -7,6 +7,9 @@ export const mockFindCharacterRepositoryParams =
       id: {
         equals: faker.string.uuid(),
       },
+      name: {
+        like: faker.person.firstName(),
+      },
     },
   })
 

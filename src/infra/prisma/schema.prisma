@@ -60,11 +60,12 @@ model SubclassesSkills {
 
 model Character {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @unique
   classID   Int      @map("class_id")
   level     Int
 
   class     Class    @relation(fields: [classID], references: [id])
 
+  @@index([name])
   @@map("characters")
 }

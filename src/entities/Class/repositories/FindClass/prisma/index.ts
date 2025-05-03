@@ -1,5 +1,5 @@
 import { Class } from 'entities/Class'
-import { NotFoundError } from 'domain/errors/NotFoundError'
+import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
 import { FindClassRepository, FindClassRepositoryParams } from '..'

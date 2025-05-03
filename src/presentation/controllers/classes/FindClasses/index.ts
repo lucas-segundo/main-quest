@@ -2,7 +2,7 @@ import {
   FindClassesRepository,
   FindClassesRepositoryParams,
 } from 'entities/Class/repositories/FindClasses'
-import { RequiredParamError } from 'domain/errors/RequiredParamError'
+import { RequiredParamError } from 'app/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {

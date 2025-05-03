@@ -1,5 +1,5 @@
 import { Character } from 'entities/Character'
-import { NotFoundError } from 'domain/errors/NotFoundError'
+import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaCharacter } from 'infra/prisma/adapters/adaptPrismaCharacter'
 import { FindCharacterRepository, FindCharacterRepositoryParams } from '..'

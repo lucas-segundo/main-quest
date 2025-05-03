@@ -4,7 +4,7 @@ import {
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
-import { RequiredParamError } from 'domain/errors/RequiredParamError'
+import { RequiredParamError } from 'app/errors/RequiredParamError'
 import {
   mockFindSkillsRepository,
   mockFindSkillsRepositoryParams,

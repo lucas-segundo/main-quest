@@ -1,5 +1,5 @@
 import { Skill } from 'entities/Skill'
-import { NotFoundError } from 'domain/errors/NotFoundError'
+import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
 import { adaptPrismaSkill } from 'infra/prisma/adapters/adaptPrismaSkill'
 import { FindSkillRepository, FindSkillRepositoryParams } from '..'

@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { Controller, HTTPErrorResponse, HTTPResponse } from '.'
-import { KnownError } from 'domain/errors/KnownError'
+import { KnownError } from 'app/errors/KnownError'
 
 export const mockControllerHTTPErrorResponse = (): HTTPErrorResponse => ({
   errors: [new KnownError(faker.lorem.word(), faker.lorem.words())],

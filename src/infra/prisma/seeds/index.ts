@@ -6,13 +6,8 @@ async function main() {
   const dbSeeder = new DBSeeder()
 
   for (let i = 0; i < 10; i++) {
-    const { classCreated, subclassCreated, skillCreated } =
-      await dbSeeder.seed()
-    console.log(`Seeding iteration ${i + 1} finished:`, {
-      classCreated,
-      subclassCreated,
-      skillCreated,
-    })
+    const data = await dbSeeder.seed()
+    console.log(`Seeding iteration ${i + 1} finished:`, data)
   }
 
   console.log('All seeding operations completed.')

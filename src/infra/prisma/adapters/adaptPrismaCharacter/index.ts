@@ -9,5 +9,11 @@ export const adaptPrismaCharacter = (
     name: prismaCharacter.name,
     classID: prismaCharacter.classID.toString(),
     level: prismaCharacter.level,
+    strength: prismaCharacter.strength,
+    dexterity: prismaCharacter.dexterity,
+    constitution: prismaCharacter.constitution,
+    intelligence: prismaCharacter.intelligence,
+    wisdom: prismaCharacter.wisdom,
+    charisma: prismaCharacter.charisma,
   }
 }

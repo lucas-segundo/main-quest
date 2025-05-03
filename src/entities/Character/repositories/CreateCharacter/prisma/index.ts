@@ -12,6 +12,12 @@ export class PrismaCreateCharacterRepository
         name: params.name,
         classID: Number(params.classID),
         level: params.level,
+        strength: params.strength,
+        dexterity: params.dexterity,
+        constitution: params.constitution,
+        intelligence: params.intelligence,
+        wisdom: params.wisdom,
+        charisma: params.charisma,
       },
     })
 

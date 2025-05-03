@@ -1,33 +1,22 @@
 import { CreateCharacterUseCase } from '.'
 import { UniqueError } from 'app/errors/UniqueErro'
-import { Character } from 'entities/Character'
+import { mockCharacter } from 'entities/Character/mock'
 import {
-  CreateCharacterRepository,
-  CreateCharacterRepositoryParams,
-} from 'entities/Character/repositories/CreateCharacter'
-import { FindCharacterRepository } from 'entities/Character/repositories/FindCharacter'
+  mockCreateCharacterRepository,
+  mockCreateCharacterRepositoryParams,
+} from 'entities/Character/repositories/CreateCharacter/mock'
+import { mockFindCharacterRepository } from 'entities/Character/repositories/FindCharacter/mock'
 
-const mockCharacter: Character = {
-  id: '1',
-  name: 'Test Character',
-  classID: '1',
-  level: 1,
-}
+const mockData = () => {
+  const character = mockCharacter()
+  const params = mockCreateCharacterRepositoryParams()
 
-const mockCreateCharacterRepositoryParams: CreateCharacterRepositoryParams = {
-  name: 'Test Character',
-  classID: '1',
-  level: 1,
+  return { character, params }
 }
 
 const makeSUT = () => {
-  const createCharacterRepository: jest.Mocked<CreateCharacterRepository> = {
-    create: jest.fn(),
-  }
-
-  const findCharacterRepository: jest.Mocked<FindCharacterRepository> = {
-    find: jest.fn(),
-  }
+  const createCharacterRepository = mockCreateCharacterRepository()
+  const findCharacterRepository = mockFindCharacterRepository()
 
   const sut = new CreateCharacterUseCase(
     createCharacterRepository,
@@ -40,30 +29,32 @@ const makeSUT = () => {
 describe('CreateCharacterUseCase', () => {
   it('should throw UniqueError if character already exists', async () => {
     const { sut, findCharacterRepository } = makeSUT()
-    findCharacterRepository.find.mockResolvedValue(mockCharacter)
+    const { character, params } = mockData()
+    findCharacterRepository.find.mockResolvedValue(character)
 
     await expect(
-      sut.execute({ character: mockCreateCharacterRepositoryParams }),
+      sut.execute({
+        character: params,
+      }),
     ).rejects.toThrow(UniqueError)
 
     expect(findCharacterRepository.find).toHaveBeenCalledWith({
-      filter: { name: { like: mockCreateCharacterRepositoryParams.name } },
+      filter: { name: { like: params.name } },
     })
   })
 
   it('should call createCharacterRepository with correct params if character does not exist', async () => {
     const { sut, findCharacterRepository, createCharacterRepository } =
       makeSUT()
+    const { character, params } = mockData()
     findCharacterRepository.find.mockResolvedValue(null)
-    createCharacterRepository.create.mockResolvedValue(mockCharacter)
+    createCharacterRepository.create.mockResolvedValue(character)
 
     const result = await sut.execute({
-      character: mockCreateCharacterRepositoryParams,
+      character: params,
     })
 
-    expect(createCharacterRepository.create).toHaveBeenCalledWith(
-      mockCreateCharacterRepositoryParams,
-    )
-    expect(result).toEqual(mockCharacter)
+    expect(createCharacterRepository.create).toHaveBeenCalledWith(params)
+    expect(result).toEqual(character)
   })
 })

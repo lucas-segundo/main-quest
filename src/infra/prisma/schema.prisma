@@ -63,6 +63,12 @@ model Character {
   name      String   @unique
   classID   Int      @map("class_id")
   level     Int
+  strength  Int
+  dexterity Int
+  constitution Int
+  intelligence Int
+  wisdom    Int
+  charisma  Int
 
   class     Class    @relation(fields: [classID], references: [id])
 

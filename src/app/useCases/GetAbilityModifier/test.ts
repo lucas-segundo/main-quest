@@ -1,10 +1,10 @@
-import { GetAttributeModifierUseCase } from '.'
+import { GetAbilityModifierUseCase } from '.'
 
-describe('GetAttributeModifierUseCase', () => {
-  let useCase: GetAttributeModifierUseCase
+describe('GetAbilityModifierUseCase', () => {
+  let useCase: GetAbilityModifierUseCase
 
   beforeEach(() => {
-    useCase = new GetAttributeModifierUseCase()
+    useCase = new GetAbilityModifierUseCase()
   })
 
   it('should return -5 when the value is less than or equal to 1', () => {

@@ -1,4 +1,4 @@
-export class GetAttributeModifierUseCase {
+export class GetAbilityModifierUseCase {
   get(value: number): number {
     if (value <= 1) {
       return -5

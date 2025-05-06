@@ -47,9 +47,21 @@ CREATE TABLE "characters" (
     "name" TEXT NOT NULL,
     "class_id" INTEGER NOT NULL,
     "level" INTEGER NOT NULL,
+    "strength" INTEGER NOT NULL,
+    "dexterity" INTEGER NOT NULL,
+    "constitution" INTEGER NOT NULL,
+    "intelligence" INTEGER NOT NULL,
+    "wisdom" INTEGER NOT NULL,
+    "charisma" INTEGER NOT NULL,
 
     CONSTRAINT "characters_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "characters_name_key" ON "characters"("name");
+
+-- CreateIndex
+CREATE INDEX "characters_name_idx" ON "characters"("name");
 
 -- AddForeignKey
 ALTER TABLE "subclasses" ADD CONSTRAINT "subclasses_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "classes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

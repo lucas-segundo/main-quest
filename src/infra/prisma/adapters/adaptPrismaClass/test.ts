@@ -14,10 +14,10 @@ describe('adaptPrismaClass', () => {
           id: subclass.id.toString(),
           name: subclass.name,
         })) || [],
-      skills:
-        prismaClass.classesSkills?.map((classSkill) => ({
-          id: classSkill.skill.id.toString(),
-          name: classSkill.skill.name,
+      spells:
+        prismaClass.classesSpells?.map((classSpell) => ({
+          id: classSpell.spell.id.toString(),
+          name: classSpell.spell.name,
         })) || [],
     }
 

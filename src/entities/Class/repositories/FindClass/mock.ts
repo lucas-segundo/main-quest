@@ -9,7 +9,7 @@ export const mockFindClassRepositoryParams = (): FindClassRepositoryParams => ({
   },
   include: {
     subclasses: true,
-    skills: true,
+    spells: true,
   },
 })
 

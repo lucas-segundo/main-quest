@@ -22,8 +22,8 @@ import {
   FindClassesController,
   FindClassesControllerParams,
 } from 'presentation/controllers/classes/FindClasses'
-import { AddClassSkillController } from 'presentation/controllers/classes/AddClassSkill'
-import { RemoveClassSkillController } from 'presentation/controllers/classes/RemoveClassSkill'
+import { AddClassSpellController } from 'presentation/controllers/classes/AddClassSpell'
+import { RemoveClassSpellController } from 'presentation/controllers/classes/RemoveClassSpell'
 
 @Controller('classes')
 export class ClassesController {
@@ -32,8 +32,8 @@ export class ClassesController {
     private readonly classFinderController: FindClassController,
     private readonly findClassesRepoController: FindClassesController,
     private readonly updateClassController: UpdateClassController,
-    private readonly addClassSkillController: AddClassSkillController,
-    private readonly removeClassSkillController: RemoveClassSkillController,
+    private readonly addClassSpellController: AddClassSpellController,
+    private readonly removeClassSpellController: RemoveClassSpellController,
   ) {}
 
   @Post()
@@ -109,15 +109,15 @@ export class ClassesController {
     }
   }
 
-  @Patch(':id/add-skills')
-  async addSkill(
+  @Patch(':id/add-spells')
+  async addSpell(
     @Param('id') id: string,
-    @Body() body: { skillIDs: string[] },
+    @Body() body: { spellIDs: string[] },
     @Res() res: Response,
   ) {
-    const response = await this.addClassSkillController.handle(
+    const response = await this.addClassSpellController.handle(
       id,
-      body.skillIDs,
+      body.spellIDs,
     )
 
     if ('data' in response) {
@@ -129,15 +129,15 @@ export class ClassesController {
     }
   }
 
-  @Patch(':id/remove-skills')
-  async removeSkill(
+  @Patch(':id/remove-spells')
+  async removeSpell(
     @Param('id') id: string,
-    @Body() body: { skillIDs: string[] },
+    @Body() body: { spellIDs: string[] },
     @Res() res: Response,
   ) {
-    const response = await this.removeClassSkillController.handle(
+    const response = await this.removeClassSpellController.handle(
       id,
-      body.skillIDs,
+      body.spellIDs,
     )
 
     if ('data' in response) {

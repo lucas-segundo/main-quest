@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Param, Patch, Post, Res } from '@nestjs/common'
 import { Response } from 'express'
-import { AddSubclassSkillController } from 'presentation/controllers/subclasses/AddSubclassSkill'
+import { AddSubclassSpellController } from 'presentation/controllers/subclasses/AddSubclassSpell'
 import {
   CreateSubclassController,
   CreateSubclassControllerParams,
 } from 'presentation/controllers/subclasses/CreateSubclass'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
-import { RemoveSubclassSkillController } from 'presentation/controllers/subclasses/RemoveSubclassSkill'
+import { RemoveSubclassSpellController } from 'presentation/controllers/subclasses/RemoveSubclassSpell'
 import {
   UpdateSubclassController,
   UpdateSubclassControllerParams,
@@ -18,8 +18,8 @@ export class SubclassesController {
     private readonly subclassCreaterController: CreateSubclassController,
     private readonly subclassFinderController: FindSubclassController,
     private readonly subclassUpdaterController: UpdateSubclassController,
-    private readonly addSubclassSkillController: AddSubclassSkillController,
-    private readonly removeSubclassSkillController: RemoveSubclassSkillController,
+    private readonly addSubclassSpellController: AddSubclassSpellController,
+    private readonly removeSubclassSpellController: RemoveSubclassSpellController,
   ) {}
 
   @Post()
@@ -77,15 +77,15 @@ export class SubclassesController {
     }
   }
 
-  @Patch(':id/add-skills')
-  async addSkill(
+  @Patch(':id/add-spells')
+  async addSpell(
     @Param('id') id: string,
-    @Body() body: { skillIDs: string[] },
+    @Body() body: { spellIDs: string[] },
     @Res() res: Response,
   ) {
-    const response = await this.addSubclassSkillController.handle(
+    const response = await this.addSubclassSpellController.handle(
       id,
-      body.skillIDs,
+      body.spellIDs,
     )
 
     if ('data' in response) {
@@ -97,15 +97,15 @@ export class SubclassesController {
     }
   }
 
-  @Patch(':id/remove-skills')
-  async removeSkill(
+  @Patch(':id/remove-spells')
+  async removeSpell(
     @Param('id') id: string,
-    @Body() body: { skillIDs: string[] },
+    @Body() body: { spellIDs: string[] },
     @Res() res: Response,
   ) {
-    const response = await this.removeSubclassSkillController.handle(
+    const response = await this.removeSubclassSpellController.handle(
       id,
-      body.skillIDs,
+      body.spellIDs,
     )
 
     if ('data' in response) {

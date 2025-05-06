@@ -11,7 +11,7 @@ model Class {
   id        Int      @id @default(autoincrement())
   name      String
   subclasses Subclass[]
-  classesSkills ClassesSkills[]
+  classesSpells ClassesSpells[]
   characters Character[]
 
   @@map("classes")
@@ -22,40 +22,40 @@ model Subclass {
   name      String
   classID   Int      @map("class_id")
   class     Class    @relation(fields: [classID], references: [id])
-  subclassesSkills SubclassesSkills[]
+  subclassesSpells SubclassesSpells[]
 
   @@map("subclasses")
 }
 
-model Skill {
+model Spell {
   id        Int      @id @default(autoincrement())
   name      String
-  classesSkills ClassesSkills[]
-  subclassesSkills SubclassesSkills[]
+  classesSpells ClassesSpells[]
+  subclassesSpells SubclassesSpells[]
 
-  @@map("skills")
+  @@map("spells")
 }
 
-model ClassesSkills {
+model ClassesSpells {
   id        Int      @id @default(autoincrement())
   classID   Int      @map("class_id")
-  skillID   Int      @map("skill_id")
+  spellID   Int      @map("spell_id")
   
   class     Class    @relation(fields: [classID], references: [id])
-  skill     Skill    @relation(fields: [skillID], references: [id])
+  spell     Spell    @relation(fields: [spellID], references: [id])
 
-  @@map("classes_skills")
+  @@map("classes_spells")
 }
 
-model SubclassesSkills {
+model SubclassesSpells {
   id        Int      @id @default(autoincrement())
   subclassID Int      @map("subclass_id")
-  skillID   Int      @map("skill_id")
+  spellID   Int      @map("spell_id")
   
   subclass  Subclass @relation(fields: [subclassID], references: [id])
-  skill     Skill    @relation(fields: [skillID], references: [id])
+  spell     Spell    @relation(fields: [spellID], references: [id])
 
-  @@map("subclasses_skills")
+  @@map("subclasses_spells")
 }
 
 model Character {

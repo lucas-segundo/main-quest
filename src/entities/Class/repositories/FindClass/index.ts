@@ -8,7 +8,7 @@ interface Filter {
 
 interface Include {
   subclasses?: boolean
-  skills?: boolean
+  spells?: boolean
 }
 
 export interface FindClassRepositoryParams {

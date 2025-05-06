@@ -13,9 +13,9 @@ export class PrismaFindClassRepository implements FindClassRepository {
       },
       include: {
         subclasses: include?.subclasses,
-        classesSkills: {
+        classesSpells: {
           include: {
-            skill: include?.skills,
+            spell: include?.spells,
           },
         },
       },

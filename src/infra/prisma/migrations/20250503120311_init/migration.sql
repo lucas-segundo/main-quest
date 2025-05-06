@@ -16,29 +16,29 @@ CREATE TABLE "subclasses" (
 );
 
 -- CreateTable
-CREATE TABLE "skills" (
+CREATE TABLE "spells" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
 
-    CONSTRAINT "skills_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "spells_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "classes_skills" (
+CREATE TABLE "classes_spells" (
     "id" SERIAL NOT NULL,
     "class_id" INTEGER NOT NULL,
-    "skill_id" INTEGER NOT NULL,
+    "spell_id" INTEGER NOT NULL,
 
-    CONSTRAINT "classes_skills_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "classes_spells_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "subclasses_skills" (
+CREATE TABLE "subclasses_spells" (
     "id" SERIAL NOT NULL,
     "subclass_id" INTEGER NOT NULL,
-    "skill_id" INTEGER NOT NULL,
+    "spell_id" INTEGER NOT NULL,
 
-    CONSTRAINT "subclasses_skills_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "subclasses_spells_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -55,16 +55,16 @@ CREATE TABLE "characters" (
 ALTER TABLE "subclasses" ADD CONSTRAINT "subclasses_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "classes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "classes_skills" ADD CONSTRAINT "classes_skills_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "classes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "classes_spells" ADD CONSTRAINT "classes_spells_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "classes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "classes_skills" ADD CONSTRAINT "classes_skills_skill_id_fkey" FOREIGN KEY ("skill_id") REFERENCES "skills"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "classes_spells" ADD CONSTRAINT "classes_spells_spell_id_fkey" FOREIGN KEY ("spell_id") REFERENCES "spells"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "subclasses_skills" ADD CONSTRAINT "subclasses_skills_subclass_id_fkey" FOREIGN KEY ("subclass_id") REFERENCES "subclasses"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "subclasses_spells" ADD CONSTRAINT "subclasses_spells_subclass_id_fkey" FOREIGN KEY ("subclass_id") REFERENCES "subclasses"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "subclasses_skills" ADD CONSTRAINT "subclasses_skills_skill_id_fkey" FOREIGN KEY ("skill_id") REFERENCES "skills"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "subclasses_spells" ADD CONSTRAINT "subclasses_spells_spell_id_fkey" FOREIGN KEY ("spell_id") REFERENCES "spells"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "characters" ADD CONSTRAINT "characters_class_id_fkey" FOREIGN KEY ("class_id") REFERENCES "classes"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

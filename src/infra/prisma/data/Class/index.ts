@@ -1,9 +1,9 @@
 import { PrismaSubclass } from '../Subclass'
-import { PrismaClassesSkills } from '../ClassesSkills'
+import { PrismaClassesSpells } from '../ClassesSpells'
 
 export interface PrismaClass {
   id: number
   name: string
   subclasses?: PrismaSubclass[]
-  classesSkills?: PrismaClassesSkills[]
+  classesSpells?: PrismaClassesSpells[]
 }

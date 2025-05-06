@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
 import { ClassesModule } from './classes/classes.module'
 import { SubclassesModule } from './subclasses/subclasses.module'
-import { SkillsModule } from './skills/skills.module'
+import { SpellsModule } from './spells/spells.module'
 
 @Module({
-  imports: [ClassesModule, SubclassesModule, SkillsModule],
+  imports: [ClassesModule, SubclassesModule, SpellsModule],
   controllers: [],
   providers: [],
 })

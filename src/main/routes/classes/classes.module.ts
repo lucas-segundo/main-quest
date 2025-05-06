@@ -8,10 +8,10 @@ import { FindClassesController } from 'presentation/controllers/classes/FindClas
 import { makeFindClassesController } from 'presentation/controllers/classes/FindClasses/factory'
 import { UpdateClassController } from 'presentation/controllers/classes/UpdateClass'
 import { makeClassUpdaterController } from 'presentation/controllers/classes/UpdateClass/factory'
-import { AddClassSkillController } from 'presentation/controllers/classes/AddClassSkill'
-import { makeAddClassSkillController } from 'presentation/controllers/classes/AddClassSkill/factory'
-import { makeRemoveClassSkillController } from 'presentation/controllers/classes/RemoveClassSkill/factory'
-import { RemoveClassSkillController } from 'presentation/controllers/classes/RemoveClassSkill'
+import { AddClassSpellController } from 'presentation/controllers/classes/AddClassSpell'
+import { makeAddClassSpellController } from 'presentation/controllers/classes/AddClassSpell/factory'
+import { makeRemoveClassSpellController } from 'presentation/controllers/classes/RemoveClassSpell/factory'
+import { RemoveClassSpellController } from 'presentation/controllers/classes/RemoveClassSpell'
 
 @Module({
   controllers: [ClassesController],
@@ -33,12 +33,12 @@ import { RemoveClassSkillController } from 'presentation/controllers/classes/Rem
       useFactory: () => makeClassUpdaterController(),
     },
     {
-      provide: AddClassSkillController,
-      useFactory: () => makeAddClassSkillController(),
+      provide: AddClassSpellController,
+      useFactory: () => makeAddClassSpellController(),
     },
     {
-      provide: RemoveClassSkillController,
-      useFactory: () => makeRemoveClassSkillController(),
+      provide: RemoveClassSpellController,
+      useFactory: () => makeRemoveClassSpellController(),
     },
   ],
 })

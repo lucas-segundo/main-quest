@@ -6,10 +6,10 @@ import { UpdateSubclassController } from 'presentation/controllers/subclasses/Up
 import { makeSubclassUpdaterController } from 'presentation/controllers/subclasses/UpdateSubclass/factory'
 import { FindSubclassController } from 'presentation/controllers/subclasses/FindSubclass'
 import { makeFindSubclassController } from 'presentation/controllers/subclasses/FindSubclass/factory'
-import { AddSubclassSkillController } from 'presentation/controllers/subclasses/AddSubclassSkill'
-import { makeAddSubclassSkillController } from 'presentation/controllers/subclasses/AddSubclassSkill/factory'
-import { RemoveSubclassSkillController } from 'presentation/controllers/subclasses/RemoveSubclassSkill'
-import { makeRemoveSubclassSkillController } from 'presentation/controllers/subclasses/RemoveSubclassSkill/factory'
+import { AddSubclassSpellController } from 'presentation/controllers/subclasses/AddSubclassSpell'
+import { makeAddSubclassSpellController } from 'presentation/controllers/subclasses/AddSubclassSpell/factory'
+import { RemoveSubclassSpellController } from 'presentation/controllers/subclasses/RemoveSubclassSpell'
+import { makeRemoveSubclassSpellController } from 'presentation/controllers/subclasses/RemoveSubclassSpell/factory'
 
 @Module({
   controllers: [SubclassesController],
@@ -27,12 +27,12 @@ import { makeRemoveSubclassSkillController } from 'presentation/controllers/subc
       useFactory: () => makeSubclassUpdaterController(),
     },
     {
-      provide: AddSubclassSkillController,
-      useFactory: () => makeAddSubclassSkillController(),
+      provide: AddSubclassSpellController,
+      useFactory: () => makeAddSubclassSpellController(),
     },
     {
-      provide: RemoveSubclassSkillController,
-      useFactory: () => makeRemoveSubclassSkillController(),
+      provide: RemoveSubclassSpellController,
+      useFactory: () => makeRemoveSubclassSpellController(),
     },
   ],
 })

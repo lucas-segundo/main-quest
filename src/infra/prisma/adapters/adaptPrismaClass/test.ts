@@ -1,5 +1,5 @@
-import { Class, SpellcastingAbility } from 'entities/Class'
-import { adaptPrismaClass, spellcastingAbilityMap } from './index'
+import { Class } from 'entities/Class'
+import { adaptPrismaClass } from './index'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 
 describe('adaptPrismaClass', () => {
@@ -19,12 +19,6 @@ describe('adaptPrismaClass', () => {
           id: classSkill.skill.id.toString(),
           name: classSkill.skill.name,
         })) || [],
-      spellcastingAbility:
-        prismaClass.spellcastingAbility === null
-          ? null
-          : (spellcastingAbilityMap[
-              prismaClass.spellcastingAbility
-            ] as SpellcastingAbility),
     }
 
     const result = adaptPrismaClass(prismaClass)

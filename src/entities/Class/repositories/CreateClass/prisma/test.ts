@@ -3,7 +3,10 @@ import { PrismaCreateClassRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import {
+  adaptPrismaClass,
+  adaptToPrismaSpellcastingAbility,
+} from 'infra/prisma/adapters/adaptPrismaClass'
 import { mockCreateClassRepositoryParams } from '../mock'
 
 const makeSUT = () => {
@@ -23,6 +26,9 @@ describe('PrismaCreateClassRepository', () => {
     const expectedParams: Prisma.ClassCreateArgs<DefaultArgs> = {
       data: {
         name: params.name,
+        spellcastingAbility: adaptToPrismaSpellcastingAbility(
+          params.spellCastingAbility,
+        ),
       },
       include: {
         subclasses: true,

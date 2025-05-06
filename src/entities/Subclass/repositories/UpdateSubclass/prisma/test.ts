@@ -8,7 +8,7 @@ import { faker } from '@faker-js/faker'
 import { mockUpdateSubclassRepositoryParams } from '../mock'
 
 const makeSUT = () => {
-  mockedPrismaClient.class.update.mockResolvedValue(mockPrismaSubclass())
+  mockedPrismaClient.subclass.update.mockResolvedValue(mockPrismaSubclass())
   const id = faker.string.uuid()
 
   const sut = new PrismaUpdateSubclassRepository()

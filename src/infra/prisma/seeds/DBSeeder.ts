@@ -58,6 +58,12 @@ export class DBSeeder {
         name: character.name,
         level: character.level,
         classID,
+        strength: character.strength,
+        dexterity: character.dexterity,
+        constitution: character.constitution,
+        intelligence: character.intelligence,
+        wisdom: character.wisdom,
+        charisma: character.charisma,
       },
     })
 

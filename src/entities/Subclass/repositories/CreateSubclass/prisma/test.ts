@@ -7,7 +7,7 @@ import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
 import { mockCreateSubclassRepositoryParams } from '../mock'
 
 const makeSUT = () => {
-  mockedPrismaClient.class.create.mockResolvedValue(mockPrismaSubclass())
+  mockedPrismaClient.subclass.create.mockResolvedValue(mockPrismaSubclass())
 
   const sut = new PrismaCreateSubclassRepository()
   return { sut }

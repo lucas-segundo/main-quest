@@ -32,13 +32,3 @@ const adaptSpellcastingAbility = (
     ? null
     : (spellcastingAbilityMap[prismaSpellcastingAbiliy] as SpellcastingAbility)
 }
-
-export const adaptToPrismaSpellcastingAbility = (
-  spellcastingAbility: SpellcastingAbility | null,
-): PrismaClass['spellcastingAbility'] => {
-  return spellcastingAbility === null
-    ? null
-    : (Object.keys(spellcastingAbilityMap).find(
-        (key) => spellcastingAbilityMap[key] === spellcastingAbility,
-      ) as PrismaClass['spellcastingAbility'])
-}

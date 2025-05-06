@@ -1,8 +1,7 @@
-import { Class, SpellcastingAbility } from 'entities/Class'
+import { Class } from 'entities/Class'
 
 export interface CreateClassRepositoryParams {
   name: string
-  spellCastingAbility: SpellcastingAbility | null
 }
 
 export interface CreateClassRepository {

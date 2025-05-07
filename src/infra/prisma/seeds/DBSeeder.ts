@@ -58,6 +58,8 @@ export class DBSeeder {
         name: character.name,
         level: character.level,
         classID,
+        healthPoints: character.healthPoints,
+        maxHealthPoints: character.maxHealthPoints,
         strength: character.strength,
         dexterity: character.dexterity,
         constitution: character.constitution,

@@ -2,6 +2,8 @@ export interface Character {
   id: string
   name: string
   level: number
+  healthPoints: number
+  maxHealthPoints: number
   classID: string
   strength: number
   dexterity: number

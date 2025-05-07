@@ -11,6 +11,8 @@ describe('adaptPrismaCharacter', () => {
       name: prismaCharacter.name,
       classID: prismaCharacter.classID.toString(),
       level: prismaCharacter.level,
+      healthPoints: prismaCharacter.healthPoints,
+      maxHealthPoints: prismaCharacter.maxHealthPoints,
       strength: prismaCharacter.strength,
       dexterity: prismaCharacter.dexterity,
       constitution: prismaCharacter.constitution,

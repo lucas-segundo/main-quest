@@ -2,6 +2,8 @@ export interface PrismaCharacter {
   id: number
   name: string
   classID: number
+  healthPoints: number
+  maxHealthPoints: number
   level: number
   strength: number
   dexterity: number

@@ -70,6 +70,8 @@ model Character {
   name      String   @unique
   classID   Int      @map("class_id")
   level     Int
+  healthPoints Int   @map("health_points")
+  maxHealthPoints Int @map("max_health_points")
   strength  Int
   dexterity Int
   constitution Int

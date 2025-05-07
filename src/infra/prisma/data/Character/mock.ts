@@ -8,6 +8,14 @@ export const mockPrismaCharacter = (): PrismaCharacter => ({
   }),
   name: faker.lorem.word(),
   classID: faker.number.int(),
+  healthPoints: faker.number.int({
+    min: 1,
+    max: 100,
+  }),
+  maxHealthPoints: faker.number.int({
+    min: 1,
+    max: 100,
+  }),
   level: faker.number.int({
     min: 1,
     max: 100,

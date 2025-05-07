@@ -12,6 +12,8 @@ export class PrismaCreateCharacterRepository
         name: params.name,
         classID: Number(params.classID),
         level: params.level,
+        healthPoints: params.healthPoints,
+        maxHealthPoints: params.maxHealthPoints,
         strength: params.strength,
         dexterity: params.dexterity,
         constitution: params.constitution,

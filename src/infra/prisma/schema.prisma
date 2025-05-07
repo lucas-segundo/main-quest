@@ -7,9 +7,16 @@ datasource db {
   url      = env("POSTGRES_DATABASE_URL")
 }
 
+enum SpellcastingAbility {
+  INT
+  WIS
+  CHA
+}
+
 model Class {
   id        Int      @id @default(autoincrement())
   name      String
+  spellcastingAbility  SpellcastingAbility? @map("spellcasting_ability")
   subclasses Subclass[]
   classesSpells ClassesSpells[]
   characters Character[]

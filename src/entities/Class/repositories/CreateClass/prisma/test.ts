@@ -6,7 +6,7 @@ import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 import {
   adaptPrismaClass,
   adaptToPrismaSpellcastingAbility,
-} from 'infra/prisma/adapters/adaptPrismaClass'
+} from 'infra/prisma/data/Class/adapter'
 import { mockCreateClassRepositoryParams } from '../mock'
 
 const makeSUT = () => {

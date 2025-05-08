@@ -1,6 +1,6 @@
 import { Class, SpellcastingAbility } from 'entities/Class'
+import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
 import { PrismaClass } from 'infra/prisma/data/Class'
-import { adaptPrismaSubclass } from '../adaptPrismaSubclass'
 
 export const spellcastingAbilityMap = {
   INT: 'intelligence',

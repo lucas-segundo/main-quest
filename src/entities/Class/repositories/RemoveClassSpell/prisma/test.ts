@@ -1,7 +1,7 @@
 import { PrismaRemoveClassSpellRepository } from '.'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { adaptPrismaClass } from 'infra/prisma/data/Class/adapter'
 import { faker } from '@faker-js/faker'
 
 const makeSUT = () => {

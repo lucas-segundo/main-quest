@@ -1,7 +1,7 @@
 import { Class } from 'entities/Class'
 import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { adaptPrismaClass } from 'infra/prisma/data/Class/adapter'
 import { FindClassRepository, FindClassRepositoryParams } from '..'
 
 export class PrismaFindClassRepository implements FindClassRepository {

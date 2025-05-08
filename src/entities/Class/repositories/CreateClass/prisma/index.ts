@@ -3,7 +3,7 @@ import prisma from 'infra/prisma'
 import {
   adaptPrismaClass,
   adaptToPrismaSpellcastingAbility,
-} from 'infra/prisma/adapters/adaptPrismaClass'
+} from 'infra/prisma/data/Class/adapter'
 import { CreateClassRepository, CreateClassRepositoryParams } from '..'
 
 export class PrismaCreateClassRepository implements CreateClassRepository {

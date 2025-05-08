@@ -1,6 +1,6 @@
 import { Class } from 'entities/Class'
 import prisma from 'infra/prisma'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { adaptPrismaClass } from 'infra/prisma/data/Class/adapter'
 import { UpdateClassRepository, UpdateClassRepositoryParams } from '..'
 
 export class PrismaUpdateClassRepository implements UpdateClassRepository {

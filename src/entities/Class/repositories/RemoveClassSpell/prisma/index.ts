@@ -1,7 +1,7 @@
 import prisma from 'infra/prisma'
 import { RemoveClassSpellRepository } from '..'
 import { Class } from 'entities/Class'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { adaptPrismaClass } from 'infra/prisma/data/Class/adapter'
 
 export class PrismaRemoveClassSpellRepository
   implements RemoveClassSpellRepository

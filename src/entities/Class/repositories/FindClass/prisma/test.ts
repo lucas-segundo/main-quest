@@ -3,7 +3,7 @@ import { PrismaFindClassRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { adaptPrismaClass } from 'infra/prisma/data/Class/adapter'
 import { NotFoundError } from 'app/errors/NotFoundError'
 import { mockFindClassRepositoryParams } from '../mock'
 

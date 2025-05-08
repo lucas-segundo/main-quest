@@ -1,7 +1,7 @@
 import prisma from 'infra/prisma'
 import { AddClassSpellRepository } from '..'
 import { Class } from 'entities/Class'
-import { adaptPrismaClass } from 'infra/prisma/adapters/adaptPrismaClass'
+import { adaptPrismaClass } from 'infra/prisma/data/Class/adapter'
 
 export class PrismaAddClassSpellRepository implements AddClassSpellRepository {
   async add(classID: string, spellIDs: string[]): Promise<Class> {

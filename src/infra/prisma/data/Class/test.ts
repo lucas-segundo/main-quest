@@ -1,5 +1,5 @@
 import { Class, SpellcastingAbility } from 'entities/Class'
-import { adaptPrismaClass, spellcastingAbilityMap } from './index'
+import { adaptPrismaClass, spellcastingAbilityMap } from './adapter'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 
 describe('adaptPrismaClass', () => {

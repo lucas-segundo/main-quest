@@ -1,3 +1,5 @@
+import { LearnedSpell } from 'entities/LearnedSpell'
+
 export interface Character {
   id: string
   name: string
@@ -11,4 +13,6 @@ export interface Character {
   intelligence: number
   wisdom: number
   charisma: number
+
+  learnedSpells?: LearnedSpell[]
 }

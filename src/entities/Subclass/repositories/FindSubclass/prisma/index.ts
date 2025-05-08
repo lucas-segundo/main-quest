@@ -1,7 +1,7 @@
 import { Subclass } from 'entities/Subclass'
 import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
-import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 import { FindSubclassRepository, FindSubclassRepositoryParams } from '..'
 
 export class PrismaFindSubclass implements FindSubclassRepository {

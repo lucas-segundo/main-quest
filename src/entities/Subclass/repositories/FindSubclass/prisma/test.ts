@@ -6,7 +6,7 @@ import { NotFoundError } from 'app/errors/NotFoundError'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 import { mockFindClassRepositoryParams } from 'entities/Class/repositories/FindClass/mock'
 import { mockFindSubclassRepositoryParams } from '../mock'
-import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 
 const makeSUT = () => {
   mockedPrismaClient.subclass.findFirst.mockResolvedValue(mockPrismaSubclass())

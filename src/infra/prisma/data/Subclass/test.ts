@@ -1,5 +1,5 @@
 import { Subclass } from 'entities/Subclass'
-import { adaptPrismaSubclass } from './index'
+import { adaptPrismaSubclass } from './adapter'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
 
 describe('adaptPrismaSubclass', () => {

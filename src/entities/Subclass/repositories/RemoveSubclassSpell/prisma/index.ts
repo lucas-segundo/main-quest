@@ -1,7 +1,7 @@
 import prisma from 'infra/prisma'
 import { RemoveSubclassSpellRepository } from '..'
 import { Subclass } from 'entities/Subclass'
-import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 
 export class PrismaRemoveSubclassSpellRepository
   implements RemoveSubclassSpellRepository

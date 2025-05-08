@@ -1,6 +1,6 @@
 import { Subclass } from 'entities/Subclass'
 import prisma from 'infra/prisma'
-import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 import { UpdateSubclassRepository, UpdateSubclassRepositoryParams } from '..'
 
 export class PrismaUpdateSubclassRepository

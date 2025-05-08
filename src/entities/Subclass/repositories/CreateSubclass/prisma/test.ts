@@ -3,7 +3,7 @@ import { PrismaCreateSubclassRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
-import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 import { mockCreateSubclassRepositoryParams } from '../mock'
 
 const makeSUT = () => {

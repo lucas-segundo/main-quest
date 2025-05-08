@@ -1,7 +1,7 @@
 import { PrismaAddSubclassSpellRepository } from '.'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSubclass } from 'infra/prisma/data/Subclass/mock'
-import { adaptPrismaSubclass } from 'infra/prisma/adapters/adaptPrismaSubclass'
+import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 import { faker } from '@faker-js/faker'
 
 const makeSUT = () => {

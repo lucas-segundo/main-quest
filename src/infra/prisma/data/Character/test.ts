@@ -1,5 +1,5 @@
 import { Character } from 'entities/Character'
-import { adaptPrismaCharacter } from './index'
+import { adaptPrismaCharacter } from './adapter'
 import { mockPrismaCharacter } from 'infra/prisma/data/Character/mock'
 
 describe('adaptPrismaCharacter', () => {

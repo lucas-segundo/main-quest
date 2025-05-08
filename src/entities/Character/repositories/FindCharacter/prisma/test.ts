@@ -5,7 +5,7 @@ import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaCharacter } from 'infra/prisma/data/Character/mock'
 import { mockFindClassRepositoryParams } from 'entities/Class/repositories/FindClass/mock'
 import { mockFindCharacterRepositoryParams } from '../mock'
-import { adaptPrismaCharacter } from 'infra/prisma/adapters/adaptPrismaCharacter'
+import { adaptPrismaCharacter } from 'infra/prisma/data/Character/adapter'
 
 const makeSUT = () => {
   mockedPrismaClient.character.findFirst.mockResolvedValue(

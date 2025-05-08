@@ -1,7 +1,7 @@
 import { Character } from 'entities/Character'
 import prisma from 'infra/prisma'
-import { adaptPrismaCharacter } from 'infra/prisma/adapters/adaptPrismaCharacter'
 import { FindCharacterRepository, FindCharacterRepositoryParams } from '..'
+import { adaptPrismaCharacter } from 'infra/prisma/data/Character/adapter'
 
 export class PrismaFindCharacter implements FindCharacterRepository {
   async find(params: FindCharacterRepositoryParams): Promise<Character | null> {

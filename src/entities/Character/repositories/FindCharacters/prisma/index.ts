@@ -1,6 +1,6 @@
 import { Character } from 'entities/Character'
 import prisma from 'infra/prisma'
-import { adaptPrismaCharacter } from 'infra/prisma/adapters/adaptPrismaCharacter'
+import { adaptPrismaCharacter } from 'infra/prisma/data/Character/adapter'
 import { FindCharactersRepository, FindCharactersRepositoryParams } from '..'
 
 export class PrismaFindCharacters implements FindCharactersRepository {

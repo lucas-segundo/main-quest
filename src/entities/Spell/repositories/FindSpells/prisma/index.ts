@@ -1,7 +1,7 @@
 import { Spell } from 'entities/Spell'
 import prisma from 'infra/prisma'
-import { adaptPrismaSpell } from 'infra/prisma/adapters/adaptPrismaSpell'
 import { FindSpellsRepository, FindSpellsRepositoryParams } from '..'
+import { adaptPrismaSpell } from 'infra/prisma/data/Spell/adapter'
 
 export class PrismaFindSpells implements FindSpellsRepository {
   async find(params: FindSpellsRepositoryParams): Promise<Spell[]> {

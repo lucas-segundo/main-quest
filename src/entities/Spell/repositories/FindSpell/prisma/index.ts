@@ -1,7 +1,7 @@
 import { Spell } from 'entities/Spell'
 import { NotFoundError } from 'app/errors/NotFoundError'
 import prisma from 'infra/prisma'
-import { adaptPrismaSpell } from 'infra/prisma/adapters/adaptPrismaSpell'
+import { adaptPrismaSpell } from 'infra/prisma/data/Spell/adapter'
 import { FindSpellRepository, FindSpellRepositoryParams } from '..'
 
 export class PrismaFindSpell implements FindSpellRepository {

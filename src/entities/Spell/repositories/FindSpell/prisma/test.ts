@@ -6,7 +6,7 @@ import { NotFoundError } from 'app/errors/NotFoundError'
 import { mockPrismaSpell } from 'infra/prisma/data/Spell/mock'
 import { mockFindClassRepositoryParams } from 'entities/Class/repositories/FindClass/mock'
 import { mockFindSpellRepositoryParams } from '../mock'
-import { adaptPrismaSpell } from 'infra/prisma/adapters/adaptPrismaSpell'
+import { adaptPrismaSpell } from 'infra/prisma/data/Spell/adapter'
 
 const makeSUT = () => {
   mockedPrismaClient.spell.findFirst.mockResolvedValue(mockPrismaSpell())

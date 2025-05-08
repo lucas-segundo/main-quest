@@ -1,6 +1,6 @@
 import { Spell } from 'entities/Spell'
 import prisma from 'infra/prisma'
-import { adaptPrismaSpell } from 'infra/prisma/adapters/adaptPrismaSpell'
+import { adaptPrismaSpell } from 'infra/prisma/data/Spell/adapter'
 import { UpdateSpellRepository, UpdateSpellRepositoryParams } from '..'
 
 export class PrismaUpdateSpellRepository implements UpdateSpellRepository {

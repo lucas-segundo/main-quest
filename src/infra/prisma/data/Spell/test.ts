@@ -1,5 +1,5 @@
 import { Spell } from 'entities/Spell'
-import { adaptPrismaSpell } from './index'
+import { adaptPrismaSpell } from './adapter'
 import { mockPrismaSpell } from 'infra/prisma/data/Spell/mock'
 
 describe('adaptPrismaSpell', () => {

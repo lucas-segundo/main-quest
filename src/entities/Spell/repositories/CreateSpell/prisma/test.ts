@@ -3,7 +3,7 @@ import { PrismaCreateSpellRepository } from '.'
 import { DefaultArgs } from '@prisma/client/runtime/library'
 import { mockedPrismaClient } from 'infra/prisma/mock'
 import { mockPrismaSpell } from 'infra/prisma/data/Spell/mock'
-import { adaptPrismaSpell } from 'infra/prisma/adapters/adaptPrismaSpell'
+import { adaptPrismaSpell } from 'infra/prisma/data/Spell/adapter'
 import { mockCreateSpellRepositoryParams } from '../mock'
 
 const makeSUT = () => {

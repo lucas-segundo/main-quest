@@ -1,4 +1,7 @@
-import { adaptSpellcastingAbility, adaptToPrismaSpellcastingAbility } from '.'
+import {
+  adaptSpellcastingAbility,
+  adaptToPrismaSpellcastingAbility,
+} from './adapter'
 
 describe('adaptSpellcastingAbility', () => {
   it('should correctly map "CHA" to "charisma"', () => {

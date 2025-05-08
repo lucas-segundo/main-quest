@@ -4,8 +4,8 @@ import { CreateCharacterRepository, CreateCharacterRepositoryParams } from '.'
 export const mockCreateCharacterRepositoryParams =
   (): CreateCharacterRepositoryParams => ({
     name: faker.commerce.productName(),
-    healthPoints: faker.number.int({ min: 1, max: 100 }),
-    maxHealthPoints: faker.number.int({ min: 1, max: 100 }),
+    hitPoints: faker.number.int({ min: 1, max: 100 }),
+    maxHitPoints: faker.number.int({ min: 1, max: 100 }),
     classID: faker.string.uuid(),
     level: faker.number.int({ min: 1, max: 100 }),
     strength: faker.number.int({ min: 1, max: 20 }),

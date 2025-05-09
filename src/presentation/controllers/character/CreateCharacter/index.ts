@@ -1,7 +1,5 @@
-import {
-  CreateCharacterRepository,
-  CreateCharacterRepositoryParams,
-} from 'entities/Character/repositories/CreateCharacter'
+import { CreateCharacterUseCase } from 'app/useCases/CreateCharacter'
+import { CreateCharacterRepositoryParams } from 'entities/Character/repositories/CreateCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -17,7 +15,7 @@ export interface CreateCharacterControllerParams
 
 export class CreateCharacterController implements Controller {
   constructor(
-    private readonly createCharacterRepo: CreateCharacterRepository,
+    private readonly createCharacterUseCase: CreateCharacterUseCase,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
@@ -43,7 +41,9 @@ export class CreateCharacterController implements Controller {
   private async respondWithCreatedCharacter(
     data: CreateCharacterControllerParams,
   ) {
-    const character = await this.createCharacterRepo.create(data)
+    const character = await this.createCharacterUseCase.execute({
+      character: data,
+    })
 
     return {
       data: character,

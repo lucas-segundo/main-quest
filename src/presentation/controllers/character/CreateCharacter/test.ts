@@ -8,12 +8,10 @@ import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
-import {
-  mockCreateCharacterRepository,
-  mockCreateCharacterRepositoryParams,
-} from 'entities/Character/repositories/CreateCharacter/mock'
+import { mockCreateCharacterRepositoryParams } from 'entities/Character/repositories/CreateCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
+import { mockCreateCharacterUserCase } from 'app/useCases/CreateCharacter/mock'
 
 const mockData = () => {
   const params = mockCreateCharacterRepositoryParams()
@@ -26,15 +24,18 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const classCreater = mockCreateCharacterRepository()
-  const createCharacterSpy = jest.spyOn(classCreater, 'create')
+  const createCharacterUseCase = mockCreateCharacterUserCase()
+  const createCharacterUseCaseSpy = jest.spyOn(
+    createCharacterUseCase,
+    'execute',
+  )
   const dataValidation = mockDataValidator()
 
   const httpErrorHandler = mockHTTPErrorHandler()
   const httpErrorHandlerSpy = jest.spyOn(httpErrorHandler, 'handle')
 
   const sut = new CreateCharacterController(
-    classCreater,
+    createCharacterUseCase,
     dataValidation,
     httpErrorHandler,
   )
@@ -43,8 +44,8 @@ const makeSUT = () => {
 
   return {
     sut,
-    classCreater,
-    createCharacterSpy,
+    createCharacterUseCase,
+    createCharacterUseCaseSpy,
     dataValidation,
     httpErrorHandlerSpy,
   }
@@ -52,19 +53,19 @@ const makeSUT = () => {
 
 describe('CharacterCreater', () => {
   it('should call creater with right params', async () => {
-    const { sut, classCreater } = makeSUT()
+    const { sut, createCharacterUseCase } = makeSUT()
     const { params } = mockData()
 
     await sut.handle(params)
 
-    expect(classCreater.create).toHaveBeenCalledWith(params)
+    expect(createCharacterUseCase.execute).toHaveBeenCalledWith(params)
   })
 
   it('should return 201 and the created character class', async () => {
-    const { sut, createCharacterSpy } = makeSUT()
+    const { sut, createCharacterUseCaseSpy } = makeSUT()
     const { params, createdCharacter } = mockData()
 
-    createCharacterSpy.mockResolvedValue(createdCharacter)
+    createCharacterUseCaseSpy.mockResolvedValue(createdCharacter)
 
     const response = (await sut.handle(params)) as HTTPResponse
 
@@ -89,11 +90,11 @@ describe('CharacterCreater', () => {
   })
 
   it('should call error handler when error happens', async () => {
-    const { sut, createCharacterSpy, httpErrorHandlerSpy } = makeSUT()
+    const { sut, createCharacterUseCaseSpy, httpErrorHandlerSpy } = makeSUT()
     const { params } = mockData()
 
     const error = new Error('any_error')
-    createCharacterSpy.mockRejectedValue(error)
+    createCharacterUseCaseSpy.mockRejectedValue(error)
     await sut.handle(params)
 
     expect(httpErrorHandlerSpy).toHaveBeenCalledWith(error)

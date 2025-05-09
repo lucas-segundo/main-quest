@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { AddClassSpellController } from '.'
 import { makeAddClassSpellRepository } from 'entities/Class/repositories/AddClassSpell/factory'

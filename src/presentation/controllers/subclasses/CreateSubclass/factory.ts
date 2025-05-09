@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { CreateSubclassController } from '.'
 import { makeCreateSubclassRepository } from 'entities/Subclass/repositories/CreateSubclass/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'

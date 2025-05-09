@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { UpdateCharacterController } from '.'
-import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeUpdateCharacterRepository } from 'entities/Character/repositories/UpdateCharacter/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { CreateClassController } from '.'
-import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeCreateClassRepository } from 'entities/Class/repositories/CreateClass/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

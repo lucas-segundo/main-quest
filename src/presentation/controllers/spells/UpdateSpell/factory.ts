@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { UpdateSpellController } from '.'
-import { ZodDataValidator } from 'infra/zod/DataValidator'
+import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeUpdateSpellRepository } from 'entities/Spell/repositories/UpdateSpell/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

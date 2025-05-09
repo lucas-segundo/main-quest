@@ -1,4 +1,4 @@
-import { adaptZodError } from 'infra/zod/adapters/adaptZodError'
+import { adaptZodError } from 'infra/zod/adaptZodError'
 import {
   DataValidator,
   DataValidatorResult,

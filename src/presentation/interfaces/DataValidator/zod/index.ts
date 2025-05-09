@@ -1,9 +1,9 @@
+import { adaptZodError } from 'infra/zod/adapters/adaptZodError'
 import {
   DataValidator,
   DataValidatorResult,
 } from 'presentation/interfaces/DataValidator'
 import { ZodError, ZodObject } from 'zod'
-import { adaptZodError } from '../adapters/adaptZodError'
 
 export class ZodDataValidator implements DataValidator {
   constructor(private readonly schema: ZodObject<any>) {}

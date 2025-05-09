@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { ZodDataValidator } from '.'
 import { faker } from '@faker-js/faker'
-import { adaptZodError } from '../adapters/adaptZodError'
+import { adaptZodError } from 'infra/zod/adapters/adaptZodError'
 
 const makeSUT = () => {
   const schema = z.object({

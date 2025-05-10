@@ -3,13 +3,13 @@ import { SpellcastingAbility } from 'entities/Class'
 import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
 import { Dice } from 'entities/Dice'
 
-interface DTO {
+export interface HealingWordDTO {
   characterID: string
   targetID: string
   spellCastingAbility: SpellcastingAbility
 }
 
-interface Result {
+export interface HealingWordUseCaseResult {
   amountHealed: number
 }
 
@@ -19,7 +19,7 @@ export class HealingWordUseCase {
     private readonly getAbilityModifierUseCase: GetAbilityModifierUseCase,
   ) {}
 
-  async execute(dto: DTO): Promise<Result> {
+  async execute(dto: HealingWordDTO): Promise<HealingWordUseCaseResult> {
     const character = await this.findCharacterRepository.find({
       filter: {
         id: {

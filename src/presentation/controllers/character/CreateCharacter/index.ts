@@ -41,9 +41,7 @@ export class CreateCharacterController implements Controller {
   private async respondWithCreatedCharacter(
     data: CreateCharacterControllerParams,
   ) {
-    const character = await this.createCharacterUseCase.execute({
-      character: data,
-    })
+    const character = await this.createCharacterUseCase.execute(data)
 
     return {
       data: character,

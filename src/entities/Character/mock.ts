@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { Character } from '.'
+import { mockLearnedSpell } from 'entities/LearnedSpell/mock'
 
 export const mockCharacter = (): Character => ({
   id: faker.string.uuid(),
@@ -14,4 +15,5 @@ export const mockCharacter = (): Character => ({
   intelligence: faker.number.int({ min: 1, max: 20 }),
   wisdom: faker.number.int({ min: 1, max: 20 }),
   charisma: faker.number.int({ min: 1, max: 20 }),
+  learnedSpells: [mockLearnedSpell(), mockLearnedSpell()],
 })

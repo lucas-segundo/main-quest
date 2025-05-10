@@ -6,6 +6,7 @@ export type SpellcastingAbility = 'intelligence' | 'wisdom' | 'charisma'
 export interface Class {
   id: string
   name: string
+  hitDice: string
   spellcastingAbility: SpellcastingAbility | null
   subclasses?: Subclass[]
   spells?: Spell[]

@@ -14,6 +14,7 @@ export class PrismaCreateClassRepository implements CreateClassRepository {
         spellcastingAbility: adaptToPrismaSpellcastingAbility(
           params.spellCastingAbility,
         ),
+        hitDice: params.hitDice,
       },
       include: {
         subclasses: true,

@@ -16,6 +16,7 @@ enum SpellcastingAbility {
 model Class {
   id        Int      @id @default(autoincrement())
   name      String
+  hitDice   String @map("hit_dice")
   spellcastingAbility  SpellcastingAbility? @map("spellcasting_ability")
   subclasses Subclass[]
   classesSpells ClassesSpells[]

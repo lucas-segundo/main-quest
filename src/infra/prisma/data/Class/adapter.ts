@@ -12,6 +12,7 @@ export const adaptPrismaClass = (prismaClass: PrismaClass): Class => {
   return {
     id: prismaClass.id.toString(),
     name: prismaClass.name,
+    hitDice: prismaClass.hitDice,
     spellcastingAbility: adaptSpellcastingAbility(
       prismaClass.spellcastingAbility,
     ),

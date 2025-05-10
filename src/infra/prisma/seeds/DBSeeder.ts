@@ -24,6 +24,7 @@ export class DBSeeder {
     const classCreated = await prisma.class.create({
       data: {
         name: classToCreate.name,
+        hitDice: classToCreate.hitDice,
       },
     })
 

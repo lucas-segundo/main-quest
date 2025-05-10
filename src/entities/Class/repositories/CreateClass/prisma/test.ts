@@ -29,6 +29,7 @@ describe('PrismaCreateClassRepository', () => {
         spellcastingAbility: adaptToPrismaSpellcastingAbility(
           params.spellCastingAbility,
         ),
+        hitDice: params.hitDice,
       },
       include: {
         subclasses: true,

@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import { SpellcastingAbility } from 'entities/Class'
 
 export const mockLearnedSpell = () => {
   return {
@@ -9,6 +10,6 @@ export const mockLearnedSpell = () => {
       'intelligence',
       'wisdom',
       'charisma',
-    ]),
+    ]) as SpellcastingAbility,
   }
 }

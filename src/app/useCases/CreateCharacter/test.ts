@@ -67,11 +67,11 @@ describe('CreateCharacterUseCase', () => {
     jest.spyOn(calculate, 'calculateHP').mockReturnValue(10)
 
     const result = await sut.execute(params)
-
+    const expectedHP = 10 * params.level
     expect(createCharacterService.create).toHaveBeenCalledWith({
       ...params,
-      hitPoints: 10 * params.level,
-      maxHitPoints: 10 * params.level,
+      hitPoints: expectedHP,
+      maxHitPoints: expectedHP,
     })
     expect(result).toEqual(character)
   })

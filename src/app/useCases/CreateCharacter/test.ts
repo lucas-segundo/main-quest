@@ -6,9 +6,9 @@ import {
   mockCreateCharacterServiceParams,
 } from 'domain/entities/Character/services/CreateCharacter/mock'
 import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
-import { makeCalculateHPUseCase } from '../CalculateHP/factory'
 import { mockFindClassService } from 'domain/entities/Class/services/FindClass/mock'
 import { mockClass } from 'domain/entities/Class/mock'
+import * as calculate from 'domain/metrics/CalculateHP'
 
 const mockData = () => {
   const character = mockCharacter()
@@ -22,13 +22,10 @@ const makeSUT = () => {
   const createCharacterService = mockCreateCharacterService()
   const findCharacterService = mockFindCharacterService()
   const findClassService = mockFindClassService()
-  const calculateHPUseCase = makeCalculateHPUseCase()
-
   const sut = new CreateCharacterUseCase(
     createCharacterService,
     findCharacterService,
     findClassService,
-    calculateHPUseCase,
   )
 
   return {
@@ -36,7 +33,6 @@ const makeSUT = () => {
     createCharacterService,
     findCharacterService,
     findClassService,
-    calculateHPUseCase,
   }
 }
 
@@ -61,7 +57,6 @@ describe('CreateCharacterUseCase', () => {
       findCharacterService,
       createCharacterService,
       findClassService,
-      calculateHPUseCase,
     } = makeSUT()
     const { character, params, classData } = mockData()
 
@@ -69,13 +64,15 @@ describe('CreateCharacterUseCase', () => {
     createCharacterService.create.mockResolvedValue(character)
     findClassService.find.mockResolvedValue(classData)
 
-    params.hitPoints = 30
-    params.maxHitPoints = 30
-    jest.spyOn(calculateHPUseCase, 'execute').mockReturnValue(30)
+    jest.spyOn(calculate, 'calculateHP').mockReturnValue(10)
 
     const result = await sut.execute(params)
 
-    expect(createCharacterService.create).toHaveBeenCalledWith(params)
+    expect(createCharacterService.create).toHaveBeenCalledWith({
+      ...params,
+      hitPoints: 10 * params.level,
+      maxHitPoints: 10 * params.level,
+    })
     expect(result).toEqual(character)
   })
 })

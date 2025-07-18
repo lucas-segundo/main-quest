@@ -2,13 +2,11 @@ import { mockCreateCharacterService } from 'domain/entities/Character/services/C
 import { CreateCharacterUseCase } from '.'
 import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { mockFindClassService } from 'domain/entities/Class/services/FindClass/mock'
-import { makeCalculateHPUseCase } from '../CalculateHP/factory'
 
 export const mockCreateCharacterUserCase = () => {
   return new CreateCharacterUseCase(
     mockCreateCharacterService(),
     mockFindCharacterService(),
     mockFindClassService(),
-    makeCalculateHPUseCase(),
   )
 }

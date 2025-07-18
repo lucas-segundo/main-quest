@@ -2,8 +2,8 @@ import { UniqueError } from 'app/errors/UniqueErro'
 import { Character } from 'domain/entities/Character'
 import { CreateCharacterService } from 'domain/entities/Character/services/CreateCharacter'
 import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'
-import { CalculateHPUseCase } from '../CalculateHP'
 import { FindClassService } from 'domain/entities/Class/services/FindClass'
+import { calculateHP } from 'domain/metrics/CalculateHP'
 
 type DTO = Pick<
   Character,
@@ -24,7 +24,6 @@ export class CreateCharacterUseCase {
     private readonly createCharacterService: CreateCharacterService,
     private readonly findCharacterService: FindCharacterService,
     private readonly findClassService: FindClassService,
-    private readonly calculateHPUseCase: CalculateHPUseCase,
   ) {}
 
   async execute(dto: DTO): Promise<Character> {
@@ -48,11 +47,14 @@ export class CreateCharacterUseCase {
       },
     })
 
-    const hp = this.calculateHPUseCase.execute({
-      constitution: dto.constitution,
-      level: dto.level,
-      classHitDice: classData.hitDice,
-    })
+    let hp = 0
+    for (let i = 0; i < dto.level; i++) {
+      hp += calculateHP({
+        constitution: dto.constitution,
+        level: i,
+        classHitDice: classData.hitDice,
+      })
+    }
 
     return await this.createCharacterService.create({
       name: dto.name,

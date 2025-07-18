@@ -1,9 +1,8 @@
 import { mockCharacter } from 'domain/entities/Character/mock'
 import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
-import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
 import { Dice } from 'domain/entities/Dice'
 import { HealingWordUseCase } from '.'
-import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
+import * as modifier from 'domain/metrics/getAbilityModifier'
 
 const makeMocks = () => {
   const character = mockCharacter()
@@ -17,10 +16,7 @@ const makeMocks = () => {
 
 const makeSUT = () => {
   const findCharacterService = mockFindCharacterService()
-  const sut = new HealingWordUseCase(
-    findCharacterService,
-    makeGetAbilityModifierUseCase(),
-  )
+  const sut = new HealingWordUseCase(findCharacterService)
 
   return {
     findCharacterService,
@@ -39,8 +35,8 @@ describe('HealingWordUseCase', () => {
     target.maxHitPoints = 20
     findCharacterService.find.mockResolvedValueOnce(target)
 
-    jest.spyOn(GetAbilityModifierUseCase.prototype, 'get').mockReturnValue(2) // Modifier
-    jest.spyOn(Dice, 'rollAll').mockReturnValue(3) // Dice roll
+    jest.spyOn(modifier, 'getAbilityModifier').mockReturnValue(2)
+    jest.spyOn(Dice, 'rollAll').mockReturnValue(3)
 
     const result = await sut.execute({
       characterID: 'character1',

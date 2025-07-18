@@ -1,22 +1,21 @@
 import { Dice } from 'domain/entities/Dice'
 import { CalculateHPUseCase } from '.'
-import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
+
+import * as modifier from 'domain/metrics/getAbilityModifier'
 
 const makeMocks = () => {
-  const getAbilityModifierUseCase = makeGetAbilityModifierUseCase()
-  const sut = new CalculateHPUseCase(getAbilityModifierUseCase)
+  const sut = new CalculateHPUseCase()
 
   return {
     sut,
-    getAbilityModifierUseCase,
   }
 }
 
 describe('CalculateHPUseCase', () => {
   it('should calculate HP correctly for a single class', () => {
-    const { sut, getAbilityModifierUseCase } = makeMocks()
+    const { sut } = makeMocks()
 
-    jest.spyOn(getAbilityModifierUseCase, 'get').mockReturnValue(2)
+    jest.spyOn(modifier, 'getAbilityModifier').mockReturnValue(2)
     jest.spyOn(Dice, 'rollAll').mockReturnValue(2)
 
     const hp = sut.execute({

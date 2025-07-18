@@ -1,5 +1,5 @@
 import { Dice } from 'domain/entities/Dice'
-import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
+import { getAbilityModifier } from 'domain/metrics/getAbilityModifier'
 
 interface DTO {
   constitution: number
@@ -8,10 +8,6 @@ interface DTO {
 }
 
 export class CalculateHPUseCase {
-  constructor(
-    private readonly getAbilityModifierUseCase: GetAbilityModifierUseCase,
-  ) {}
-
   execute({ constitution, level, classHitDice }: DTO): number {
     const hitPointsForLevelOne = Dice.getMaxValue(classHitDice)
     let totalHitpointsFromDice = hitPointsForLevelOne
@@ -20,8 +16,6 @@ export class CalculateHPUseCase {
       totalHitpointsFromDice += Dice.rollAll(classHitDice)
     }
 
-    return (
-      this.getAbilityModifierUseCase.get(constitution) + totalHitpointsFromDice
-    )
+    return getAbilityModifier(constitution) + totalHitpointsFromDice
   }
 }

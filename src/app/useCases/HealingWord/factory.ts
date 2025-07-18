@@ -1,4 +1,4 @@
-import { makeFindCharacterService } from 'entities/Character/services/FindCharacter/factory'
+import { makeFindCharacterService } from 'domain/entities/Character/services/FindCharacter/factory'
 import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
 import { HealingWordUseCase } from '.'
 

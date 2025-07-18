@@ -1,7 +1,7 @@
 import {
   UpdateClassService,
   UpdateClassServiceParams,
-} from 'entities/Class/services/UpdateClass'
+} from 'domain/entities/Class/services/UpdateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

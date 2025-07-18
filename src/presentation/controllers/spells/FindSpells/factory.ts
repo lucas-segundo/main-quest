@@ -1,4 +1,4 @@
-import { makeFindSpellsService } from 'entities/Spell/services/FindSpells/factory'
+import { makeFindSpellsService } from 'domain/entities/Spell/services/FindSpells/factory'
 import { FindSpellsController } from '.'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

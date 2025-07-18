@@ -1,4 +1,4 @@
-import { mockCreateClassService } from 'entities/Class/services/CreateClass/mock'
+import { mockCreateClassService } from 'domain/entities/Class/services/CreateClass/mock'
 import * as request from 'supertest'
 
 describe('POST /classes', () => {

@@ -1,4 +1,4 @@
-import { Class, SpellcastingAbility } from 'entities/Class'
+import { Class, SpellcastingAbility } from 'domain/entities/Class'
 import { adaptPrismaClass, spellcastingAbilityMap } from './adapter'
 import { mockPrismaClass } from 'infra/prisma/data/Class/mock'
 

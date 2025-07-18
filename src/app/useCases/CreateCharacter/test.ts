@@ -1,14 +1,14 @@
 import { CreateCharacterUseCase } from '.'
 import { UniqueError } from 'app/errors/UniqueErro'
-import { mockCharacter } from 'entities/Character/mock'
+import { mockCharacter } from 'domain/entities/Character/mock'
 import {
   mockCreateCharacterService,
   mockCreateCharacterServiceParams,
-} from 'entities/Character/services/CreateCharacter/mock'
-import { mockFindCharacterService } from 'entities/Character/services/FindCharacter/mock'
+} from 'domain/entities/Character/services/CreateCharacter/mock'
+import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { makeCalculateHPUseCase } from '../CalculateHP/factory'
-import { mockFindClassService } from 'entities/Class/services/FindClass/mock'
-import { mockClass } from 'entities/Class/mock'
+import { mockFindClassService } from 'domain/entities/Class/services/FindClass/mock'
+import { mockClass } from 'domain/entities/Class/mock'
 
 const mockData = () => {
   const character = mockCharacter()

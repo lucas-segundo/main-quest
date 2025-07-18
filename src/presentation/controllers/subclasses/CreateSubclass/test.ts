@@ -1,5 +1,5 @@
 import { CreateSubclassController } from '.'
-import { mockSubclass } from 'entities/Subclass/mock'
+import { mockSubclass } from 'domain/entities/Subclass/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockCreateSubclassService,
   mockCreateSubclassServiceParams,
-} from 'entities/Subclass/services/CreateSubclass/mock'
+} from 'domain/entities/Subclass/services/CreateSubclass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

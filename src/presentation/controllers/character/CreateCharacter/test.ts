@@ -1,5 +1,5 @@
 import { CreateCharacterController } from '.'
-import { mockCharacter } from 'entities/Character/mock'
+import { mockCharacter } from 'domain/entities/Character/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -8,7 +8,7 @@ import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
-import { mockCreateCharacterServiceParams } from 'entities/Character/services/CreateCharacter/mock'
+import { mockCreateCharacterServiceParams } from 'domain/entities/Character/services/CreateCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { mockCreateCharacterUserCase } from 'app/useCases/CreateCharacter/mock'

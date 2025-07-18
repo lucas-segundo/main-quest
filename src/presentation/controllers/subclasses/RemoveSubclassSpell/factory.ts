@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { RemoveSubclassSpellController } from '.'
-import { makeRemoveSubclassSpellService } from 'entities/Subclass/services/RemoveSubclassSpell/factory'
+import { makeRemoveSubclassSpellService } from 'domain/entities/Subclass/services/RemoveSubclassSpell/factory'
 
 export const makeRemoveSubclassSpellController =
   (): RemoveSubclassSpellController => {

@@ -1,4 +1,4 @@
-import { Dice } from 'entities/Dice'
+import { Dice } from 'domain/entities/Dice'
 import { CalculateHPUseCase } from '.'
 import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
 

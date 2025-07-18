@@ -1,7 +1,7 @@
 import {
   FindCharacterService,
   FindCharacterServiceParams,
-} from 'entities/Character/services/FindCharacter'
+} from 'domain/entities/Character/services/FindCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {

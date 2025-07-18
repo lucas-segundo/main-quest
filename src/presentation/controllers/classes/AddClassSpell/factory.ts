@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { AddClassSpellController } from '.'
-import { makeAddClassSpellService } from 'entities/Class/services/AddClassSpell/factory'
+import { makeAddClassSpellService } from 'domain/entities/Class/services/AddClassSpell/factory'
 
 export const makeAddClassSpellController = (): AddClassSpellController => {
   const zodSchema = z.object({

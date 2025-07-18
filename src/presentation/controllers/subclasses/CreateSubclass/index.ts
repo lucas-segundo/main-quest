@@ -1,7 +1,7 @@
 import {
   CreateSubclassService,
   CreateSubclassServiceParams,
-} from 'entities/Subclass/services/CreateSubclass'
+} from 'domain/entities/Subclass/services/CreateSubclass'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {

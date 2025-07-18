@@ -1,4 +1,4 @@
-import { Dice } from 'entities/Dice'
+import { Dice } from 'domain/entities/Dice'
 import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
 
 interface DTO {

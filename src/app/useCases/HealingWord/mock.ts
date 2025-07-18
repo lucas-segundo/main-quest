@@ -1,4 +1,4 @@
-import { mockFindCharacterService } from 'entities/Character/services/FindCharacter/mock'
+import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { HealingWordDTO, HealingWordUseCase } from '.'
 import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
 import { faker } from '@faker-js/faker'

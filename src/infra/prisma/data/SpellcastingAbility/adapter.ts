@@ -1,4 +1,4 @@
-import { SpellcastingAbility } from 'entities/Class'
+import { SpellcastingAbility } from 'domain/entities/Class'
 import { PrismaSpellcastingAbility } from '.'
 
 const spellcastingAbilityMap = {

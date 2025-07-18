@@ -1,4 +1,4 @@
-import { AddSubclassSpellService } from 'entities/Subclass/services/AddSubclassSpell'
+import { AddSubclassSpellService } from 'domain/entities/Subclass/services/AddSubclassSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

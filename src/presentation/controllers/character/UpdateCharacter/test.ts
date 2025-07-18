@@ -1,5 +1,5 @@
 import { UpdateCharacterController, UpdateCharacterControllerParams } from '.'
-import { mockCharacter } from 'entities/Character/mock'
+import { mockCharacter } from 'domain/entities/Character/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockUpdateCharacterService,
   mockUpdateCharacterServiceParams,
-} from 'entities/Character/services/UpdateCharacter/mock'
+} from 'domain/entities/Character/services/UpdateCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 

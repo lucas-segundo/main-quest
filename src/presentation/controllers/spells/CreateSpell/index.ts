@@ -1,7 +1,7 @@
 import {
   CreateSpellService,
   CreateSpellServiceParams,
-} from 'entities/Spell/services/CreateSpell'
+} from 'domain/entities/Spell/services/CreateSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

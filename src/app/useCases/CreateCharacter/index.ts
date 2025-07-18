@@ -1,9 +1,9 @@
 import { UniqueError } from 'app/errors/UniqueErro'
-import { Character } from 'entities/Character'
-import { CreateCharacterService } from 'entities/Character/services/CreateCharacter'
-import { FindCharacterService } from 'entities/Character/services/FindCharacter'
+import { Character } from 'domain/entities/Character'
+import { CreateCharacterService } from 'domain/entities/Character/services/CreateCharacter'
+import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'
 import { CalculateHPUseCase } from '../CalculateHP'
-import { FindClassService } from 'entities/Class/services/FindClass'
+import { FindClassService } from 'domain/entities/Class/services/FindClass'
 
 type DTO = Pick<
   Character,

@@ -1,4 +1,4 @@
-import { makeFindClassesService } from 'entities/Class/services/FindClasses/factory'
+import { makeFindClassesService } from 'domain/entities/Class/services/FindClasses/factory'
 import { FindClassesController } from '.'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 

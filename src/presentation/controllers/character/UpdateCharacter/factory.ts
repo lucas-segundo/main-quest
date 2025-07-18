@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { UpdateCharacterController } from '.'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
-import { makeUpdateCharacterService } from 'entities/Character/services/UpdateCharacter/factory'
+import { makeUpdateCharacterService } from 'domain/entities/Character/services/UpdateCharacter/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeUpdateCharacterController = (): UpdateCharacterController => {

@@ -1,7 +1,7 @@
 import {
   UpdateCharacterService,
   UpdateCharacterServiceParams,
-} from 'entities/Character/services/UpdateCharacter'
+} from 'domain/entities/Character/services/UpdateCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

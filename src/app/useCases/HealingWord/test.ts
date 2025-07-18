@@ -1,7 +1,7 @@
-import { mockCharacter } from 'entities/Character/mock'
-import { mockFindCharacterService } from 'entities/Character/services/FindCharacter/mock'
+import { mockCharacter } from 'domain/entities/Character/mock'
+import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
-import { Dice } from 'entities/Dice'
+import { Dice } from 'domain/entities/Dice'
 import { HealingWordUseCase } from '.'
 import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
 

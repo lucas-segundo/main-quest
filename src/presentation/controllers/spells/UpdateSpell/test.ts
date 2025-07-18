@@ -1,5 +1,5 @@
 import { UpdateSpellController, UpdateSpellControllerParams } from '.'
-import { mockSpell } from 'entities/Spell/mock'
+import { mockSpell } from 'domain/entities/Spell/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockUpdateSpellService,
   mockUpdateSpellServiceParams,
-} from 'entities/Spell/services/UpdateSpell/mock'
+} from 'domain/entities/Spell/services/UpdateSpell/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

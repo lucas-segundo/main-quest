@@ -1,10 +1,10 @@
 import { FindCharacterController } from '.'
-import { mockCharacter } from 'entities/Character/mock'
+import { mockCharacter } from 'domain/entities/Character/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
   mockFindCharacterService,
   mockFindCharacterServiceParams,
-} from 'entities/Character/services/FindCharacter/mock'
+} from 'domain/entities/Character/services/FindCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 

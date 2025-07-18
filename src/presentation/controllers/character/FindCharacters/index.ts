@@ -1,7 +1,7 @@
 import {
   FindCharactersService,
   FindCharactersServiceParams,
-} from 'entities/Character/services/FindCharacters'
+} from 'domain/entities/Character/services/FindCharacters'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

@@ -1,7 +1,7 @@
 import {
   FindSpellsService,
   FindSpellsServiceParams,
-} from 'entities/Spell/services/FindSpells'
+} from 'domain/entities/Spell/services/FindSpells'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

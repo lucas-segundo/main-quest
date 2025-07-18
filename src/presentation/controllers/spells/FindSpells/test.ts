@@ -1,5 +1,5 @@
 import { FindSpellsController } from '.'
-import { mockSpell } from 'entities/Spell/mock'
+import { mockSpell } from 'domain/entities/Spell/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -8,7 +8,7 @@ import { RequiredParamError } from 'app/errors/RequiredParamError'
 import {
   mockFindSpellsService,
   mockFindSpellsServiceParams,
-} from 'entities/Spell/services/FindSpells/mock'
+} from 'domain/entities/Spell/services/FindSpells/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

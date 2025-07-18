@@ -1,4 +1,4 @@
-import { Subclass } from 'entities/Subclass'
+import { Subclass } from 'domain/entities/Subclass'
 import { PrismaSubclass } from 'infra/prisma/data/Subclass'
 
 export const adaptPrismaSubclass = (

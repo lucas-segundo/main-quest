@@ -1,7 +1,7 @@
-import { FindCharacterService } from 'entities/Character/services/FindCharacter'
-import { SpellcastingAbility } from 'entities/Class'
+import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'
+import { SpellcastingAbility } from 'domain/entities/Class'
 import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
-import { Dice } from 'entities/Dice'
+import { Dice } from 'domain/entities/Dice'
 
 export interface HealingWordDTO {
   characterID: string

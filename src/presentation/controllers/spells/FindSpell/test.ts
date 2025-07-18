@@ -1,10 +1,10 @@
 import { FindSpellController } from '.'
-import { mockSpell } from 'entities/Spell/mock'
+import { mockSpell } from 'domain/entities/Spell/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
   mockFindSpellService,
   mockFindSpellServiceParams,
-} from 'entities/Spell/services/FindSpell/mock'
+} from 'domain/entities/Spell/services/FindSpell/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

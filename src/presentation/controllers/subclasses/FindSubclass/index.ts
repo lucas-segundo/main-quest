@@ -1,5 +1,5 @@
-import { FindClassServiceParams } from 'entities/Class/services/FindClass'
-import { FindSubclassService } from 'entities/Subclass/services/FindSubclass'
+import { FindClassServiceParams } from 'domain/entities/Class/services/FindClass'
+import { FindSubclassService } from 'domain/entities/Subclass/services/FindSubclass'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,

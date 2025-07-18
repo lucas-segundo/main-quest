@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { UpdateSpellController } from '.'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
-import { makeUpdateSpellService } from 'entities/Spell/services/UpdateSpell/factory'
+import { makeUpdateSpellService } from 'domain/entities/Spell/services/UpdateSpell/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeUpdateSpellController = (): UpdateSpellController => {

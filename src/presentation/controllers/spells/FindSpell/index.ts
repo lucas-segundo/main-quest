@@ -1,7 +1,7 @@
 import {
   FindSpellService,
   FindSpellServiceParams,
-} from 'entities/Spell/services/FindSpell'
+} from 'domain/entities/Spell/services/FindSpell'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,

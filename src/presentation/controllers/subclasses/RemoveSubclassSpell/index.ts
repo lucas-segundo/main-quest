@@ -1,4 +1,4 @@
-import { RemoveSubclassSpellService } from 'entities/Subclass/services/RemoveSubclassSpell'
+import { RemoveSubclassSpellService } from 'domain/entities/Subclass/services/RemoveSubclassSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

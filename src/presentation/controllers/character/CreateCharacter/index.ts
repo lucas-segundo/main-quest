@@ -1,5 +1,5 @@
 import { CreateCharacterUseCase } from 'app/useCases/CreateCharacter'
-import { CreateCharacterServiceParams } from 'entities/Character/services/CreateCharacter'
+import { CreateCharacterServiceParams } from 'domain/entities/Character/services/CreateCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'

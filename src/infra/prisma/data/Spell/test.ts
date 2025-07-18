@@ -1,4 +1,4 @@
-import { Spell } from 'entities/Spell'
+import { Spell } from 'domain/entities/Spell'
 import { adaptPrismaSpell } from './adapter'
 import { mockPrismaSpell } from 'infra/prisma/data/Spell/mock'
 

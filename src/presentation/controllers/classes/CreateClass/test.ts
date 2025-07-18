@@ -1,5 +1,5 @@
 import { CreateClassController } from '.'
-import { mockClass } from 'entities/Class/mock'
+import { mockClass } from 'domain/entities/Class/mock'
 import {
   HTTPErrorResponse,
   HTTPResponse,
@@ -11,7 +11,7 @@ import { adaptValidationErrors } from 'presentation/helpers/adaptValidationError
 import {
   mockCreateClassService,
   mockCreateClassServiceParams,
-} from 'entities/Class/services/CreateClass/mock'
+} from 'domain/entities/Class/services/CreateClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {

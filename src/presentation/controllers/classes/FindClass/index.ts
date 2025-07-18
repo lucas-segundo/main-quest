@@ -1,7 +1,7 @@
 import {
   FindClassService,
   FindClassServiceParams,
-} from 'entities/Class/services/FindClass'
+} from 'domain/entities/Class/services/FindClass'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,

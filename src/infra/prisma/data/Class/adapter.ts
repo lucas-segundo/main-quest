@@ -1,4 +1,4 @@
-import { Class, SpellcastingAbility } from 'entities/Class'
+import { Class, SpellcastingAbility } from 'domain/entities/Class'
 import { adaptPrismaSubclass } from 'infra/prisma/data/Subclass/adapter'
 import { PrismaClass } from 'infra/prisma/data/Class'
 

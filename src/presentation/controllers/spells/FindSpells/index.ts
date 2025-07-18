@@ -1,7 +1,7 @@
 import {
-  FindSpellsRepository,
-  FindSpellsRepositoryParams,
-} from 'entities/Spell/repositories/FindSpells'
+  FindSpellsService,
+  FindSpellsServiceParams,
+} from 'entities/Spell/services/FindSpells'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -12,12 +12,11 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface FindSpellsControllerParams
-  extends FindSpellsRepositoryParams {}
+export interface FindSpellsControllerParams extends FindSpellsServiceParams {}
 
 export class FindSpellsController implements Controller {
   constructor(
-    private readonly findSpellsRepo: FindSpellsRepository,
+    private readonly findSpellsRepo: FindSpellsService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 
@@ -33,7 +32,7 @@ export class FindSpellsController implements Controller {
     }
 
     try {
-      return await this.respondWithSpells(params as FindSpellsRepositoryParams)
+      return await this.respondWithSpells(params as FindSpellsServiceParams)
     } catch (error) {
       return this.httpErrorHandler.handle(error)
     }

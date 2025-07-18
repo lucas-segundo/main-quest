@@ -1,7 +1,7 @@
 import {
-  FindClassRepository,
-  FindClassRepositoryParams,
-} from 'entities/Class/repositories/FindClass'
+  FindClassService,
+  FindClassServiceParams,
+} from 'entities/Class/services/FindClass'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
@@ -9,11 +9,11 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface FindClassControllerParams extends FindClassRepositoryParams {}
+export interface FindClassControllerParams extends FindClassServiceParams {}
 
 export class FindClassController implements Controller {
   constructor(
-    private readonly findClassRepo: FindClassRepository,
+    private readonly findClassRepo: FindClassService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 

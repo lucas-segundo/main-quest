@@ -9,13 +9,13 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockCreateSpellRepository,
-  mockCreateSpellRepositoryParams,
-} from 'entities/Spell/repositories/CreateSpell/mock'
+  mockCreateSpellService,
+  mockCreateSpellServiceParams,
+} from 'entities/Spell/services/CreateSpell/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockCreateSpellRepositoryParams()
+  const params = mockCreateSpellServiceParams()
   const createdSpell = {
     ...mockSpell(),
     ...params,
@@ -25,7 +25,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const classCreater = mockCreateSpellRepository()
+  const classCreater = mockCreateSpellService()
   const createSpellSpy = jest.spyOn(classCreater, 'create')
   const dataValidation = mockDataValidator()
 

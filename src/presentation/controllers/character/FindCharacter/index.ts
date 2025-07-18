@@ -1,7 +1,7 @@
 import {
-  FindCharacterRepository,
-  FindCharacterRepositoryParams,
-} from 'entities/Character/repositories/FindCharacter'
+  FindCharacterService,
+  FindCharacterServiceParams,
+} from 'entities/Character/services/FindCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
@@ -11,11 +11,11 @@ import {
 } from 'presentation/interfaces/Controller'
 
 export interface FindCharacterControllerParams
-  extends FindCharacterRepositoryParams {}
+  extends FindCharacterServiceParams {}
 
 export class FindCharacterController implements Controller {
   constructor(
-    private readonly findCharacterRepo: FindCharacterRepository,
+    private readonly findCharacterRepo: FindCharacterService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 

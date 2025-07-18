@@ -1,10 +1,10 @@
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { FindCharacterController } from '.'
-import { makeFindCharacterRepository } from 'entities/Character/repositories/FindCharacter/factory'
+import { makeFindCharacterService } from 'entities/Character/services/FindCharacter/factory'
 
 export const makeFindCharacterController = (): FindCharacterController => {
   return new FindCharacterController(
-    makeFindCharacterRepository(),
+    makeFindCharacterService(),
     makeHTTPErrorHandler(),
   )
 }

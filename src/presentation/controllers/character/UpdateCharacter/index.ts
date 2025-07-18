@@ -1,7 +1,7 @@
 import {
-  UpdateCharacterRepository,
-  UpdateCharacterRepositoryParams,
-} from 'entities/Character/repositories/UpdateCharacter'
+  UpdateCharacterService,
+  UpdateCharacterServiceParams,
+} from 'entities/Character/services/UpdateCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -14,12 +14,12 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface UpdateCharacterControllerParams {
   id: string
-  data: UpdateCharacterRepositoryParams
+  data: UpdateCharacterServiceParams
 }
 
 export class UpdateCharacterController implements Controller {
   constructor(
-    private readonly characterUpdater: UpdateCharacterRepository,
+    private readonly characterUpdater: UpdateCharacterService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

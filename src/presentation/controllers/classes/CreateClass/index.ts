@@ -1,7 +1,7 @@
 import {
-  CreateClassRepository,
-  CreateClassRepositoryParams,
-} from 'entities/Class/repositories/CreateClass'
+  CreateClassService,
+  CreateClassServiceParams,
+} from 'entities/Class/services/CreateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -12,12 +12,11 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface CreateClassControllerParams
-  extends CreateClassRepositoryParams {}
+export interface CreateClassControllerParams extends CreateClassServiceParams {}
 
 export class CreateClassController implements Controller {
   constructor(
-    private readonly createClassRepo: CreateClassRepository,
+    private readonly createClassRepo: CreateClassService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

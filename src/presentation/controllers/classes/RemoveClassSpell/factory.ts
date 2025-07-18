@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { RemoveClassSpellController } from '.'
-import { makeRemoveClassSpellRepository } from 'entities/Class/repositories/RemoveClassSpell/factory'
+import { makeRemoveClassSpellService } from 'entities/Class/services/RemoveClassSpell/factory'
 
 export const makeRemoveClassSpellController =
   (): RemoveClassSpellController => {
@@ -13,7 +13,7 @@ export const makeRemoveClassSpellController =
     const dataValidator = new ZodDataValidator(zodSchema)
 
     return new RemoveClassSpellController(
-      makeRemoveClassSpellRepository(),
+      makeRemoveClassSpellService(),
       dataValidator,
       makeHTTPErrorHandler(),
     )

@@ -1,7 +1,7 @@
 import {
-  FindCharactersRepository,
-  FindCharactersRepositoryParams,
-} from 'entities/Character/repositories/FindCharacters'
+  FindCharactersService,
+  FindCharactersServiceParams,
+} from 'entities/Character/services/FindCharacters'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -13,11 +13,11 @@ import {
 } from 'presentation/interfaces/Controller'
 
 export interface FindCharactersControllerParams
-  extends FindCharactersRepositoryParams {}
+  extends FindCharactersServiceParams {}
 
 export class FindCharactersController implements Controller {
   constructor(
-    private readonly findCharactersRepo: FindCharactersRepository,
+    private readonly findCharactersRepo: FindCharactersService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 
@@ -34,7 +34,7 @@ export class FindCharactersController implements Controller {
 
     try {
       return await this.respondWithCharacters(
-        params as FindCharactersRepositoryParams,
+        params as FindCharactersServiceParams,
       )
     } catch (error) {
       return this.httpErrorHandler.handle(error)

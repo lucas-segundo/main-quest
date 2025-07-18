@@ -1,4 +1,4 @@
-import { RemoveClassSpellRepository } from 'entities/Class/repositories/RemoveClassSpell'
+import { RemoveClassSpellService } from 'entities/Class/services/RemoveClassSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -11,7 +11,7 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export class RemoveClassSpellController implements Controller {
   constructor(
-    private readonly removeClassSpellRepo: RemoveClassSpellRepository,
+    private readonly removeClassSpellRepo: RemoveClassSpellService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

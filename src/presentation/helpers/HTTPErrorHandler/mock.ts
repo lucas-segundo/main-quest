@@ -1,7 +1,7 @@
-import { mockLogErrorRepository } from 'app/loggers/LogError/mock'
+import { mockLogErrorService } from 'app/loggers/LogError/mock'
 import { HTTPErrorHandler } from '.'
 
 export const mockHTTPErrorHandler = () => {
-  const errorRepo = mockLogErrorRepository()
+  const errorRepo = mockLogErrorService()
   return new HTTPErrorHandler(errorRepo)
 }

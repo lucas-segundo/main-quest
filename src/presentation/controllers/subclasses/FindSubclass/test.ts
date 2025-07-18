@@ -2,20 +2,20 @@ import { mockSubclass } from 'entities/Subclass/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import { FindSubclassController } from '.'
 import {
-  mockFindSubclassRepository,
-  mockFindSubclassRepositoryParams,
-} from 'entities/Subclass/repositories/FindSubclass/mock'
+  mockFindSubclassService,
+  mockFindSubclassServiceParams,
+} from 'entities/Subclass/services/FindSubclass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockFindSubclassRepositoryParams()
+  const params = mockFindSubclassServiceParams()
   const foundSubclass = mockSubclass()
 
   return { params, foundSubclass }
 }
 
 const makeSUT = () => {
-  const findSubclassRepo = mockFindSubclassRepository()
+  const findSubclassRepo = mockFindSubclassService()
   const findSubclassSpy = jest.spyOn(findSubclassRepo, 'find')
 
   const httpErrorHandler = mockHTTPErrorHandler()
@@ -30,7 +30,7 @@ describe('SubclassFinder', () => {
   it('should call find with right params', async () => {
     const { sut, findSubclassRepo } = makeSUT()
 
-    const params = mockFindSubclassRepositoryParams()
+    const params = mockFindSubclassServiceParams()
     await sut.handle(params)
 
     expect(findSubclassRepo.find).toHaveBeenCalledWith(params)
@@ -42,7 +42,7 @@ describe('SubclassFinder', () => {
     const foundSubclass = mockSubclass()
     findSubclassSpy.mockResolvedValue(foundSubclass)
 
-    const params = mockFindSubclassRepositoryParams()
+    const params = mockFindSubclassServiceParams()
     const response = (await sut.handle(params)) as HTTPResponse
 
     expect(response.statusCode).toBe(200)

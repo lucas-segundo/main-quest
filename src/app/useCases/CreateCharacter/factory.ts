@@ -1,14 +1,14 @@
-import { makeCreateCharacterRepository } from 'entities/Character/repositories/CreateCharacter/factory'
+import { makeCreateCharacterService } from 'entities/Character/services/CreateCharacter/factory'
 import { CreateCharacterUseCase } from '.'
-import { makeFindCharacterRepository } from 'entities/Character/repositories/FindCharacter/factory'
-import { makeFindClassRepository } from 'entities/Class/repositories/FindClass/factory'
+import { makeFindCharacterService } from 'entities/Character/services/FindCharacter/factory'
+import { makeFindClassService } from 'entities/Class/services/FindClass/factory'
 import { makeCalculateHPUseCase } from '../CalculateHP/factory'
 
 export const makeCreateCharacterUserCase = () => {
   return new CreateCharacterUseCase(
-    makeCreateCharacterRepository(),
-    makeFindCharacterRepository(),
-    makeFindClassRepository(),
+    makeCreateCharacterService(),
+    makeFindCharacterService(),
+    makeFindClassService(),
     makeCalculateHPUseCase(),
   )
 }

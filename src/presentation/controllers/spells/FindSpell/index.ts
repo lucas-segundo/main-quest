@@ -1,7 +1,7 @@
 import {
-  FindSpellRepository,
-  FindSpellRepositoryParams,
-} from 'entities/Spell/repositories/FindSpell'
+  FindSpellService,
+  FindSpellServiceParams,
+} from 'entities/Spell/services/FindSpell'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
@@ -9,11 +9,11 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface FindSpellControllerParams extends FindSpellRepositoryParams {}
+export interface FindSpellControllerParams extends FindSpellServiceParams {}
 
 export class FindSpellController implements Controller {
   constructor(
-    private readonly findSpellRepo: FindSpellRepository,
+    private readonly findSpellRepo: FindSpellService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 

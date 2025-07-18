@@ -1,9 +1,9 @@
-import { mockCreateClassRepository } from 'entities/Class/repositories/CreateClass/mock'
+import { mockCreateClassService } from 'entities/Class/services/CreateClass/mock'
 import * as request from 'supertest'
 
 describe('POST /classes', () => {
   it('should create a new class and return it', () => {
-    const body = mockCreateClassRepository()
+    const body = mockCreateClassService()
 
     return request(process.env.API_BASE_URL)
       .post('/classes')

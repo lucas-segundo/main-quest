@@ -1,7 +1,7 @@
 import {
-  FindClassesRepository,
-  FindClassesRepositoryParams,
-} from 'entities/Class/repositories/FindClasses'
+  FindClassesService,
+  FindClassesServiceParams,
+} from 'entities/Class/services/FindClasses'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -12,12 +12,11 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface FindClassesControllerParams
-  extends FindClassesRepositoryParams {}
+export interface FindClassesControllerParams extends FindClassesServiceParams {}
 
 export class FindClassesController implements Controller {
   constructor(
-    private readonly findClassesRepo: FindClassesRepository,
+    private readonly findClassesRepo: FindClassesService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 
@@ -33,9 +32,7 @@ export class FindClassesController implements Controller {
     }
 
     try {
-      return await this.respondWithClasses(
-        params as FindClassesRepositoryParams,
-      )
+      return await this.respondWithClasses(params as FindClassesServiceParams)
     } catch (error) {
       return this.httpErrorHandler.handle(error)
     }

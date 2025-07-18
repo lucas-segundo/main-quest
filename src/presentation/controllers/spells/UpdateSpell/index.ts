@@ -1,7 +1,7 @@
 import {
-  UpdateSpellRepository,
-  UpdateSpellRepositoryParams,
-} from 'entities/Spell/repositories/UpdateSpell'
+  UpdateSpellService,
+  UpdateSpellServiceParams,
+} from 'entities/Spell/services/UpdateSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -14,12 +14,12 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface UpdateSpellControllerParams {
   id: string
-  data: UpdateSpellRepositoryParams
+  data: UpdateSpellServiceParams
 }
 
 export class UpdateSpellController implements Controller {
   constructor(
-    private readonly classUpdater: UpdateSpellRepository,
+    private readonly classUpdater: UpdateSpellService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

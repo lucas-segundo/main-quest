@@ -1,4 +1,4 @@
-import { AddSubclassSpellRepository } from 'entities/Subclass/repositories/AddSubclassSpell'
+import { AddSubclassSpellService } from 'entities/Subclass/services/AddSubclassSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -11,7 +11,7 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export class AddSubclassSpellController implements Controller {
   constructor(
-    private readonly addSubclassSpellRepo: AddSubclassSpellRepository,
+    private readonly addSubclassSpellRepo: AddSubclassSpellService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

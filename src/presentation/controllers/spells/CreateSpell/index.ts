@@ -1,7 +1,7 @@
 import {
-  CreateSpellRepository,
-  CreateSpellRepositoryParams,
-} from 'entities/Spell/repositories/CreateSpell'
+  CreateSpellService,
+  CreateSpellServiceParams,
+} from 'entities/Spell/services/CreateSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -12,12 +12,11 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface CreateSpellControllerParams
-  extends CreateSpellRepositoryParams {}
+export interface CreateSpellControllerParams extends CreateSpellServiceParams {}
 
 export class CreateSpellController implements Controller {
   constructor(
-    private readonly createSpellRepo: CreateSpellRepository,
+    private readonly createSpellRepo: CreateSpellService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

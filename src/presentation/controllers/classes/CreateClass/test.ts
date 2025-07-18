@@ -9,13 +9,13 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockCreateClassRepository,
-  mockCreateClassRepositoryParams,
-} from 'entities/Class/repositories/CreateClass/mock'
+  mockCreateClassService,
+  mockCreateClassServiceParams,
+} from 'entities/Class/services/CreateClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockCreateClassRepositoryParams()
+  const params = mockCreateClassServiceParams()
   const createdClass = {
     ...mockClass(),
     ...params,
@@ -25,7 +25,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const classCreater = mockCreateClassRepository()
+  const classCreater = mockCreateClassService()
   const createClassSpy = jest.spyOn(classCreater, 'create')
   const dataValidation = mockDataValidator()
 

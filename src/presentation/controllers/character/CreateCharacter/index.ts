@@ -1,5 +1,5 @@
 import { CreateCharacterUseCase } from 'app/useCases/CreateCharacter'
-import { CreateCharacterRepositoryParams } from 'entities/Character/repositories/CreateCharacter'
+import { CreateCharacterServiceParams } from 'entities/Character/services/CreateCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -11,7 +11,7 @@ import {
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface CreateCharacterControllerParams
-  extends CreateCharacterRepositoryParams {}
+  extends CreateCharacterServiceParams {}
 
 export class CreateCharacterController implements Controller {
   constructor(

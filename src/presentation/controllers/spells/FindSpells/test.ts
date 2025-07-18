@@ -6,20 +6,20 @@ import {
 } from 'presentation/interfaces/Controller'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import {
-  mockFindSpellsRepository,
-  mockFindSpellsRepositoryParams,
-} from 'entities/Spell/repositories/FindSpells/mock'
+  mockFindSpellsService,
+  mockFindSpellsServiceParams,
+} from 'entities/Spell/services/FindSpells/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockFindSpellsRepositoryParams()
+  const params = mockFindSpellsServiceParams()
   const foundSpell = mockSpell()
 
   return { params, foundSpell }
 }
 
 const makeSUT = () => {
-  const findSpells = mockFindSpellsRepository()
+  const findSpells = mockFindSpellsService()
   const findSpellsSpy = jest.spyOn(findSpells, 'find')
 
   const httpErrorHandler = mockHTTPErrorHandler()
@@ -34,7 +34,7 @@ describe('SpellsFinder', () => {
   it('should call find with right params', async () => {
     const { sut, findSpells } = makeSUT()
 
-    const params = mockFindSpellsRepositoryParams()
+    const params = mockFindSpellsServiceParams()
     await sut.handle(params)
 
     expect(findSpells.find).toHaveBeenCalledWith(params)
@@ -46,7 +46,7 @@ describe('SpellsFinder', () => {
     const foundSpell = mockSpell()
     findSpellsSpy.mockResolvedValue([foundSpell])
 
-    const params = mockFindSpellsRepositoryParams()
+    const params = mockFindSpellsServiceParams()
     const response = (await sut.handle(params)) as HTTPResponse
 
     expect(response.statusCode).toBe(200)

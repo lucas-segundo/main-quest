@@ -1,11 +1,11 @@
-import { mockFindCharacterRepository } from 'entities/Character/repositories/FindCharacter/mock'
+import { mockFindCharacterService } from 'entities/Character/services/FindCharacter/mock'
 import { HealingWordDTO, HealingWordUseCase } from '.'
 import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
 import { faker } from '@faker-js/faker'
 
 export const mockHealingWordUseCase = () => {
   return new HealingWordUseCase(
-    mockFindCharacterRepository(),
+    mockFindCharacterService(),
     makeGetAbilityModifierUseCase(),
   )
 }

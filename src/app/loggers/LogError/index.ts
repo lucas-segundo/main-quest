@@ -1,7 +1,7 @@
-export interface LogErrorRepositoryParams {
+export interface LogErrorServiceParams {
   error: Error
 }
 
-export interface LogErrorRepository {
-  log(params: LogErrorRepositoryParams): void
+export interface LogErrorService {
+  log(params: LogErrorServiceParams): void
 }

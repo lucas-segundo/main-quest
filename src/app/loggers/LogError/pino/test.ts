@@ -1,15 +1,15 @@
 import { mockPinoLogger } from 'infra/pino/mock'
-import { PinoLogErrorRepository } from '.'
+import { PinoLogErrorService } from '.'
 import { Logger } from 'pino'
-import { LogErrorRepositoryParams } from '..'
-import { mockLogErrorRepositoryParams } from '../mock'
+import { LogErrorServiceParams } from '..'
+import { mockLogErrorServiceParams } from '../mock'
 
-describe('LogErrorRepositorysitory', () => {
+describe('LogErrorServicesitory', () => {
   it('should call pino with right params', () => {
     const pinoLogger = mockPinoLogger()
-    const sut = new PinoLogErrorRepository(pinoLogger as Logger)
+    const sut = new PinoLogErrorService(pinoLogger as Logger)
 
-    const params: LogErrorRepositoryParams = mockLogErrorRepositoryParams()
+    const params: LogErrorServiceParams = mockLogErrorServiceParams()
     sut.log(params)
 
     expect(pinoLogger.error).toHaveBeenCalledWith(params.error)

@@ -2,72 +2,72 @@ import { CreateCharacterUseCase } from '.'
 import { UniqueError } from 'app/errors/UniqueErro'
 import { mockCharacter } from 'entities/Character/mock'
 import {
-  mockCreateCharacterRepository,
-  mockCreateCharacterRepositoryParams,
-} from 'entities/Character/repositories/CreateCharacter/mock'
-import { mockFindCharacterRepository } from 'entities/Character/repositories/FindCharacter/mock'
+  mockCreateCharacterService,
+  mockCreateCharacterServiceParams,
+} from 'entities/Character/services/CreateCharacter/mock'
+import { mockFindCharacterService } from 'entities/Character/services/FindCharacter/mock'
 import { makeCalculateHPUseCase } from '../CalculateHP/factory'
-import { mockFindClassRepository } from 'entities/Class/repositories/FindClass/mock'
+import { mockFindClassService } from 'entities/Class/services/FindClass/mock'
 import { mockClass } from 'entities/Class/mock'
 
 const mockData = () => {
   const character = mockCharacter()
-  const params = mockCreateCharacterRepositoryParams()
+  const params = mockCreateCharacterServiceParams()
   const classData = mockClass()
 
   return { character, params, classData }
 }
 
 const makeSUT = () => {
-  const createCharacterRepository = mockCreateCharacterRepository()
-  const findCharacterRepository = mockFindCharacterRepository()
-  const findClassRepository = mockFindClassRepository()
+  const createCharacterService = mockCreateCharacterService()
+  const findCharacterService = mockFindCharacterService()
+  const findClassService = mockFindClassService()
   const calculateHPUseCase = makeCalculateHPUseCase()
 
   const sut = new CreateCharacterUseCase(
-    createCharacterRepository,
-    findCharacterRepository,
-    findClassRepository,
+    createCharacterService,
+    findCharacterService,
+    findClassService,
     calculateHPUseCase,
   )
 
   return {
     sut,
-    createCharacterRepository,
-    findCharacterRepository,
-    findClassRepository,
+    createCharacterService,
+    findCharacterService,
+    findClassService,
     calculateHPUseCase,
   }
 }
 
 describe('CreateCharacterUseCase', () => {
   it('should throw UniqueError if character already exists', async () => {
-    const { sut, findCharacterRepository, findClassRepository } = makeSUT()
+    const { sut, findCharacterService, findClassService } = makeSUT()
     const { character, params, classData } = mockData()
 
-    findCharacterRepository.find.mockResolvedValue(character)
-    findClassRepository.find.mockResolvedValue(classData)
+    findCharacterService.find.mockResolvedValue(character)
+    findClassService.find.mockResolvedValue(classData)
 
     await expect(sut.execute(params)).rejects.toThrow(UniqueError)
 
-    expect(findCharacterRepository.find).toHaveBeenCalledWith({
+    expect(findCharacterService.find).toHaveBeenCalledWith({
       filter: { name: { like: params.name } },
     })
   })
 
-  it('should call createCharacterRepository with correct params if character does not exist', async () => {
+  it('should call createCharacterService with correct params if character does not exist', async () => {
     const {
       sut,
-      findCharacterRepository,
-      createCharacterRepository,
-      findClassRepository,
+      findCharacterService,
+      createCharacterService,
+      findClassService,
       calculateHPUseCase,
     } = makeSUT()
     const { character, params, classData } = mockData()
 
-    findCharacterRepository.find.mockResolvedValue(null)
-    createCharacterRepository.create.mockResolvedValue(character)
-    findClassRepository.find.mockResolvedValue(classData)
+    findCharacterService.find.mockResolvedValue(null)
+    createCharacterService.create.mockResolvedValue(character)
+    findClassService.find.mockResolvedValue(classData)
 
     params.hitPoints = 30
     params.maxHitPoints = 30
@@ -75,7 +75,7 @@ describe('CreateCharacterUseCase', () => {
 
     const result = await sut.execute(params)
 
-    expect(createCharacterRepository.create).toHaveBeenCalledWith(params)
+    expect(createCharacterService.create).toHaveBeenCalledWith(params)
     expect(result).toEqual(character)
   })
 })

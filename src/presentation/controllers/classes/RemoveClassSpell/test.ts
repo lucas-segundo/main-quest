@@ -9,7 +9,7 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
-import { mockRemoveClassSpellRepository } from 'entities/Class/repositories/RemoveClassSpell/mock'
+import { mockRemoveClassSpellService } from 'entities/Class/services/RemoveClassSpell/mock'
 
 const mockData = () => {
   const classID = faker.string.uuid()
@@ -22,7 +22,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const removeClassSpellRepo = mockRemoveClassSpellRepository()
+  const removeClassSpellRepo = mockRemoveClassSpellService()
   const removeClassSpellSpy = jest.spyOn(removeClassSpellRepo, 'remove')
 
   const httpErrorHandler = mockHTTPErrorHandler()

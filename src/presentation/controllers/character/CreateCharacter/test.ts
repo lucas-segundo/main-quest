@@ -8,13 +8,13 @@ import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
-import { mockCreateCharacterRepositoryParams } from 'entities/Character/repositories/CreateCharacter/mock'
+import { mockCreateCharacterServiceParams } from 'entities/Character/services/CreateCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { mockCreateCharacterUserCase } from 'app/useCases/CreateCharacter/mock'
 
 const mockData = () => {
-  const params = mockCreateCharacterRepositoryParams()
+  const params = mockCreateCharacterServiceParams()
   const createdCharacter = {
     ...mockCharacter(),
     ...params,

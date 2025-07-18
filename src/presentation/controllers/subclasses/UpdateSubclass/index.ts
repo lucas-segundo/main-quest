@@ -1,7 +1,7 @@
 import {
-  UpdateSubclassRepository,
-  UpdateSubclassRepositoryParams,
-} from 'entities/Subclass/repositories/UpdateSubclass'
+  UpdateSubclassService,
+  UpdateSubclassServiceParams,
+} from 'entities/Subclass/services/UpdateSubclass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -14,12 +14,12 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface UpdateSubclassControllerParams {
   id: string
-  data: UpdateSubclassRepositoryParams
+  data: UpdateSubclassServiceParams
 }
 
 export class UpdateSubclassController implements Controller {
   constructor(
-    private readonly updateClassRepo: UpdateSubclassRepository,
+    private readonly updateClassRepo: UpdateSubclassService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

@@ -1,7 +1,7 @@
 import { pinoLogger } from 'infra/pino'
-import { PinoLogErrorRepository } from './pino'
-import { LogErrorRepository } from '.'
+import { PinoLogErrorService } from './pino'
+import { LogErrorService } from '.'
 
-export const makeLogErrorRepository = (): LogErrorRepository => {
-  return new PinoLogErrorRepository(pinoLogger)
+export const makeLogErrorService = (): LogErrorService => {
+  return new PinoLogErrorService(pinoLogger)
 }

@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { UpdateSubclassController } from '.'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
-import { makeUpdateClassRepository } from 'entities/Class/repositories/UpdateClass/factory'
+import { makeUpdateClassService } from 'entities/Class/services/UpdateClass/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeSubclassUpdaterController = (): UpdateSubclassController => {
@@ -10,7 +10,7 @@ export const makeSubclassUpdaterController = (): UpdateSubclassController => {
   })
 
   return new UpdateSubclassController(
-    makeUpdateClassRepository(),
+    makeUpdateClassService(),
     new ZodDataValidator(zodSchema),
     makeHTTPErrorHandler(),
   )

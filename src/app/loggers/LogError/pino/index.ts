@@ -1,10 +1,10 @@
 import { Logger } from 'pino'
-import { LogErrorRepository, LogErrorRepositoryParams } from '..'
+import { LogErrorService, LogErrorServiceParams } from '..'
 
-export class PinoLogErrorRepository implements LogErrorRepository {
+export class PinoLogErrorService implements LogErrorService {
   constructor(private readonly pinoLogger: Logger) {}
 
-  log({ error }: LogErrorRepositoryParams): void {
+  log({ error }: LogErrorServiceParams): void {
     this.pinoLogger.error(error)
   }
 }

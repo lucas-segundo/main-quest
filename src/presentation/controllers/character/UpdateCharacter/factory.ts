@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { UpdateCharacterController } from '.'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
-import { makeUpdateCharacterRepository } from 'entities/Character/repositories/UpdateCharacter/factory'
+import { makeUpdateCharacterService } from 'entities/Character/services/UpdateCharacter/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeUpdateCharacterController = (): UpdateCharacterController => {
@@ -11,7 +11,7 @@ export const makeUpdateCharacterController = (): UpdateCharacterController => {
   const dataValidator = new ZodDataValidator(zodSchema)
 
   return new UpdateCharacterController(
-    makeUpdateCharacterRepository(),
+    makeUpdateCharacterService(),
     dataValidator,
     makeHTTPErrorHandler(),
   )

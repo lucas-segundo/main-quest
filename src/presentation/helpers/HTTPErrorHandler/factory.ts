@@ -1,8 +1,8 @@
 import { HTTPErrorHandler } from '.'
-import { makeLogErrorRepository } from 'app/loggers/LogError/factory'
+import { makeLogErrorService } from 'app/loggers/LogError/factory'
 
 export const makeHTTPErrorHandler = () => {
-  const logErrorRepo = makeLogErrorRepository()
+  const logErrorRepo = makeLogErrorService()
 
   return new HTTPErrorHandler(logErrorRepo)
 }

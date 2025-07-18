@@ -9,13 +9,13 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockCreateSubclassRepository,
-  mockCreateSubclassRepositoryParams,
-} from 'entities/Subclass/repositories/CreateSubclass/mock'
+  mockCreateSubclassService,
+  mockCreateSubclassServiceParams,
+} from 'entities/Subclass/services/CreateSubclass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockCreateSubclassRepositoryParams()
+  const params = mockCreateSubclassServiceParams()
   const createdSubclass = {
     ...mockSubclass(),
     ...params,
@@ -25,7 +25,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const subclassCreater = mockCreateSubclassRepository()
+  const subclassCreater = mockCreateSubclassService()
   const subclassCreateSpy = jest.spyOn(subclassCreater, 'create')
   const dataValidation = mockDataValidator()
 
@@ -52,7 +52,7 @@ const makeSUT = () => {
 describe('SubclassCreater', () => {
   it('should call creater with right params', async () => {
     const { sut, subclassCreater } = makeSUT()
-    const subclassToCreate = mockCreateSubclassRepositoryParams()
+    const subclassToCreate = mockCreateSubclassServiceParams()
 
     await sut.handle(subclassToCreate)
     expect(subclassCreater.create).toHaveBeenCalledWith(subclassToCreate)

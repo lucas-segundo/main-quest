@@ -1,10 +1,10 @@
-import { mockLogErrorRepository } from 'app/loggers/LogError/mock'
+import { mockLogErrorService } from 'app/loggers/LogError/mock'
 import { HTTPErrorHandler } from '.'
 import { KnownError } from 'app/errors/KnownError'
 import { UnexpectedError } from 'app/errors/UnexpectedError'
 
 const makeSUT = () => {
-  const logErrorRepo = mockLogErrorRepository()
+  const logErrorRepo = mockLogErrorService()
   const sut = new HTTPErrorHandler(logErrorRepo)
 
   return {

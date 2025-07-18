@@ -1,7 +1,7 @@
 import {
-  UpdateClassRepository,
-  UpdateClassRepositoryParams,
-} from 'entities/Class/repositories/UpdateClass'
+  UpdateClassService,
+  UpdateClassServiceParams,
+} from 'entities/Class/services/UpdateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -14,12 +14,12 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface UpdateClassControllerParams {
   id: string
-  data: UpdateClassRepositoryParams
+  data: UpdateClassServiceParams
 }
 
 export class UpdateClassController implements Controller {
   constructor(
-    private readonly classUpdater: UpdateClassRepository,
+    private readonly classUpdater: UpdateClassService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

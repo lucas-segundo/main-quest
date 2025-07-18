@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { CreateClassController } from '.'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
-import { makeCreateClassRepository } from 'entities/Class/repositories/CreateClass/factory'
+import { makeCreateClassService } from 'entities/Class/services/CreateClass/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeCreateClassController = (): CreateClassController => {
@@ -11,7 +11,7 @@ export const makeCreateClassController = (): CreateClassController => {
   const dataValidator = new ZodDataValidator(zodSchema)
 
   return new CreateClassController(
-    makeCreateClassRepository(),
+    makeCreateClassService(),
     dataValidator,
     makeHTTPErrorHandler(),
   )

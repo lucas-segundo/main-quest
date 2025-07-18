@@ -1,13 +1,10 @@
-import { makeFindCharacterRepository } from 'entities/Character/repositories/FindCharacter/factory'
+import { makeFindCharacterService } from 'entities/Character/services/FindCharacter/factory'
 import { makeGetAbilityModifierUseCase } from '../GetAbilityModifier/factory'
 import { HealingWordUseCase } from '.'
 
 export const makeHealingWordUseCase = () => {
-  const findCharacterRepository = makeFindCharacterRepository()
+  const findCharacterService = makeFindCharacterService()
   const getAbilityModifierUseCase = makeGetAbilityModifierUseCase()
 
-  return new HealingWordUseCase(
-    findCharacterRepository,
-    getAbilityModifierUseCase,
-  )
+  return new HealingWordUseCase(findCharacterService, getAbilityModifierUseCase)
 }

@@ -6,21 +6,21 @@ import {
 } from 'presentation/interfaces/Controller'
 import { RequiredParamError } from 'app/errors/RequiredParamError'
 import {
-  mockFindCharactersRepository,
-  mockFindCharactersRepositoryParams,
-} from 'entities/Character/repositories/FindCharacters/mock'
+  mockFindCharactersService,
+  mockFindCharactersServiceParams,
+} from 'entities/Character/services/FindCharacters/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 
 const mockData = () => {
-  const params = mockFindCharactersRepositoryParams()
+  const params = mockFindCharactersServiceParams()
   const foundCharacter = mockCharacter()
 
   return { params, foundCharacter }
 }
 
 const makeSUT = () => {
-  const findCharacters = mockFindCharactersRepository()
+  const findCharacters = mockFindCharactersService()
   const findCharactersSpy = jest.spyOn(findCharacters, 'find')
 
   const httpErrorHandler = mockHTTPErrorHandler()
@@ -35,7 +35,7 @@ describe('CharactersFinder', () => {
   it('should call find with right params', async () => {
     const { sut, findCharacters } = makeSUT()
 
-    const params = mockFindCharactersRepositoryParams()
+    const params = mockFindCharactersServiceParams()
     await sut.handle(params)
 
     expect(findCharacters.find).toHaveBeenCalledWith(params)
@@ -47,7 +47,7 @@ describe('CharactersFinder', () => {
     const foundCharacter = mockCharacter()
     findCharactersSpy.mockResolvedValue([foundCharacter])
 
-    const params = mockFindCharactersRepositoryParams()
+    const params = mockFindCharactersServiceParams()
     const response = (await sut.handle(params)) as HTTPResponse
 
     expect(response.statusCode).toBe(HTTPStatusCode.OK)

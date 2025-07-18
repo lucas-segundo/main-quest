@@ -1,4 +1,4 @@
-import { AddClassSpellRepository } from 'entities/Class/repositories/AddClassSpell'
+import { AddClassSpellService } from 'entities/Class/services/AddClassSpell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -11,7 +11,7 @@ import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export class AddClassSpellController implements Controller {
   constructor(
-    private readonly addClassSpellRepo: AddClassSpellRepository,
+    private readonly addClassSpellRepo: AddClassSpellService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

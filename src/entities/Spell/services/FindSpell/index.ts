@@ -1,0 +1,15 @@
+import { Spell } from 'entities/Spell'
+
+interface Filter {
+  id: {
+    equals: string
+  }
+}
+
+export interface FindSpellServiceParams {
+  filter: Filter
+}
+
+export interface FindSpellService {
+  find(params: FindSpellServiceParams): Promise<Spell>
+}

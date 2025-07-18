@@ -9,13 +9,13 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockUpdateClassRepository,
-  mockUpdateClassRepositoryParams,
-} from 'entities/Class/repositories/UpdateClass/mock'
+  mockUpdateClassService,
+  mockUpdateClassServiceParams,
+} from 'entities/Class/services/UpdateClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const dataToUpdate = mockUpdateClassRepositoryParams()
+  const dataToUpdate = mockUpdateClassServiceParams()
 
   const params: UpdateClassControllerParams = {
     id: faker.string.uuid(),
@@ -26,7 +26,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const classUpdater = mockUpdateClassRepository()
+  const classUpdater = mockUpdateClassService()
   const updateClassSpy = jest.spyOn(classUpdater, 'update')
 
   const httpErrorHandler = mockHTTPErrorHandler()

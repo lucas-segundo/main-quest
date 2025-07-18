@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { CreateSubclassController } from '.'
-import { makeCreateSubclassRepository } from 'entities/Subclass/repositories/CreateSubclass/factory'
+import { makeCreateSubclassService } from 'entities/Subclass/services/CreateSubclass/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeCreateSubclassController = (): CreateSubclassController => {
@@ -12,7 +12,7 @@ export const makeCreateSubclassController = (): CreateSubclassController => {
   const dataValidator = new ZodDataValidator(zodSchema)
 
   return new CreateSubclassController(
-    makeCreateSubclassRepository(),
+    makeCreateSubclassService(),
     dataValidator,
     makeHTTPErrorHandler(),
   )

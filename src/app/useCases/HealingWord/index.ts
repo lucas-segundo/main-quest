@@ -1,4 +1,4 @@
-import { FindCharacterRepository } from 'entities/Character/repositories/FindCharacter'
+import { FindCharacterService } from 'entities/Character/services/FindCharacter'
 import { SpellcastingAbility } from 'entities/Class'
 import { GetAbilityModifierUseCase } from '../GetAbilityModifier'
 import { Dice } from 'entities/Dice'
@@ -15,12 +15,12 @@ export interface HealingWordUseCaseResult {
 
 export class HealingWordUseCase {
   constructor(
-    private readonly findCharacterRepository: FindCharacterRepository,
+    private readonly findCharacterService: FindCharacterService,
     private readonly getAbilityModifierUseCase: GetAbilityModifierUseCase,
   ) {}
 
   async execute(dto: HealingWordDTO): Promise<HealingWordUseCaseResult> {
-    const character = await this.findCharacterRepository.find({
+    const character = await this.findCharacterService.find({
       filter: {
         id: {
           equals: dto.characterID,
@@ -32,7 +32,7 @@ export class HealingWordUseCase {
       throw new Error('Character not found')
     }
 
-    const target = await this.findCharacterRepository.find({
+    const target = await this.findCharacterService.find({
       filter: {
         id: {
           equals: dto.targetID,

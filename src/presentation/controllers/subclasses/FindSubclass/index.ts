@@ -1,5 +1,5 @@
-import { FindClassRepositoryParams } from 'entities/Class/repositories/FindClass'
-import { FindSubclassRepository } from 'entities/Subclass/repositories/FindSubclass'
+import { FindClassServiceParams } from 'entities/Class/services/FindClass'
+import { FindSubclassService } from 'entities/Subclass/services/FindSubclass'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
@@ -7,12 +7,11 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface FindSubclassControllerParams
-  extends FindClassRepositoryParams {}
+export interface FindSubclassControllerParams extends FindClassServiceParams {}
 
 export class FindSubclassController implements Controller {
   constructor(
-    private readonly findSubclassRepo: FindSubclassRepository,
+    private readonly findSubclassRepo: FindSubclassService,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}
 

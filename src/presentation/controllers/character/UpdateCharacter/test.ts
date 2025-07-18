@@ -9,14 +9,14 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockUpdateCharacterRepository,
-  mockUpdateCharacterRepositoryParams,
-} from 'entities/Character/repositories/UpdateCharacter/mock'
+  mockUpdateCharacterService,
+  mockUpdateCharacterServiceParams,
+} from 'entities/Character/services/UpdateCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 
 const mockData = () => {
-  const dataToUpdate = mockUpdateCharacterRepositoryParams()
+  const dataToUpdate = mockUpdateCharacterServiceParams()
 
   const params: UpdateCharacterControllerParams = {
     id: faker.string.uuid(),
@@ -27,7 +27,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const characterUpdater = mockUpdateCharacterRepository()
+  const characterUpdater = mockUpdateCharacterService()
   const updateCharacterSpy = jest.spyOn(characterUpdater, 'update')
 
   const httpErrorHandler = mockHTTPErrorHandler()

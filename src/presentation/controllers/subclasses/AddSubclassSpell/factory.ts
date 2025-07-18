@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 import { AddSubclassSpellController } from '.'
-import { makeAddSubclassSpellRepository } from 'entities/Subclass/repositories/AddSubclassSpell/factory'
+import { makeAddSubclassSpellService } from 'entities/Subclass/services/AddSubclassSpell/factory'
 
 export const makeAddSubclassSpellController =
   (): AddSubclassSpellController => {
@@ -13,7 +13,7 @@ export const makeAddSubclassSpellController =
     const dataValidator = new ZodDataValidator(zodSchema)
 
     return new AddSubclassSpellController(
-      makeAddSubclassSpellRepository(),
+      makeAddSubclassSpellService(),
       dataValidator,
       makeHTTPErrorHandler(),
     )

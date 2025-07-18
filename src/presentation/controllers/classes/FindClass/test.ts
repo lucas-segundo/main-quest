@@ -2,20 +2,20 @@ import { FindClassController } from '.'
 import { mockClass } from 'entities/Class/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
-  mockFindClassRepository,
-  mockFindClassRepositoryParams,
-} from 'entities/Class/repositories/FindClass/mock'
+  mockFindClassService,
+  mockFindClassServiceParams,
+} from 'entities/Class/services/FindClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockFindClassRepositoryParams()
+  const params = mockFindClassServiceParams()
   const foundClass = mockClass()
 
   return { params, foundClass }
 }
 
 const makeSUT = () => {
-  const classFinder = mockFindClassRepository()
+  const classFinder = mockFindClassService()
   const findClassSpy = jest.spyOn(classFinder, 'find')
 
   const httpErrorHandler = mockHTTPErrorHandler()
@@ -30,7 +30,7 @@ describe('ClassFinder', () => {
   it('should call find with right params', async () => {
     const { sut, classFinder } = makeSUT()
 
-    const params = mockFindClassRepositoryParams()
+    const params = mockFindClassServiceParams()
     await sut.handle(params)
 
     expect(classFinder.find).toHaveBeenCalledWith(params)

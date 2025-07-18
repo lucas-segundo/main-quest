@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { CreateSpellController } from '.'
 import { ZodDataValidator } from 'presentation/interfaces/DataValidator/zod'
-import { makeCreateSpellRepository } from 'entities/Spell/repositories/CreateSpell/factory'
+import { makeCreateSpellService } from 'entities/Spell/services/CreateSpell/factory'
 import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/factory'
 
 export const makeCreateSpellController = (): CreateSpellController => {
@@ -11,7 +11,7 @@ export const makeCreateSpellController = (): CreateSpellController => {
   const dataValidator = new ZodDataValidator(zodSchema)
 
   return new CreateSpellController(
-    makeCreateSpellRepository(),
+    makeCreateSpellService(),
     dataValidator,
     makeHTTPErrorHandler(),
   )

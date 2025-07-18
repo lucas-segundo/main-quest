@@ -2,20 +2,20 @@ import { FindSpellController } from '.'
 import { mockSpell } from 'entities/Spell/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
 import {
-  mockFindSpellRepository,
-  mockFindSpellRepositoryParams,
-} from 'entities/Spell/repositories/FindSpell/mock'
+  mockFindSpellService,
+  mockFindSpellServiceParams,
+} from 'entities/Spell/services/FindSpell/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const params = mockFindSpellRepositoryParams()
+  const params = mockFindSpellServiceParams()
   const foundSpell = mockSpell()
 
   return { params, foundSpell }
 }
 
 const makeSUT = () => {
-  const classFinder = mockFindSpellRepository()
+  const classFinder = mockFindSpellService()
   const findSpellSpy = jest.spyOn(classFinder, 'find')
 
   const httpErrorHandler = mockHTTPErrorHandler()
@@ -30,7 +30,7 @@ describe('SpellFinder', () => {
   it('should call find with right params', async () => {
     const { sut, classFinder } = makeSUT()
 
-    const params = mockFindSpellRepositoryParams()
+    const params = mockFindSpellServiceParams()
     await sut.handle(params)
 
     expect(classFinder.find).toHaveBeenCalledWith(params)

@@ -9,13 +9,13 @@ import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import {
-  mockUpdateSpellRepository,
-  mockUpdateSpellRepositoryParams,
-} from 'entities/Spell/repositories/UpdateSpell/mock'
+  mockUpdateSpellService,
+  mockUpdateSpellServiceParams,
+} from 'entities/Spell/services/UpdateSpell/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const dataToUpdate = mockUpdateSpellRepositoryParams()
+  const dataToUpdate = mockUpdateSpellServiceParams()
 
   const params: UpdateSpellControllerParams = {
     id: faker.string.uuid(),
@@ -26,7 +26,7 @@ const mockData = () => {
 }
 
 const makeSUT = () => {
-  const classUpdater = mockUpdateSpellRepository()
+  const classUpdater = mockUpdateSpellService()
   const updateSpellSpy = jest.spyOn(classUpdater, 'update')
 
   const httpErrorHandler = mockHTTPErrorHandler()

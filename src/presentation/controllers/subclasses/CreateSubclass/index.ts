@@ -1,7 +1,7 @@
 import {
-  CreateSubclassRepository,
-  CreateSubclassRepositoryParams,
-} from 'entities/Subclass/repositories/CreateSubclass'
+  CreateSubclassService,
+  CreateSubclassServiceParams,
+} from 'entities/Subclass/services/CreateSubclass'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
@@ -12,11 +12,11 @@ import {
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface CreateSubclassControllerParams
-  extends CreateSubclassRepositoryParams {}
+  extends CreateSubclassServiceParams {}
 
 export class CreateSubclassController implements Controller {
   constructor(
-    private readonly createSubclassRepo: CreateSubclassRepository,
+    private readonly createSubclassRepo: CreateSubclassService,
     private readonly dataValidator: DataValidator,
     private readonly httpErrorHandler: HTTPErrorHandler,
   ) {}

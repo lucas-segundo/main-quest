@@ -1,4 +1,5 @@
 import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'
+import { UpdateCharacterService } from 'domain/entities/Character/services/UpdateCharacter'
 import { SpellcastingAbility } from 'domain/entities/Class'
 import { Dice } from 'domain/entities/Dice'
 import { getAbilityModifier } from 'domain/metrics/getAbilityModifier'
@@ -14,7 +15,10 @@ export interface HealingWordUseCaseResult {
 }
 
 export class HealingWordUseCase {
-  constructor(private readonly findCharacterService: FindCharacterService) {}
+  constructor(
+    private readonly findCharacterService: FindCharacterService,
+    private readonly updateCharacterService: UpdateCharacterService,
+  ) {}
 
   async execute(dto: HealingWordDTO): Promise<HealingWordUseCaseResult> {
     const character = await this.findCharacterService.find({
@@ -49,6 +53,15 @@ export class HealingWordUseCase {
 
     const modifier = getAbilityModifier(character[dto.spellCastingAbility])
     const amountHealed = modifier + Dice.rollAll('1d4')
+
+    await this.updateCharacterService.update(target.id, {
+      data: {
+        hitPoints: Math.min(
+          target.hitPoints + amountHealed,
+          target.maxHitPoints,
+        ),
+      },
+    })
 
     return {
       amountHealed,

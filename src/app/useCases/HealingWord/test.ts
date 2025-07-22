@@ -3,6 +3,7 @@ import { mockFindCharacterService } from 'domain/entities/Character/services/Fin
 import { Dice } from 'domain/entities/Dice'
 import { HealingWordUseCase } from '.'
 import * as modifier from 'domain/metrics/getAbilityModifier'
+import { mockUpdateCharacterService } from 'domain/entities/Character/services/UpdateCharacter/mock'
 
 const makeMocks = () => {
   const character = mockCharacter()
@@ -16,17 +17,23 @@ const makeMocks = () => {
 
 const makeSUT = () => {
   const findCharacterService = mockFindCharacterService()
-  const sut = new HealingWordUseCase(findCharacterService)
+  const updateCharacterService = mockUpdateCharacterService()
+  const sut = new HealingWordUseCase(
+    findCharacterService,
+    updateCharacterService,
+  )
 
   return {
     findCharacterService,
+    updateCharacterService,
     sut,
   }
 }
 
 describe('HealingWordUseCase', () => {
   it('should heal the target when they have less than max hit points', async () => {
-    const { sut, findCharacterService } = makeSUT()
+    const { sut, findCharacterService, updateCharacterService } = makeSUT()
+
     const character = mockCharacter()
     findCharacterService.find.mockResolvedValueOnce(character)
 
@@ -39,11 +46,16 @@ describe('HealingWordUseCase', () => {
     jest.spyOn(Dice, 'rollAll').mockReturnValue(3)
 
     const result = await sut.execute({
-      characterID: 'character1',
-      targetID: 'target1',
+      characterID: character.id,
+      targetID: target.id,
       spellCastingAbility: 'charisma',
     })
 
+    expect(updateCharacterService.update).toHaveBeenCalledWith(target.id, {
+      data: {
+        hitPoints: 15,
+      },
+    })
     expect(result).toEqual({ amountHealed: 5 })
   })
 

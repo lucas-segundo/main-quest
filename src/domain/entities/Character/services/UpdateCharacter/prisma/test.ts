@@ -29,6 +29,15 @@ describe('PrismaUpdateCharacterService', () => {
     const expectedParams: Prisma.CharacterUpdateArgs<DefaultArgs> = {
       data: {
         name: data.name,
+        level: data.level,
+        hitPoints: data.hitPoints,
+        maxHitPoints: data.maxHitPoints,
+        strength: data.strength,
+        dexterity: data.dexterity,
+        constitution: data.constitution,
+        intelligence: data.intelligence,
+        wisdom: data.wisdom,
+        charisma: data.charisma,
       },
       where: {
         id: Number(id),

@@ -75,4 +75,44 @@ describe('CreateCharacterUseCase', () => {
     })
     expect(result).toEqual(character)
   })
+
+  it('should validate level is between 1 and 20', async () => {
+    const { sut } = makeSUT()
+    const params = {
+      name: 'Test Character',
+      level: 21,
+      classID: 'class-id',
+      strength: 10,
+      dexterity: 10,
+      constitution: 10,
+      intelligence: 10,
+      wisdom: 10,
+      charisma: 10,
+      spells: [],
+    }
+
+    await expect(sut.execute(params)).rejects.toThrow(
+      'Character Level must be between 1 and 20',
+    )
+  })
+
+  it('should validate attributes are within valid range', async () => {
+    const { sut } = makeSUT()
+    const params = {
+      name: 'Test Character',
+      level: 1,
+      classID: 'class-id',
+      strength: 30, // Invalid attribute
+      dexterity: 10,
+      constitution: 10,
+      intelligence: 10,
+      wisdom: 10,
+      charisma: 10,
+      spells: [],
+    }
+
+    await expect(sut.execute(params)).rejects.toThrow(
+      'Strength must be between 1 and 20',
+    )
+  })
 })

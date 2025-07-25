@@ -1,3 +1,4 @@
+import { KnownError } from 'app/errors/KnownError'
 import { UniqueError } from 'app/errors/UniqueErro'
 import { Character } from 'domain/entities/Character'
 import { CreateCharacterService } from 'domain/entities/Character/services/CreateCharacter'
@@ -27,17 +28,10 @@ export class CreateCharacterUseCase {
   ) {}
 
   async execute(dto: DTO): Promise<Character> {
-    const character = await this.findCharacterService.find({
-      filter: {
-        name: {
-          like: dto.name,
-        },
-      },
-    })
+    this.validateLevel(dto)
+    this.validateAttributes(dto)
 
-    if (character) {
-      throw new UniqueError('Character')
-    }
+    await this.validateIsCharacterUnique(dto)
 
     const classData = await this.findClassService.find({
       filter: {
@@ -70,5 +64,48 @@ export class CreateCharacterUseCase {
       charisma: dto.charisma,
       spells: dto.spells,
     })
+  }
+
+  private validateLevel(dto: DTO): void {
+    if (dto.level < 1 || dto.level > 20) {
+      throw new KnownError(
+        'CHARACTER_LEVEL_INVALID',
+        'Character Level must be between 1 and 20',
+      )
+    }
+  }
+
+  private validateAttributes(dto: DTO): void {
+    const attributes = [
+      'strength',
+      'dexterity',
+      'constitution',
+      'intelligence',
+      'wisdom',
+      'charisma',
+    ]
+
+    for (const attribute of attributes) {
+      if (dto[attribute] < 1 || dto[attribute] > 20) {
+        throw new KnownError(
+          `CHARACTER_${attribute.toUpperCase()}_INVALID`,
+          `${attribute.charAt(0).toUpperCase() + attribute.slice(1)} must be between 1 and 20`,
+        )
+      }
+    }
+  }
+
+  private async validateIsCharacterUnique(dto: DTO) {
+    const character = await this.findCharacterService.find({
+      filter: {
+        name: {
+          like: dto.name,
+        },
+      },
+    })
+
+    if (character) {
+      throw new UniqueError('Character')
+    }
   }
 }

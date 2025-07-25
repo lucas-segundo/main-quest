@@ -7,7 +7,7 @@ export const mockCreateCharacterServiceParams =
     hitPoints: faker.number.int({ min: 1, max: 100 }),
     maxHitPoints: faker.number.int({ min: 1, max: 100 }),
     classID: faker.string.uuid(),
-    level: faker.number.int({ min: 1, max: 100 }),
+    level: faker.number.int({ min: 1, max: 20 }),
     strength: faker.number.int({ min: 1, max: 20 }),
     dexterity: faker.number.int({ min: 1, max: 20 }),
     constitution: faker.number.int({ min: 1, max: 20 }),

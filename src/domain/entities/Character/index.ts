@@ -1,4 +1,4 @@
-import { LearnedSpell } from 'domain/entities/LearnedSpell'
+import { Spell } from '../Spell'
 
 export interface Character {
   id: string
@@ -14,5 +14,5 @@ export interface Character {
   wisdom: number
   charisma: number
 
-  learnedSpells?: LearnedSpell[]
+  spells?: Spell[]
 }

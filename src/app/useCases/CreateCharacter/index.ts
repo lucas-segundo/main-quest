@@ -16,7 +16,7 @@ type DTO = Pick<
   | 'intelligence'
   | 'wisdom'
   | 'charisma'
-  | 'learnedSpells'
+  | 'spells'
 >
 
 export class CreateCharacterUseCase {
@@ -68,7 +68,7 @@ export class CreateCharacterUseCase {
       intelligence: dto.intelligence,
       wisdom: dto.wisdom,
       charisma: dto.charisma,
-      learnedSpells: dto.learnedSpells,
+      spells: dto.spells,
     })
   }
 }

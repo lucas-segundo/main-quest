@@ -1,5 +1,5 @@
 import { CreateCharacterUseCase } from '.'
-import { UniqueError } from 'app/errors/UniqueErro'
+import { UniqueError } from 'app/errors/UniqueError'
 import { mockCharacter } from 'domain/entities/Character/mock'
 import {
   mockCreateCharacterService,

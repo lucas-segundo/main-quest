@@ -1,5 +1,5 @@
 import { KnownError } from 'app/errors/KnownError'
-import { UniqueError } from 'app/errors/UniqueErro'
+import { UniqueError } from 'app/errors/UniqueError'
 import { Character } from 'domain/entities/Character'
 import { CreateCharacterService } from 'domain/entities/Character/services/CreateCharacter'
 import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'

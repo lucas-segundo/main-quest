@@ -1,5 +1,5 @@
 import { CreateCharacterUseCase } from 'app/useCases/CreateCharacter'
-import { CreateCharacterServiceParams } from 'domain/entities/Character/services/CreateCharacter'
+import { Spell } from 'domain/entities/Spell'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -10,8 +10,18 @@ import {
 } from 'presentation/interfaces/Controller'
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
-export interface CreateCharacterControllerParams
-  extends CreateCharacterServiceParams {}
+export interface CreateCharacterControllerParams {
+  name: string
+  level: number
+  classID: string
+  strength: number
+  dexterity: number
+  constitution: number
+  intelligence: number
+  wisdom: number
+  charisma: number
+  spells?: Spell[]
+}
 
 export class CreateCharacterController implements Controller {
   constructor(

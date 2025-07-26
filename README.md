@@ -2,31 +2,25 @@
 
 API for Main Quest
 
-## Installation
-
-```bash
-$ pnpm install
-```
-
 ## Running the app
 
 Run docker compose with env:
 
 ```bash
-docker compose --env-file .env up
+docker compose up
 ```
 
-Add DOCKER_COMPOSE_COMMAND to run other commands in app container with docker as:
+Add DOCKER_COMPOSE_COMMAND in .env to run other commands in app container with docker as:
 
 ```bash
 # development
-$ pnpm run start
+$ npm run start
 
 # watch mode
-$ pnpm run start:dev
+$ npm run start:dev
 
 # production mode
-$ pnpm run start:prod
+$ npm run start:prod
 ```
 
 ## Test
@@ -34,18 +28,18 @@ $ pnpm run start:prod
 Run tests with docker compose as:
 
 ```bash
-docker compose --env-file .env exec app <your-command>
+docker compose exec app <your-command>
 ```
 
 Commands examples:
 
 ```bash
 # unit tests
-$ pnpm run test
+$ npm run test
 
 # e2e tests
-$ pnpm run test:e2e
+$ npm run test:e2e
 
 # test coverage
-$ pnpm run test:cov
+$ npm run test:cov
 ```

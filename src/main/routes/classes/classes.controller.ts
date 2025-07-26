@@ -92,13 +92,10 @@ export class ClassesController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() data: UpdateClassControllerParams['data'],
+    @Body() body: UpdateClassControllerParams,
     @Res() res: Response,
   ) {
-    const response = await this.updateClassController.handle({
-      id,
-      data,
-    })
+    const response = await this.updateClassController.handle(id, body)
 
     if ('data' in response) {
       const { data, statusCode } = response

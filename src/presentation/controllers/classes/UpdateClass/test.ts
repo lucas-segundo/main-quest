@@ -8,21 +8,15 @@ import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
 import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
 import { faker } from '@faker-js/faker'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
-import {
-  mockUpdateClassService,
-  mockUpdateClassServiceParams,
-} from 'domain/entities/Class/services/UpdateClass/mock'
+import { mockUpdateClassService } from 'domain/entities/Class/services/UpdateClass/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 
 const mockData = () => {
-  const dataToUpdate = mockUpdateClassServiceParams()
-
-  const params: UpdateClassControllerParams = {
-    id: faker.string.uuid(),
-    data: dataToUpdate,
+  const dataToUpdate: UpdateClassControllerParams = {
+    name: faker.person.jobTitle(),
   }
 
-  return { dataToUpdate, params }
+  return { dataToUpdate }
 }
 
 const makeSUT = () => {
@@ -51,18 +45,9 @@ const makeSUT = () => {
 }
 
 describe('ClassUpdater', () => {
-  it('should call updater with right params', async () => {
-    const { sut, classUpdater } = makeSUT()
-    const { params } = mockData()
-
-    await sut.handle(params)
-
-    expect(classUpdater.update).toHaveBeenCalledWith(params.id, params.data)
-  })
-
-  it('should return 201 and the updated character class', async () => {
-    const { sut, updateClassSpy } = makeSUT()
-    const { dataToUpdate, params } = mockData()
+  it('should return 200 and the updated class', async () => {
+    const { sut, classUpdater, updateClassSpy } = makeSUT()
+    const { dataToUpdate } = mockData()
 
     const updatedClass = {
       ...mockClass(),
@@ -71,15 +56,19 @@ describe('ClassUpdater', () => {
 
     updateClassSpy.mockResolvedValue(updatedClass)
 
-    const response = (await sut.handle(params)) as HTTPResponse
+    const id = faker.string.uuid()
+    const response = (await sut.handle(id, dataToUpdate)) as HTTPResponse
 
-    expect(response.statusCode).toBe(201)
+    expect(classUpdater.update).toHaveBeenCalledWith(id, {
+      data: dataToUpdate,
+    })
+    expect(response.statusCode).toBe(200)
     expect(response.data).toEqual(updatedClass)
   })
 
   it('should return 400 with validations errors', async () => {
     const { sut, dataValidation } = makeSUT()
-    const { params } = mockData()
+    const { dataToUpdate } = mockData()
 
     const errors = [faker.lorem.words(), faker.lorem.words()]
     const validationResult: DataValidatorResult = {
@@ -87,7 +76,10 @@ describe('ClassUpdater', () => {
     }
     dataValidation.validate.mockResolvedValue(validationResult)
 
-    const response = (await sut.handle(params)) as HTTPErrorResponse
+    const response = (await sut.handle(
+      faker.string.uuid(),
+      dataToUpdate,
+    )) as HTTPErrorResponse
 
     expect(response.statusCode).toBe(400)
     expect(response.errors).toEqual(adaptValidationErrors(errors))
@@ -95,11 +87,11 @@ describe('ClassUpdater', () => {
 
   it('should call error handler when error happens', async () => {
     const { sut, updateClassSpy, httpErrorHandlerSpy } = makeSUT()
-    const { params } = mockData()
+    const { dataToUpdate } = mockData()
 
     const error = new Error('any_error')
     updateClassSpy.mockRejectedValue(error)
-    await sut.handle(params)
+    await sut.handle(faker.string.uuid(), dataToUpdate)
 
     expect(httpErrorHandlerSpy).toHaveBeenCalledWith(error)
   })

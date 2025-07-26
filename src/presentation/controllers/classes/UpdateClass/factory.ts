@@ -6,7 +6,7 @@ import { makeHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/fact
 
 export const makeClassUpdaterController = (): UpdateClassController => {
   const zodSchema = z.object({
-    name: z.string(),
+    name: z.string().optional(),
   })
   const dataValidator = new ZodDataValidator(zodSchema)
 

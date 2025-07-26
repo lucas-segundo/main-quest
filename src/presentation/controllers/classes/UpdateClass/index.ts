@@ -1,7 +1,4 @@
-import {
-  UpdateClassService,
-  UpdateClassServiceParams,
-} from 'domain/entities/Class/services/UpdateClass'
+import { UpdateClassService } from 'domain/entities/Class/services/UpdateClass'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
@@ -13,8 +10,7 @@ import {
 import { DataValidator } from 'presentation/interfaces/DataValidator'
 
 export interface UpdateClassControllerParams {
-  id: string
-  data: UpdateClassServiceParams
+  name?: string
 }
 
 export class UpdateClassController implements Controller {
@@ -25,9 +21,10 @@ export class UpdateClassController implements Controller {
   ) {}
 
   async handle(
+    id: string,
     params: UpdateClassControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
-    const { errors } = await this.dataValidator.validate(params.data)
+    const { errors } = await this.dataValidator.validate(params)
     if (errors.length) {
       return {
         errors: adaptValidationErrors(errors),
@@ -36,21 +33,23 @@ export class UpdateClassController implements Controller {
     }
 
     try {
-      return await this.respondWithUpdatedClass(params)
+      return await this.respondWithUpdatedClass(id, params)
     } catch (error) {
       return this.httpErrorHandler.handle(error)
     }
   }
 
-  private async respondWithUpdatedClass({
-    id,
-    data,
-  }: UpdateClassControllerParams) {
-    const createdClass = await this.classUpdater.update(id, data)
+  private async respondWithUpdatedClass(
+    id: string,
+    params: UpdateClassControllerParams,
+  ): Promise<HTTPResponse> {
+    const updatedClass = await this.classUpdater.update(id, {
+      data: params,
+    })
 
     return {
-      data: createdClass,
-      statusCode: HTTPStatusCode.CREATED,
+      data: updatedClass,
+      statusCode: HTTPStatusCode.OK,
     }
   }
 }

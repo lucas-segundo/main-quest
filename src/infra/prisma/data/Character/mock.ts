@@ -18,7 +18,7 @@ export const mockPrismaCharacter = (): PrismaCharacter => ({
   }),
   level: faker.number.int({
     min: 1,
-    max: 100,
+    max: 20,
   }),
   strength: faker.number.int({
     min: 1,

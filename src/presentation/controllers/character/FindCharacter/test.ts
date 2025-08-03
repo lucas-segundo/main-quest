@@ -1,10 +1,16 @@
 import { FindCharacterController, FindCharacterControllerParams } from '.'
 import { mockCharacter } from 'domain/entities/Character/mock'
-import { HTTPResponse } from 'presentation/interfaces/Controller'
+import {
+  HTTPErrorResponse,
+  HTTPResponse,
+} from 'presentation/interfaces/Controller'
 import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { faker } from '@faker-js/faker'
+import { mockDataValidator } from 'presentation/interfaces/DataValidator/mock'
+import { DataValidatorResult } from 'presentation/interfaces/DataValidator'
+import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 
 const mockData = () => {
   const params: FindCharacterControllerParams = {
@@ -22,9 +28,24 @@ const makeSUT = () => {
   const httpErrorHandler = mockHTTPErrorHandler()
   const httpErrorHandlerSpy = jest.spyOn(httpErrorHandler, 'handle')
 
-  const sut = new FindCharacterController(characterFinder, httpErrorHandler)
+  const dataValidation = mockDataValidator()
+  dataValidation.validate.mockResolvedValue({
+    errors: [],
+  })
 
-  return { sut, characterFinder, findCharacterSpy, httpErrorHandlerSpy }
+  const sut = new FindCharacterController(
+    characterFinder,
+    httpErrorHandler,
+    dataValidation,
+  )
+
+  return {
+    sut,
+    characterFinder,
+    findCharacterSpy,
+    httpErrorHandlerSpy,
+    dataValidation,
+  }
 }
 
 describe('CharacterFinder', () => {
@@ -74,5 +95,21 @@ describe('CharacterFinder', () => {
 
     expect(response.statusCode).toBe(HTTPStatusCode.NOT_FOUND)
     expect(response.data).toBeNull()
+  })
+
+  it('should return 400 with validations errors', async () => {
+    const { sut, dataValidation } = makeSUT()
+    const { params } = mockData()
+
+    const errors = [faker.lorem.words(), faker.lorem.words()]
+    const validationResult: DataValidatorResult = {
+      errors,
+    }
+    dataValidation.validate.mockResolvedValue(validationResult)
+
+    const response = (await sut.handle(params)) as HTTPErrorResponse
+
+    expect(response.statusCode).toBe(HTTPStatusCode.BAD_REQUEST)
+    expect(response.errors).toEqual(adaptValidationErrors(errors))
   })
 })

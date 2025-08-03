@@ -25,7 +25,7 @@ describe('PrismaFindSpell', () => {
     const { filter } = params
     const expectedParams: Prisma.ClassFindFirstArgs<DefaultArgs> = {
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id.eq),
       },
     }
     expect(mockedPrismaClient.spell.findFirst).toHaveBeenCalledWith(

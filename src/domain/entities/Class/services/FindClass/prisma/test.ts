@@ -24,7 +24,7 @@ describe('PrismaFindClassService', () => {
     const { filter, include } = params
     const expectedParams: Prisma.ClassFindFirstArgs<DefaultArgs> = {
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id.eq),
       },
       include: {
         subclasses: include?.subclasses,

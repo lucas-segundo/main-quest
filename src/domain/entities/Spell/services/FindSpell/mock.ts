@@ -4,7 +4,7 @@ import { FindSpellService, FindSpellServiceParams } from '.'
 export const mockFindSpellServiceParams = (): FindSpellServiceParams => ({
   filter: {
     id: {
-      equals: faker.string.uuid(),
+      eq: faker.string.uuid(),
     },
   },
 })

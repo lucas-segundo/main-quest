@@ -2,7 +2,7 @@ import { Character } from 'domain/entities/Character'
 
 interface Filter {
   id?: {
-    equals?: string
+    eq?: string
   }
   name?: {
     like?: string

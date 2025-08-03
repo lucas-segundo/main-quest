@@ -36,7 +36,7 @@ export class CreateCharacterUseCase {
     const classData = await this.findClassService.find({
       filter: {
         id: {
-          equals: dto.classID,
+          eq: dto.classID,
         },
       },
     })

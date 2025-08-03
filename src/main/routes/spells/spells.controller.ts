@@ -21,7 +21,7 @@ export class SpellsController {
     const response = await this.findSpellController.handle({
       filter: {
         id: {
-          equals: id,
+          eq: id,
         },
       },
     })

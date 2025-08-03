@@ -43,7 +43,7 @@ export class SubclassesController {
     const response = await this.subclassFinderController.handle({
       filter: {
         id: {
-          equals: id,
+          eq: id,
         },
       },
     })

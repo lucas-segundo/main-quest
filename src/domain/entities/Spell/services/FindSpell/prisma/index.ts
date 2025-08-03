@@ -9,7 +9,7 @@ export class PrismaFindSpell implements FindSpellService {
     const { filter } = params
     const prismaSpell = await prisma.spell.findFirst({
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id.eq),
       },
     })
 

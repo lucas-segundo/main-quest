@@ -9,7 +9,7 @@ export class PrismaFindClassService implements FindClassService {
     const { filter, include } = params
     const prismaClass = await prisma.class.findFirst({
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id.eq),
       },
       include: {
         subclasses: include?.subclasses,

@@ -13,12 +13,12 @@ export class PrismaFindSpells implements FindSpellsService {
         },
         classesSpells: {
           some: {
-            classID: Number(filter.classID?.equals),
+            classID: Number(filter.classID?.eq),
           },
         },
         subclassesSpells: {
           some: {
-            subclassID: Number(filter.subclassID?.equals),
+            subclassID: Number(filter.subclassID?.eq),
           },
         },
       },

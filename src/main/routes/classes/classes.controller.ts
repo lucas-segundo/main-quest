@@ -57,7 +57,7 @@ export class ClassesController {
     const response = await this.classFinderController.handle({
       filter: {
         id: {
-          equals: id,
+          eq: id,
         },
       },
     })

@@ -53,7 +53,7 @@ export class CharactersController {
     const response = await this.findCharacterController.handle({
       filter: {
         id: {
-          equals: id,
+          eq: id,
         },
       },
     })

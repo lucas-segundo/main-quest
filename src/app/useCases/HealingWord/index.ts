@@ -24,7 +24,7 @@ export class HealingWordUseCase {
     const character = await this.findCharacterService.find({
       filter: {
         id: {
-          equals: dto.characterID,
+          eq: dto.characterID,
         },
       },
     })
@@ -36,7 +36,7 @@ export class HealingWordUseCase {
     const target = await this.findCharacterService.find({
       filter: {
         id: {
-          equals: dto.targetID,
+          eq: dto.targetID,
         },
       },
     })

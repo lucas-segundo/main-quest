@@ -4,7 +4,7 @@ import { FindSubclassService, FindSubclassServiceParams } from '.'
 export const mockFindSubclassServiceParams = (): FindSubclassServiceParams => ({
   filter: {
     id: {
-      equals: faker.string.uuid(),
+      eq: faker.string.uuid(),
     },
   },
 })

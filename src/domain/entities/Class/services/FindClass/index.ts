@@ -2,7 +2,7 @@ import { Class } from 'domain/entities/Class'
 
 interface Filter {
   id: {
-    equals: string
+    eq: string
   }
 }
 

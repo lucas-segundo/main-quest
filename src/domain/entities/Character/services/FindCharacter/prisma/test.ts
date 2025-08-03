@@ -26,7 +26,7 @@ describe('PrismaFindCharacter', () => {
     const { filter } = params
     const expectedParams: Prisma.ClassFindFirstArgs<DefaultArgs> = {
       where: {
-        id: Number(filter.id?.equals),
+        id: Number(filter.id?.eq),
         name: {
           contains: filter.name?.like,
         },

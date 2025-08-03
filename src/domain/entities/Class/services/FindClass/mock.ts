@@ -4,7 +4,7 @@ import { FindClassService, FindClassServiceParams } from '.'
 export const mockFindClassServiceParams = (): FindClassServiceParams => ({
   filter: {
     id: {
-      equals: faker.string.uuid(),
+      eq: faker.string.uuid(),
     },
   },
   include: {

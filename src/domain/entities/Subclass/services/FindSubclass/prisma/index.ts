@@ -9,7 +9,7 @@ export class PrismaFindSubclass implements FindSubclassService {
     const { filter } = params
     const prismaSubclass = await prisma.subclass.findFirst({
       where: {
-        id: Number(filter.id.equals),
+        id: Number(filter.id.eq),
       },
     })
 

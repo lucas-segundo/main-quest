@@ -2,7 +2,7 @@ import { Spell } from 'domain/entities/Spell'
 
 interface Filter {
   id: {
-    equals: string
+    eq: string
   }
 }
 

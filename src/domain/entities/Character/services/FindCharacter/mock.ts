@@ -5,7 +5,7 @@ export const mockFindCharacterServiceParams =
   (): FindCharacterServiceParams => ({
     filter: {
       id: {
-        equals: faker.string.uuid(),
+        eq: faker.string.uuid(),
       },
       name: {
         like: faker.person.firstName(),

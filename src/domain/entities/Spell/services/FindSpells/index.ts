@@ -5,10 +5,10 @@ interface Filter {
     like?: string
   }
   classID?: {
-    equals?: string
+    eq?: string
   }
   subclassID?: {
-    equals?: string
+    eq?: string
   }
 }
 

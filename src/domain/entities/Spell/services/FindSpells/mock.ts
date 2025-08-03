@@ -7,10 +7,10 @@ export const mockFindSpellsServiceParams = (): FindSpellsServiceParams => ({
       like: faker.lorem.words(3),
     },
     classID: {
-      equals: faker.string.uuid(),
+      eq: faker.string.uuid(),
     },
     subclassID: {
-      equals: faker.string.uuid(),
+      eq: faker.string.uuid(),
     },
   },
 })

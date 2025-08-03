@@ -51,11 +51,7 @@ export class CharactersController {
   @Get(':id')
   async find(@Param('id') id: string, @Res() res: Response) {
     const response = await this.findCharacterController.handle({
-      filter: {
-        id: {
-          eq: id,
-        },
-      },
+      id,
     })
 
     if ('data' in response) {

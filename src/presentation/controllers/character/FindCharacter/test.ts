@@ -1,15 +1,15 @@
-import { FindCharacterController } from '.'
+import { FindCharacterController, FindCharacterControllerParams } from '.'
 import { mockCharacter } from 'domain/entities/Character/mock'
 import { HTTPResponse } from 'presentation/interfaces/Controller'
-import {
-  mockFindCharacterService,
-  mockFindCharacterServiceParams,
-} from 'domain/entities/Character/services/FindCharacter/mock'
+import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { mockHTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler/mock'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
+import { faker } from '@faker-js/faker'
 
 const mockData = () => {
-  const params = mockFindCharacterServiceParams()
+  const params: FindCharacterControllerParams = {
+    id: faker.string.uuid(),
+  }
   const foundCharacter = mockCharacter()
 
   return { params, foundCharacter }
@@ -30,11 +30,17 @@ const makeSUT = () => {
 describe('CharacterFinder', () => {
   it('should call find with right params', async () => {
     const { sut, characterFinder } = makeSUT()
+    const { params } = mockData()
 
-    const params = mockFindCharacterServiceParams()
     await sut.handle(params)
 
-    expect(characterFinder.find).toHaveBeenCalledWith(params)
+    expect(characterFinder.find).toHaveBeenCalledWith({
+      filter: {
+        id: {
+          eq: params.id,
+        },
+      },
+    })
   })
 
   it('should return 200 and the find character class', async () => {

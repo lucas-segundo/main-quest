@@ -1,7 +1,4 @@
-import {
-  FindCharacterService,
-  FindCharacterServiceParams,
-} from 'domain/entities/Character/services/FindCharacter'
+import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
@@ -10,8 +7,9 @@ import {
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
 
-export interface FindCharacterControllerParams
-  extends FindCharacterServiceParams {}
+export interface FindCharacterControllerParams {
+  id: string
+}
 
 export class FindCharacterController implements Controller {
   constructor(
@@ -30,7 +28,13 @@ export class FindCharacterController implements Controller {
   }
 
   private async respondWithCharacter(params: FindCharacterControllerParams) {
-    const character = await this.findCharacterRepo.find(params)
+    const character = await this.findCharacterRepo.find({
+      filter: {
+        id: {
+          eq: params.id,
+        },
+      },
+    })
 
     if (character) {
       return {

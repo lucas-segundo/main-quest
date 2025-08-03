@@ -5,7 +5,7 @@ interface Filter {
     eq?: string
   }
   name?: {
-    like?: string
+    lk?: string
   }
 }
 

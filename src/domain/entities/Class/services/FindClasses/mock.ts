@@ -4,7 +4,7 @@ import { FindClassesService, FindClassesServiceParams } from '.'
 export const mockFindClassesServiceParams = (): FindClassesServiceParams => ({
   filter: {
     name: {
-      like: faker.person.jobTitle(),
+      lk: faker.person.jobTitle(),
     },
   },
   include: {

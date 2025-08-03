@@ -5,7 +5,7 @@ export const mockFindCharactersServiceParams =
   (): FindCharactersServiceParams => ({
     filter: {
       name: {
-        like: faker.lorem.words(3),
+        lk: faker.lorem.words(3),
       },
       classID: {
         eq: faker.string.uuid(),

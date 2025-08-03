@@ -28,7 +28,7 @@ describe('PrismaFindCharacter', () => {
       where: {
         id: Number(filter.id?.eq),
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
       },
     }

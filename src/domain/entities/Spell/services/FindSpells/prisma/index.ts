@@ -9,7 +9,7 @@ export class PrismaFindSpells implements FindSpellsService {
     const prismaSpells = await prisma.spell.findMany({
       where: {
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
         classesSpells: {
           some: {

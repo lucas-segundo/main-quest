@@ -2,7 +2,7 @@ import { Spell } from 'domain/entities/Spell'
 
 interface Filter {
   name?: {
-    like?: string
+    lk?: string
   }
   classID?: {
     eq?: string

@@ -24,7 +24,7 @@ describe('PrismaFindClassesService', () => {
     const expectedParams: Prisma.ClassFindManyArgs<DefaultArgs> = {
       where: {
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
       },
       include,

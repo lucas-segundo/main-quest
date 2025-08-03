@@ -8,7 +8,7 @@ export const mockFindCharacterServiceParams =
         eq: faker.string.uuid(),
       },
       name: {
-        like: faker.person.firstName(),
+        lk: faker.person.firstName(),
       },
     },
   })

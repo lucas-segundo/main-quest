@@ -99,7 +99,7 @@ export class CreateCharacterUseCase {
     const character = await this.findCharacterService.find({
       filter: {
         name: {
-          like: dto.name,
+          lk: dto.name,
         },
       },
     })

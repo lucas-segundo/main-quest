@@ -28,7 +28,7 @@ describe('PrismaFindCharacters', () => {
     const expectedParams: Prisma.CharacterFindManyArgs<DefaultArgs> = {
       where: {
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
       },
     }

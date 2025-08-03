@@ -2,7 +2,7 @@ import { Class } from 'domain/entities/Class'
 
 interface Filter {
   name?: {
-    like?: string
+    lk?: string
   }
 }
 

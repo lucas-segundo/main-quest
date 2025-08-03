@@ -47,7 +47,7 @@ describe('CreateCharacterUseCase', () => {
     await expect(sut.execute(params)).rejects.toThrow(UniqueError)
 
     expect(findCharacterService.find).toHaveBeenCalledWith({
-      filter: { name: { like: params.name } },
+      filter: { name: { lk: params.name } },
     })
   })
 

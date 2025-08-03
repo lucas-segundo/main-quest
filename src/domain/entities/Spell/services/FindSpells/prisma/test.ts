@@ -26,7 +26,7 @@ describe('PrismaFindSpells', () => {
     const expectedParams: Prisma.SpellFindManyArgs<DefaultArgs> = {
       where: {
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
         classesSpells: {
           some: {

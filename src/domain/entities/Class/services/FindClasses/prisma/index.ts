@@ -9,7 +9,7 @@ export class PrismaFindClassesService implements FindClassesService {
     const prismaClasses = await prisma.class.findMany({
       where: {
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
       },
       include: {

@@ -9,7 +9,7 @@ export class PrismaFindCharacters implements FindCharactersService {
     const prismaCharacters = await prisma.character.findMany({
       where: {
         name: {
-          contains: filter.name?.like,
+          contains: filter.name?.lk,
         },
       },
     })

@@ -5,10 +5,7 @@ async function main() {
   console.log('Start seeding...')
   const dbSeeder = new DBSeeder()
 
-  for (let i = 0; i < 10; i++) {
-    const data = await dbSeeder.seed()
-    console.log(`Seeding iteration ${i + 1} finished:`, data)
-  }
+  await dbSeeder.seed()
 
   console.log('All seeding operations completed.')
 }

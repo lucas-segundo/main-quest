@@ -1,62 +1,53 @@
-import {
-  FindCharactersService,
-  FindCharactersServiceParams,
-} from 'domain/entities/Character/services/FindCharacters'
-import { RequiredParamError } from 'app/errors/RequiredParamError'
+import { FindCharactersService } from 'domain/entities/Character/services/FindCharacters'
 import { HTTPStatusCode } from 'presentation/enums/HTTPStatusCode'
 import { HTTPErrorHandler } from 'presentation/helpers/HTTPErrorHandler'
 import {
   Controller,
-  HTTPError,
   HTTPErrorResponse,
   HTTPResponse,
 } from 'presentation/interfaces/Controller'
+import { DataValidator } from 'presentation/interfaces/DataValidator'
+import { adaptValidationErrors } from 'presentation/helpers/adaptValidationErrors'
 
-export interface FindCharactersControllerParams
-  extends FindCharactersServiceParams {}
+export interface FindCharactersControllerParams {
+  name?: {
+    lk?: string
+  }
+}
 
 export class FindCharactersController implements Controller {
   constructor(
     private readonly findCharactersRepo: FindCharactersService,
     private readonly httpErrorHandler: HTTPErrorHandler,
+    private readonly dataValidator: DataValidator,
   ) {}
 
   async handle(
-    params?: FindCharactersControllerParams,
+    params: FindCharactersControllerParams,
   ): Promise<HTTPResponse | HTTPErrorResponse> {
-    const validationErrors = this.validate(params)
-    if (validationErrors.length) {
+    const { errors } = await this.dataValidator.validate(params)
+    if (errors.length) {
       return {
-        errors: validationErrors,
+        errors: adaptValidationErrors(errors),
         statusCode: HTTPStatusCode.BAD_REQUEST,
       }
     }
 
     try {
-      return await this.respondWithCharacters(
-        params as FindCharactersServiceParams,
-      )
+      return await this.respondWithCharacters(params)
     } catch (error) {
       return this.httpErrorHandler.handle(error)
     }
   }
 
-  private validate(params?: FindCharactersControllerParams) {
-    const validationErrors: HTTPError[] = []
-
-    if (!params?.filter) {
-      const error = new RequiredParamError('filter')
-      validationErrors.push({
-        code: error.code,
-        message: error.message,
-      })
-    }
-
-    return validationErrors
-  }
-
   private async respondWithCharacters(params: FindCharactersControllerParams) {
-    const classes = await this.findCharactersRepo.find(params)
+    const classes = await this.findCharactersRepo.find({
+      filter: {
+        name: {
+          lk: params.name?.lk,
+        },
+      },
+    })
 
     return {
       data: classes,

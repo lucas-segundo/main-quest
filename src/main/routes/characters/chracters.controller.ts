@@ -68,9 +68,7 @@ export class CharactersController {
     @Query() query: FindCharactersControllerParams,
     @Res() res: Response,
   ) {
-    const response = await this.findCharactersController.handle({
-      filter: query.filter,
-    })
+    const response = await this.findCharactersController.handle(query)
 
     if ('data' in response) {
       const { data, statusCode } = response

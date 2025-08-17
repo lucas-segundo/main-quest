@@ -15,24 +15,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Up Docker Containers
-        run: docker compose up -d
+      - name: Build dev docker image
+        run: docker compose build dev
         env:
-          DOCKER_COMPOSE_COMMAND: ${{ vars.DOCKER_COMPOSE_COMMAND }}
-          DOCKER_COMPOSE_TARGET: ${{ vars.DOCKER_COMPOSE_TARGET }}
           DOCKER_IMAGE_NAME: ${{ env.DOCKER_IMAGE_NAME }}
           POSTGRES_DATABASE_URL: ${{ vars.DOCKER_POSTGRES_DATABASE_URL }}
+
       - name: Run unit tests
-        run: docker compose exec app npm run test
+        run: docker run ${{ env.DOCKER_IMAGE_NAME }} npm run test
 
       - name: Run e2e tests
-        run: docker compose exec app npm run test:e2e
+        run: docker run ${{ env.DOCKER_IMAGE_NAME }} npm run test:e2e
 
       - name: Run migrations for testing
-        run: docker compose exec app npm run migrate:prod
-
-      - name: Down Containers
-        run: docker compose down
+        run: docker run ${{ env.DOCKER_IMAGE_NAME }} npm run migrate:prod
 
       - name: Run migrations for production
         run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} ${{ env.DOCKER_IMAGE_NAME }} npm run migrate:prod

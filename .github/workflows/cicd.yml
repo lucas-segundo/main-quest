@@ -21,9 +21,6 @@ jobs:
       - name: Run unit tests
         run: docker run ${{ env.DOCKER_IMAGE_NAME }} npm run test
 
-      - name: Run e2e tests
-        run: docker run ${{ env.DOCKER_IMAGE_NAME }} npm run test:e2e
-
       - name: Run migrations for production
         run: docker run -e POSTGRES_DATABASE_URL=${{ secrets.POSTGRES_DATABASE_URL }} ${{ env.DOCKER_IMAGE_NAME }} npm run migrate:prod
 

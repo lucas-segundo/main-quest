@@ -2,7 +2,7 @@ import { FindCharacterService } from 'domain/entities/Character/services/FindCha
 import { UpdateCharacterService } from 'domain/entities/Character/services/UpdateCharacter'
 import { SpellcastingAbility } from 'domain/entities/Class'
 import { Dice } from 'domain/entities/Dice'
-import { getAbilityModifier } from 'domain/metrics/getAbilityModifier'
+import { getAbilityModifier } from 'domain/utils/getAbilityModifier'
 
 export interface HealingWordDTO {
   characterID: string

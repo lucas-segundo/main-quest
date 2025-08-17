@@ -2,7 +2,7 @@ import { mockCharacter } from 'domain/entities/Character/mock'
 import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { Dice } from 'domain/entities/Dice'
 import { HealingWordUseCase } from '.'
-import * as modifier from 'domain/metrics/getAbilityModifier'
+import * as modifier from 'domain/utils/getAbilityModifier'
 import { mockUpdateCharacterService } from 'domain/entities/Character/services/UpdateCharacter/mock'
 
 const makeMocks = () => {

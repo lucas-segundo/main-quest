@@ -4,7 +4,7 @@ import { Character } from 'domain/entities/Character'
 import { CreateCharacterService } from 'domain/entities/Character/services/CreateCharacter'
 import { FindCharacterService } from 'domain/entities/Character/services/FindCharacter'
 import { FindClassService } from 'domain/entities/Class/services/FindClass'
-import { calculateHP } from 'domain/metrics/calculateHP'
+import { calculateHP } from 'domain/utils/calculateHP'
 
 type DTO = Pick<
   Character,

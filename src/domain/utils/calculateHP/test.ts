@@ -1,6 +1,6 @@
 import { Dice } from 'domain/entities/Dice'
 
-import * as modifier from 'domain/metrics/getAbilityModifier'
+import * as modifier from 'domain/utils/getAbilityModifier'
 import { calculateHP } from '.'
 
 describe('calculateHP', () => {

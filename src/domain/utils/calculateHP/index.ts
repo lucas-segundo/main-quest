@@ -1,5 +1,5 @@
 import { Dice } from 'domain/entities/Dice'
-import { getAbilityModifier } from 'domain/metrics/getAbilityModifier'
+import { getAbilityModifier } from 'domain/utils/getAbilityModifier'
 
 interface DTO {
   constitution: number

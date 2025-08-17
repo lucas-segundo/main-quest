@@ -8,7 +8,7 @@ import {
 import { mockFindCharacterService } from 'domain/entities/Character/services/FindCharacter/mock'
 import { mockFindClassService } from 'domain/entities/Class/services/FindClass/mock'
 import { mockClass } from 'domain/entities/Class/mock'
-import * as calculate from 'domain/metrics/calculateHP'
+import * as calculate from 'domain/utils/calculateHP'
 
 const mockData = () => {
   const character = mockCharacter()

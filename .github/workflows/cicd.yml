@@ -44,3 +44,6 @@ jobs:
           target: prod
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}
+
+      - name: Trigger deploy hook
+        run: curl -X POST ${{ secrets.DEPLOY_HOOK_URL }}

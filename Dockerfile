@@ -9,12 +9,12 @@ FROM base AS dev
 
 COPY . .
 RUN npm ci
+RUN npm run build
 RUN npm run prisma:generate
 
 FROM dev AS build
 
 ENV NODE_ENV=production
-RUN npm run build
 RUN npm ci --omit=dev --frozen-lockfile
 
 FROM base AS prod
